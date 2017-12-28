@@ -13,3 +13,7 @@ node_modules/**
 platforms/android
 platforms/ios
 platforms/browser
+
+
+# ignore www
+www/

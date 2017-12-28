@@ -25,7 +25,9 @@ yarn add -g cordova
 
 ```shell
 # you can custom the version with `android@version`
-cordova platform add android browser
+cordova platform add android 
+cordova platform add browser
+# or cordova platforms add android browser
 ```
 
 - Run the project with live-load
