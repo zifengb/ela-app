@@ -1,0 +1,15 @@
+# ignore all log
+*.log
+
+# Windows:
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ignore node_modules
+node_modules/**
+
+# ignore platform directory
+platforms/android
+platforms/ios
+platforms/browser
