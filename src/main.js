@@ -24,8 +24,13 @@ import Routes from './router/routes.js'
 // Import App Component
 import App from './main.vue'
 
+import mixins from './mixins'
+
 // Init F7 Vue Plugin
 Vue.use(Framework7Vue)
+
+//注入混合器
+Vue.mixin(mixins)
 
 // Init App
 new Vue({

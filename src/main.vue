@@ -12,7 +12,8 @@
 				<f7-pages>
 					<f7-page>
 						<f7-block inner>
-							<p>Left panel content goes here</p>
+							<p>2Left panel content goes here</p>
+							<p>{{$t('coupon_use_now')}}</p>
 						</f7-block>
 						<f7-block-title>Load page in panel</f7-block-title>
 						<f7-list>
