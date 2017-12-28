@@ -18,6 +18,7 @@ Build a Hybrid App with Cordova and Framework7-vue, support to compile to iOS &a
 
 ```shell
 npm i -g cordova
+or
 yarn add -g cordova
 ```
 
