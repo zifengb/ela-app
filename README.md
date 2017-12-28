@@ -5,6 +5,10 @@ Build a Hybrid App with Cordova and Framework7-vue, support to compile to iOS &a
 ## Project prepare
 
 
+![ANDROID_HOME](https://github.com/zifengb/ela-app/blob/master/snapshots/20-25-55.jpg)
+
+![PATH](https://github.com/zifengb/ela-app/blob/master/snapshots/20-26-44.jpg)
+
 
 ## Project Start
 
@@ -37,6 +41,17 @@ npm run device-dev
 
 - Configure you keystore file
 
+![keystore](https://github.com/zifengb/ela-app/blob/master/snapshots/20-32-58.jpg)
+
+**create a release-signing.properties file under the dir `platforms/android/`**
+
+```properties
+    storeFile=C:/Users/zifengb/android_keygen.jks（keystore密钥文件保存路径）
+    keyAlias=key0（keystore密钥别名，不知道就没办法了……Android Studio构建的密钥的话，可以打开找到！）
+    storeType=jks（keystore密钥类型，一般用Android Studio构建密钥可以选定）
+    keyPassword=123456（建密钥时候的密码）
+    storePassword=123456（存储密钥时的密码）
+```
 
 
 ```shell
