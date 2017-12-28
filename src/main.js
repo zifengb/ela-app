@@ -19,7 +19,7 @@ import Framework7ThemeColors from 'framework7/dist/css/framework7.ios.colors.min
 import AppStyles from './assets/sass/main.scss'
 
 // Import Routes
-import Routes from './routes.js'
+import Routes from './router/routes.js'
 
 // Import App Component
 import App from './main.vue'
