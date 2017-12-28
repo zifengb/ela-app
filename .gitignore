@@ -16,4 +16,6 @@ platforms/browser
 
 
 # ignore www
-www/
+www/**
+!www/README.md
+!www/.gitkeep
