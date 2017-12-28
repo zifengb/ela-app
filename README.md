@@ -2,6 +2,10 @@
 
 Build a Hybrid App with Cordova and Framework7-vue, support to compile to iOS &amp; Android
 
+## Project prepare
+
+
+
 ## Project Start
 
 
@@ -29,7 +33,11 @@ npm run dev
 npm run device-dev
 ```
 
-- Build the App
+## Build the App
+
+- Configure you keystore file
+
+
 
 ```shell
 npm run build
