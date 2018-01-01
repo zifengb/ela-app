@@ -1,5 +1,9 @@
 export default [
   {
+    path: '/home/',  // 首页
+    component: require('../vue/pages/home.vue')
+  },
+  {
     path: '/about/',
     component: require('../vue/pages/about.vue')
   },
