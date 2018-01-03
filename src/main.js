@@ -18,6 +18,10 @@ import Framework7ThemeColors from 'framework7/dist/css/framework7.ios.colors.min
 // Import App Custom Styles
 import AppStyles from './assets/sass/main.scss'
 
+// Import Line-FontAwesome Fonts Styles
+import './assets/css/line-awesome.min.css'
+import './assets/css/line-awesome-font-awesome.min.css'
+
 // Import Routes
 import Routes from './router/routes.js'
 
