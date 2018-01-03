@@ -1,7 +1,35 @@
 export default [
   {
+    path: '/login/',  // 首页
+    component: require('../vue/pages/login.vue')
+  },
+  {
     path: '/home/',  // 首页
     component: require('../vue/pages/home.vue')
+  },
+  {
+    path: '/restaurants/',  // 商家列表
+    component: require('../vue/pages/restaurants.vue')
+  },
+  {
+    path: '/user/',  // 我的
+    component: require('../vue/pages/user.vue')
+  },
+  {
+    path: '/order/',  // 订单
+    component: require('../vue/pages/order.vue')
+  },
+  {
+    path: '/account/',  // 账号与安全
+    component: require('../vue/pages/account.vue')
+  },
+  {
+    path: '/coupun/',  // 我的优惠券
+    component: require('../vue/pages/coupun.vue')
+  },
+  {
+    path: '/address/',  // 收货地址
+    component: require('../vue/pages/address.vue')
   },
   {
     path: '/about/',
