@@ -59,7 +59,7 @@ i.la {
 	<f7-list>
 		<f7-list-item>
 			新增收货地址 
-			<f7-link href="#"><i class="la la-plus-circle"></i></f7-link>
+			<f7-link href="/addressDetail/"><i class="la la-plus-circle"></i></f7-link>
 		</f7-list-item>
 	</f7-list>
 
@@ -71,7 +71,7 @@ i.la {
   <!-- Search-through list -->
 	<f7-block-title>我的收货地址</f7-block-title>
   <f7-list class="searchbar-found" id="search-list">
-    <f7-list-item v-for="(item, index) in items" :key="index">
+    <f7-list-item link="#" v-for="(item, index) in items" :key="index">
 			<f7-grid class="list-content">
 				<f7-col width="100" class="address">北京市朝阳区朝外大街外交部4号 890室</f7-col>
 				<f7-col width="20" class="username">濛子{{item}}</f7-col>

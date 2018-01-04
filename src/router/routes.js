@@ -32,6 +32,14 @@ export default [
     component: require('../vue/pages/address.vue')
   },
   {
+    path: '/addressDetail/',  // 收货增加/修改
+    component: require('../vue/pages/addressDetail.vue')
+  },
+  {
+    path: '/profileChange/',  // 用户名、密码增加/修改
+    component: require('../vue/pages/profileChange.vue')
+  },
+  {
     path: '/about/',
     component: require('../vue/pages/about.vue')
   },

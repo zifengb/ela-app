@@ -28,7 +28,7 @@
 					<img src="../../assets/images/pic-dl.png" alt="">
 				</div>
 			</f7-list-item>
-			<f7-list-item>
+			<f7-list-item link="/profileChange/">
 				<span>用户名</span>
 				<span>zifengb</span>
 			</f7-list-item>
@@ -58,7 +58,7 @@
 			<f7-list-item class="list-header">安全设置</f7-list-item>
 			<f7-list-item>
 				<span>登陆密码</span>
-				<a href="#">修改</a>
+				<f7-link href="/profileChange/#pwd">修改</f7-link>
 			</f7-list-item>
 			<f7-list-item>
 				<span>支付密码</span>
