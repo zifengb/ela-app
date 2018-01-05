@@ -40,6 +40,10 @@ export default [
     component: require('../vue/pages/profileChange.vue')
   },
   {
+    path: '/AmapTest/',  // 测试高德地图
+    component: require('../vue/pages/AmapTest.vue')
+  },
+  {
     path: '/about/',
     component: require('../vue/pages/about.vue')
   },

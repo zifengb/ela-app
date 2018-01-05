@@ -7,6 +7,9 @@ import Framework7 from 'framework7'
 // Import F7 Vue Plugin
 import Framework7Vue from 'framework7-vue'
 
+// Import vue-amap
+import VueAMap from 'vue-amap'
+
 // Import F7 iOS Theme Styles
 import Framework7Theme from 'framework7/dist/css/framework7.ios.min.css'
 import Framework7ThemeColors from 'framework7/dist/css/framework7.ios.colors.min.css'
@@ -32,6 +35,13 @@ import mixins from './mixins'
 
 // Init F7 Vue Plugin
 Vue.use(Framework7Vue)
+
+// Init VueAMap
+Vue.use(VueAMap)
+VueAMap.initAMapApiLoader({
+  key: '1d9099d5148a82cc01f7f9930f4833ab',
+  plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor', 'AMap.Geolocation']
+});
 
 //注入混合器
 Vue.mixin(mixins)

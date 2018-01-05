@@ -9,6 +9,7 @@
 			<f7-list-item link="/axios-list/">Axios-List</f7-list-item>
 			<f7-list-item link="/home/">Home-Page</f7-list-item>
 			<f7-list-item link="/login/">Login-Page</f7-list-item>
+			<f7-list-item link="/AmapTest/">AMap-Test</f7-list-item>
 		</f7-list>
 	</f7-page>
 </template>
