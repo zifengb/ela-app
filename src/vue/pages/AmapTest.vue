@@ -24,7 +24,7 @@ export default {
 			latitude: 0,
 			address: '',
 			loaded: false,
-			center: [121.59996, 31.197646],
+			center: [113.260526, 23.110616],
 			plugin: []
 		}
 	},

@@ -21,16 +21,36 @@
 			}
 		},
 		created() {
-			axios.get('http://gank.io/api/data/Android/10/1').then(res => {
-				// console.log(res)
-				const ret = res.data;
-				if (!ret.error) {
-					this.data = ret.results
-					// alert(JSON.stringify(this.data))
-				}
-			}).catch(err => {
-				alert(err)
-			})
+			this.gankAPI()
+			this.nodeAPI()
+			this.restaurantTest()
+		},
+		methods: {
+			gankAPI() {
+				axios.get('http://gank.io/api/data/Android/10/1').then(res => {
+					// console.log(res)
+					const ret = res.data;
+					if (!ret.error) {
+						this.data = ret.results
+						// alert(JSON.stringify(this.data))
+					}
+				}).catch(err => {
+					alert(err)
+				})
+			},
+			nodeAPI() {
+				axios.post('http://localhost:3000/test', {name: 'zifengb', age: 12}).then(res => {
+					const ret = res.data;
+					console.log(ret)
+					alert(ret)
+				}).catch(err => console.log(err))
+			},
+			restaurantTest() {
+				axios.get('http://localhost:3000/restaurant/4').then(res => {
+					const ret = res.data;
+					console.log(ret.data)
+				}).catch(err => console.lgo(err))
+			}
 		}
 	}
 </script>
