@@ -88,3 +88,7 @@ export default [
     component: require('../vue/pages/picker-modal.vue')
   },
 ]
+  {
+    path: '/shoppingCart/',
+    component: require('../vue/pages/shoppingCart.vue')
+  }
