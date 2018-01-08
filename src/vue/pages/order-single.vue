@@ -61,11 +61,10 @@
 </style>
 
 
-
 <template>
 	<f7-page>
 
-		<f7-navbar title="我的优惠" back-link="Back" sliding></f7-navbar>
+		<f7-navbar title="墨刀餐厅xxx" back-link="Back" sliding></f7-navbar>
 
 		<div class="tabs-links">
 			<f7-link tab-link="#tab-1" class="tab-link1" @click="tabActive(1)">红包</f7-link>
@@ -154,10 +153,6 @@
 
 <script>
 export default {
-	created() {
-		// 初始化一下
-		// this.$$('.active-line').removeClass('right')
-	},
 	methods: {
 		tabActive(index) {
 			index === 1 

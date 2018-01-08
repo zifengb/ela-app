@@ -25,6 +25,9 @@ import AppStyles from './assets/sass/main.scss'
 import './assets/css/line-awesome.min.css'
 import './assets/css/line-awesome-font-awesome.min.css'
 
+// Taobao REM layout
+import './utils/flexible'
+
 // Import Routes
 import Routes from './router/routes.js'
 

@@ -1,7 +1,7 @@
 <style lang="scss">
 .ad-searchbar input[type=search] {
 	background-color: #F0F0F0;
-	font-size: 1rem;
+	font-size: 0.4rem;
 }
 </style>
 
@@ -14,7 +14,7 @@
 	margin: 4% 0;
 	> div:not(:first-child) {
 		color: #878787;
-		font-size: 0.8rem;
+		font-size: 0.4rem;
 		margin-top: 2%;
 	}
 }

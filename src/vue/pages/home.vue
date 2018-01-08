@@ -6,7 +6,7 @@
 	width: 94%;
 	margin: 2% auto 4%;
 	> p {
-		font-size: 1rem;
+		font-size: 0.4rem;
 		margin-bottom: 2%;
 	}
 }
@@ -45,12 +45,12 @@
 		border-bottom: 1px solid #DEDEDE;
 	}
 	.rt-list-grid {
-		font-size: 1rem;
+		font-size: 0.35555rem;
 		.content {
 			margin-bottom: 4%;
 			> h3 {
 				color: #000;
-				font-size: 1.4rem;
+				font-size: 0.55555rem;
 				font-weight: lighter;
 				line-height: 1.5;
 			}
@@ -79,10 +79,10 @@
 }
 .toolbar {
 	i {
-		font-size: 1.8rem;
+		font-size: 0.6rem;
 	}
 	span {
-		font-size: 0.5rem;
+		font-size: 0.3rem;
 	}
 }
 </style>

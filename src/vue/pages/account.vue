@@ -6,8 +6,8 @@
 	color: #C5C5C5;
 }
 .avatar {
-	width: 3.5rem;
-	height: 3.5rem;
+	width: 1.82rem;
+	height: 1.82rem;
 	img {
 		border-radius: 50%;
 		vertical-align: middle;

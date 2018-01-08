@@ -4,7 +4,7 @@
 	width: 30%;
 	background-color: #FFD21F;
 	color: #000;
-	font-size: 0.8rem;
+	font-size: 0.4rem;
 	text-align: center;
 	border-radius: 4%;
 }
@@ -39,7 +39,7 @@
     transform: translateX(-50%);
 	}
 	.icon {
-		font-size: 2.4rem;
+		font-size: 1.4rem;
 	}
 }
 </style>

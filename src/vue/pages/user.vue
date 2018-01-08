@@ -2,8 +2,8 @@
 .user-block {
 	margin-top: 0;
 	.avatar {
-		width: 4rem;
-		height: 4rem;
+		width: 2rem;
+		height: 2rem;
 		img {
 			border-radius: 50%;
 			vertical-align: middle;
@@ -28,12 +28,12 @@
 	}
 	strong {
 		font: {
-			size: 1.4rem;
+			size: 0.8rem;
 			weight: bolder;
 		}
 		color: #E51C23;
 		> sub {
-			font-size: 0.8rem;
+			font-size: 0.5rem;
 		}
 	}
 }
