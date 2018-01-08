@@ -16,8 +16,12 @@ export default [
     component: require('../vue/pages/user.vue')
   },
   {
-    path: '/order/',  // 订单
+    path: '/order/',  // 订单列表
     component: require('../vue/pages/order.vue')
+  },
+  {
+    path: '/order-single/',  // 单个订单
+    component: require('../vue/pages/order-single.vue')
   },
   {
     path: '/account/',  // 账号与安全
@@ -74,5 +78,9 @@ export default [
   {
     path: '/axios-list/',
     component: require('../vue/pages/axios-list.vue')
+  },
+  {
+    path: '/picker-modal/',
+    component: require('../vue/pages/picker-modal.vue')
   },
 ]
