@@ -5,9 +5,9 @@
 	height: 100vh;
 }
 .popup-content {
-	width: 100%;
 	position: absolute;
 	bottom: 0;
+	width: 100%;
 	background-color: #fff;
 }
 // #自定义picker-modal

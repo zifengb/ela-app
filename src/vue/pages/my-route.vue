@@ -10,6 +10,7 @@
 			<f7-list-item link="/home/">Home-Page</f7-list-item>
 			<f7-list-item link="/login/">Login-Page</f7-list-item>
 			<f7-list-item link="/order-single/">Single-order</f7-list-item>
+			<f7-list-item link="/payoff/">Payoff-Page</f7-list-item>
 			<f7-list-item link="/AmapTest/">AMap-Test</f7-list-item>
 		</f7-list>
 	</f7-page>

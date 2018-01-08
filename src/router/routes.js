@@ -44,6 +44,10 @@ export default [
     component: require('../vue/pages/profileChange.vue')
   },
   {
+    path: '/payoff/',  // 用户名、密码增加/修改
+    component: require('../vue/pages/payoff.vue')
+  },
+  {
     path: '/AmapTest/',  // 测试高德地图
     component: require('../vue/pages/AmapTest.vue')
   },
