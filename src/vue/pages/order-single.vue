@@ -290,8 +290,8 @@
 
 		<f7-actions :opened="flag" class="action-modal" @actions:closed="actionModal(false)">
 			<f7-actions-group>
-				<f7-actions-button>商家电话12312132</f7-actions-button>
-				<f7-actions-button>客服电话12312132</f7-actions-button>
+				<f7-actions-button @click="phonecall(12312132)">商家电话12312132</f7-actions-button>
+				<f7-actions-button @click="phonecall(12312132)">客服电话12312132</f7-actions-button>
 			</f7-actions-group>
 			<f7-actions-group>
 				<f7-actions-button>取消</f7-actions-button>
@@ -337,6 +337,17 @@ export default {
 		},
 		popup() {
 			this.flag = !this.flag;
+		},
+		phonecall(number) {
+			window.plugins.CallNumber.callNumber(this.onSuccess, this.onError, number, true);
+		},
+		callSuccess(result) {
+			console.log("Success:"+result);
+			// alert("Success:"+result);
+		},
+		callError(result) {
+			console.log("Success:"+result);
+			// alert("Success:"+result);
 		}
 	}
 }

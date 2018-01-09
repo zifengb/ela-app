@@ -26,6 +26,7 @@
         <allow-intent href="itms-apps:*" />
     </platform>
     <allow-navigation href="*" />
+    <plugin name="call-number" spec="https://github.com/Rohfosho/CordovaCallNumberPlugin.git" />
     <engine name="browser" spec="^5.0.3" />
     <engine name="android" spec="^7.0.0" />
 </widget>

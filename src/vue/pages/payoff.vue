@@ -198,7 +198,7 @@
 					</f7-list-item>
 
 
-					<f7-list-item link="/addressDetail/">
+					<f7-list-item link="#" @click="jumpTo">
 						<span><i class="icon la la-plus-circle"></i> 新增收货地址</span>
 					</f7-list-item>
 				</f7-list>
@@ -219,6 +219,10 @@ export default {
 	methods: {
 		popup() {
 			this.flag = !this.flag;
+		},
+		jumpTo() {
+			this.popup();
+			this.$router.loadPage('/addressDetail/')
 		},
 		submit() {
 			
