@@ -48,6 +48,10 @@ export default [
     component: require('../vue/pages/payoff.vue')
   },
   {
+    path: '/shoppingCart/',
+    component: require('../vue/pages/shoppingCart.vue')
+  },
+  {
     path: '/AmapTest/',  // 测试高德地图
     component: require('../vue/pages/AmapTest.vue')
   },
@@ -88,7 +92,3 @@ export default [
     component: require('../vue/pages/picker-modal.vue')
   },
 ]
-  {
-    path: '/shoppingCart/',
-    component: require('../vue/pages/shoppingCart.vue')
-  }

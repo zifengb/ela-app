@@ -32,8 +32,18 @@
 	}
 }
 .radio-box {
-		padding: 0;
-		width: 100%;
+	width: 100%;
+	display: flex;
+	span {
+		display: inline-block;
+	}
+	> label {
+		flex: 1;
+		i, span {
+			vertical-align: bottom;
+			vertical-align: -webkit-baseline-middle;
+		}
+	}
 }
 .btn-group {
 	width: 100%;
@@ -123,18 +133,30 @@
 				<f7-accordion-content>
 					<f7-list form class="filter-form">
 						<f7-list-item>
+							<f7-label>商家类别</f7-label>
+							<div class="radio-box">
+								<label for="breakfast">
+									<input type="radio" name="category" id="breakfast" hidden checked>
+									<i class="icon-radio"></i>
+									<span>早餐</span>
+								</label>
+								<label for="fastfood">
+									<input type="radio" name="category" id="fastfood" hidden>
+									<i class="icon-radio"></i>
+									<span>快餐</span>
+								</label>
+								<label for="drinks">
+									<input type="radio" name="category" id="drinks" hidden>
+									<i class="icon-radio"></i>
+									<span>饮品</span>
+								</label>
+							</div>
+						</f7-list-item>
+						<f7-list-item>
 							<f7-label>价格区间(元)</f7-label>
 							<f7-input type="text" placeholder="上限"/>
 							<span class="sline">——</span>
 							<f7-input type="text" placeholder="下限"/>
-						</f7-list-item>
-						<f7-list-item>
-							<f7-label>商家类别</f7-label>
-							<ul class="radio-box">
-								<f7-list-item radio name="my-radio" value="1" title="Radio 1" checked></f7-list-item>
-								<f7-list-item radio name="my-radio" value="2" title="Radio 2"></f7-list-item>
-								<f7-list-item radio name="my-radio" value="3" title="Radio 3"></f7-list-item>
-							</ul>
 						</f7-list-item>
 						<f7-list-item>
 							<div class="btn-group">
