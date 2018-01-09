@@ -90,7 +90,7 @@
         padding: 0.4rem;
         border-bottom: 1px solid #DEDEDE;
         background: #EDEFF0;
-    }
+	}
     .active {
         background: #FFFFFF;
     }
@@ -139,8 +139,71 @@
         }
     }
 }
-</style>
 
+// 底部按钮条
+.bottom-tab {
+	border: 1px solid #dedede;
+	box-sizing: border-box;
+	position: fixed;
+	bottom: 0px;
+	z-index: 99;
+	width: 100%;
+	background-color: #ffffff;
+	.cart {
+		position: relative;
+		.button-num {
+			position: absolute;
+			width: .5rem;
+			height: .5rem;
+			border-radius: .5rem;
+			background-color: red;
+			top: -0.9rem;
+			right: 0.2rem;
+			z-index: 1;
+			.num {
+				display:flex;
+				flex:1;
+			}
+		}
+		.button-cart {
+			position: absolute;
+			top: -0.8rem;
+			width: 1.5rem;
+			height: 1.5rem;
+			border-radius: 1.5rem;
+			background-color: #ffec21;
+			left: 50%;
+			transform: translateX(-50%);
+			.icon {
+				display:flex;
+				flex:1;
+				font-size: 1rem;
+			}
+		}
+	}
+	.content {
+		display: flex;
+		flex: 1;
+		height: 1.5rem;
+		.price {
+			color: #E73339;
+			font-size: 0.6rem;
+		}
+		.tip {
+			font-size: 0.1rem;
+			color: #878787;
+		}
+	}
+	.button-sum {
+		display: flex;
+		flex: 1;
+		height: 1.5rem;
+		background-color: #ACE22E;
+		font-size: 0.4rem;
+		color: #526f0e;
+	}
+}
+</style>
 
 <template>
 	<f7-page class="main">
@@ -169,7 +232,7 @@
                                 <p><span class="sales">月售429</span><span class="zan">赞19</span></p>
                                 <div class="flex-row">
                                     <p class="money row-center-left span1">￥15</p>
-                                    <p class="plus row-center-right span1"><i class="la la-plus-circle"></i></p>
+                                    <p class="plus row-center-right span1" @click="add"><i class="la la-plus-circle"></i></p>
                                 </div>
                             </f7-col>
                         </f7-grid>
@@ -183,7 +246,7 @@
                                 <p><span class="sales">月售429</span><span class="zan">赞19</span></p>
                                 <div class="flex-row">
                                     <p class="money row-center-left span1">￥15</p>
-                                    <p class="plus row-center-right span1"><i class="la la-plus-circle"></i></p>
+                                    <p class="plus row-center-right span1" @click="add"><i class="la la-plus-circle"></i></p>
                                 </div>
                             </f7-col>
                         </f7-grid>
@@ -197,7 +260,35 @@
                                 <p><span class="sales">月售429</span><span class="zan">赞19</span></p>
                                 <div class="flex-row">
                                     <p class="money row-center-left span1">￥15</p>
-                                    <p class="plus row-center-right span1"><i class="la la-plus-circle"></i></p>
+                                    <p class="plus row-center-right span1" @click="add"><i class="la la-plus-circle"></i></p>
+                                </div>
+                            </f7-col>
+                        </f7-grid>
+						<f7-grid no-gutter class="item">
+                            <f7-col width="25" class="pic">
+                                <img src="../../assets/images/pic-dl.png" />
+                            </f7-col>
+                            <f7-col width="75" class="content">
+                                <p class="title">红烧排骨套餐</p>
+                                <p class="description">一个主菜加两个配菜</p>
+                                <p><span class="sales">月售429</span><span class="zan">赞19</span></p>
+                                <div class="flex-row">
+                                    <p class="money row-center-left span1">￥15</p>
+                                    <p class="plus row-center-right span1" @click="add"><i class="la la-plus-circle"></i></p>
+                                </div>
+                            </f7-col>
+                        </f7-grid>
+						<f7-grid no-gutter class="item">
+                            <f7-col width="25" class="pic">
+                                <img src="../../assets/images/pic-dl.png" />
+                            </f7-col>
+                            <f7-col width="75" class="content">
+                                <p class="title">红烧排骨套餐</p>
+                                <p class="description">一个主菜加两个配菜</p>
+                                <p><span class="sales">月售429</span><span class="zan">赞19</span></p>
+                                <div class="flex-row">
+                                    <p class="money row-center-left span1">￥15</p>
+                                    <p class="plus row-center-right span1" @click="add"><i class="la la-plus-circle"></i></p>
                                 </div>
                             </f7-col>
                         </f7-grid>
@@ -211,7 +302,7 @@
                                 <p><span class="sales">月售429</span><span class="zan">赞19</span></p>
                                 <div class="flex-row">
                                     <p class="money row-center-left span1">￥15</p>
-                                    <p class="plus row-center-right span1"><i class="la la-plus-circle"></i></p>
+                                    <p class="plus row-center-right span1" @click="add"><i class="la la-plus-circle"></i></p>
                                 </div>
                             </f7-col>
                         </f7-grid>
@@ -338,6 +429,29 @@
 
 			</f7-tab>
 		</f7-tabs>
+		<div class="bottom-tab" v-show="isProduct">
+			<f7-grid no-gutter>
+				<f7-col class="cart" width="20">
+					<div class="button-num flex-row"><span class="num center">1</span></div>
+					<div class="button-cart flex-row">
+						<i class="icon la la-shopping-cart center"></i>
+					</div>
+				</f7-col>
+				<f7-col class="flex-row" width="50">
+					<div class="content row-center-left">
+						<div class="flex-column">
+							<p class="price column-center-top">￥15</p>
+							<p class="tip column-center-top">另需配送费￥3</p>
+						</div>
+					</div>
+				</f7-col>
+				<f7-col class="flex-row" width="30">
+					<span class="button-sum center">
+						去结算
+					</span>
+				</f7-col>
+			</f7-grid>
+		</div>
 
 		<f7-actions :opened="flag" class="action-modal" @actions:closed="actionModal(false)">
 			<f7-actions-group>
@@ -348,20 +462,6 @@
 				<f7-actions-button>取消</f7-actions-button>
 			</f7-actions-group>
 		</f7-actions>
-
-		<!-- <f7-picker-modal class="modal-popup" :opened="flag">
-			<div class="popup-content">
-				<p>fsdfd</p>
-				<p>fsdfd</p>
-				<p>fsdfd</p>
-				<p>fsdfd</p>
-				<p>fsdfd</p>
-				<p>fsdfd</p>
-				<p>fsdfd</p>
-				<f7-button @click="popup">关闭按钮</f7-button>
-			</div>
-		</f7-picker-modal> -->
-
 	</f7-page>
 </template>
 
@@ -393,14 +493,19 @@ export default {
                     isActived: false
                 }
             ],
-            number: 10,
+			number: 10,
+			isProduct: true
 		}
 	},
 	methods: {
 		tabActive(index) {
-			index === 1 
-			? this.$$('.active-line').removeClass('right')
-			: this.$$('.active-line').addClass('right')
+			if (index === 1) {
+				this.$$('.active-line').removeClass('right')
+				this.isProduct = true
+			} else {
+				this.$$('.active-line').addClass('right')
+				this.isProduct = false
+			}
 		},
 		actionModal(f) {
 			if (f === false) {
@@ -419,7 +524,10 @@ export default {
             this.types[key].isActived = true;
             // var element = document.getElementById('box');
             // element.scrollIntoView({block: "center", behavior: "smooth"});
-        },
+		},
+		add() {
+			console.log('add')
+		}
 	}
 }
 </script>
