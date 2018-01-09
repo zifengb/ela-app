@@ -203,6 +203,14 @@
 		color: #526f0e;
 	}
 }
+.toolbar {
+	i {
+		font-size: 0.6rem;
+	}
+	span {
+		font-size: 0.3rem;
+	}
+}
 </style>
 
 <template>
@@ -310,119 +318,31 @@
                 </f7-grid>
 			</f7-tab>
 			<f7-tab id="tab-2">
-				<!-- 订单详情 start -->
-				<f7-block-title class="block-title">订单详情</f7-block-title>
-				<f7-list class="order-detail">
-					<f7-list-item class="restaurant">
-						<f7-grid class="inner-grid">
-							<f7-col width="70">墨刀餐厅</f7-col>
-							<f7-col width="30">非美团转送</f7-col>
-						</f7-grid>
-					</f7-list-item>
-					<f7-list-item class="food-list">
-						<f7-grid class="inner-grid">
-							<!-- item -->
-							<f7-col width="55">
-								<f7-badge>折</f7-badge>
-								菜式1
-							</f7-col>
-							<f7-col width="15">* 1</f7-col>
-							<f7-col width="15">￥10</f7-col>
-							<f7-col width="15">￥10</f7-col>
-							<!-- item -->
-							<!-- item -->
-							<f7-col width="55">
-								<f7-badge>折</f7-badge>
-								菜式1
-							</f7-col>
-							<f7-col width="15">* 1</f7-col>
-							<f7-col width="15">￥10</f7-col>
-							<f7-col width="15">￥10</f7-col>
-							<!-- item -->
-							<!-- item -->
-							<f7-col width="55">
-								<f7-badge>折</f7-badge>
-								菜式1
-							</f7-col>
-							<f7-col width="15">* 1</f7-col>
-							<f7-col width="15">￥10</f7-col>
-							<f7-col width="15">￥10</f7-col>
-							<!-- item -->
-						</f7-grid>
-					</f7-list-item>
-					<f7-list-item class="fee-list">
-						<f7-grid class="inner-grid">
-							<f7-col width="85">餐盒费</f7-col>
-							<f7-col width="15">￥10</f7-col>
-							<f7-col width="85">配送费</f7-col>
-							<f7-col width="15">￥10</f7-col>
-						</f7-grid>
-					</f7-list-item>
-					<f7-list-item class="coupun-list">
-						<f7-grid class="inner-grid">
-							<f7-col width="85">
-								<f7-badge>折</f7-badge>
-								门店新客
-							</f7-col>
-							<f7-col width="15">
-								-￥5
-							</f7-col>
-							<f7-col width="85">
-								<f7-badge>返</f7-badge>
-								满返商家代金券优惠
-							</f7-col>
-							<f7-col width="15">
-								-￥5
-							</f7-col>
-						</f7-grid>
-					</f7-list-item>
-					<f7-list-item class="final-fee">
-						<f7-grid class="inner-grid">
-							<f7-col width="70">
-								<span>总计 ￥10</span>
-								<span>优惠 ￥10</span>
-							</f7-col>
-							<f7-col width="30">实付 ￥10</f7-col>
-						</f7-grid>
-					</f7-list-item>
-				</f7-list>
-				<!-- 订单详情 end -->
-
-				<!-- 配送 start -->
-				<f7-block-title class="block-title">配送信息</f7-block-title>
-				<f7-list class="delivery-info">
-					<f7-list-item class="delivery-tip">
-						<f7-label>期望xxx</f7-label>
-						<span>立即配送</span>
-					</f7-list-item>
-					<f7-list-item class="address">
-						<f7-label>配送地址</f7-label>
-						<div>
-							<p>濛子（女士） 213131534</p>
-							<p>这是地址这是地址这是地址这是地址</p>
-						</div>
-					</f7-list-item>
-					<f7-list-item class="service">
-						<f7-label>配送服务</f7-label>
-						<span>由 商家 提供配送服务</span>
-					</f7-list-item>
-				</f7-list>
-				<!-- 配送 end -->
-
 				<!-- 订单信息 start -->
-				<f7-block-title class="block-title">订单信息</f7-block-title>
-				<f7-list class="order-info">
+				<f7-list>
 					<f7-list-item class="phone">
 						<f7-label>订单号码</f7-label>
 						<span>12312312</span>
 					</f7-list-item>
-					<f7-list-item class="time">
-						<f7-label>订单时间</f7-label>
-						<span>1231233</span>
+					<f7-list-item class="location">
+						<f7-label>地址</f7-label>
+						<span>广东工业大学</span>
 					</f7-list-item>
-					<f7-list-item class="method">
-						<f7-label>支付方式</f7-label>
-						<span>线上支付</span>
+				</f7-list>
+				<f7-list>
+					<f7-list-item class="time">
+						<f7-label>配送时间</f7-label>
+						<span>08:30-22:00</span>
+					</f7-list-item>
+					<f7-list-item class="service">
+						<f7-label>配送服务</f7-label>
+						<span>又商家提供配送服务</span>
+					</f7-list-item>
+				</f7-list>
+				<f7-list>
+					<f7-list-item link="#">
+						<f7-label>商家评价</f7-label>
+						<f7-link></f7-link>
 					</f7-list-item>
 				</f7-list>
 				<!-- 订单信息 end -->
@@ -452,7 +372,17 @@
 				</f7-col>
 			</f7-grid>
 		</div>
-
+		<f7-toolbar tabbar labels class="toolbar" v-show="!isProduct">
+			<f7-link href="#">
+				<i class="la la-home"></i> <span>首页</span>
+			</f7-link>
+			<f7-link href="/order/">
+				<i class="la la-navicon"></i> <span>订单</span>
+			</f7-link>
+			<f7-link href="/user/">
+				<i class="la la-user"></i> <span>我的</span>
+			</f7-link>
+		</f7-toolbar>
 		<f7-actions :opened="flag" class="action-modal" @actions:closed="actionModal(false)">
 			<f7-actions-group>
 				<f7-actions-button>商家电话12312132</f7-actions-button>
