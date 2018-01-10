@@ -146,7 +146,7 @@
 	box-sizing: border-box;
 	position: fixed;
 	bottom: 0px;
-	z-index: 99;
+	z-index: 101;
 	width: 100%;
 	background-color: #ffffff;
 	.cart {
@@ -210,6 +210,67 @@
 	span {
 		font-size: 0.3rem;
 	}
+}
+.cart-detail {
+	position:fixed;
+	bottom:0px;
+	width:100%;
+	background-color:#F9F9F9;
+	z-index:100;
+	padding-bottom: 100px;
+	.title {
+		height: 1.5rem;
+		background-color: #F5F5F5;
+		.product-list {
+			font-size: 0.4rem;
+			padding-left: 0.4rem
+		}
+		.clear-cart {
+			font-size: 0.4rem;
+			padding-right: 0.4rem
+		}
+	}
+	.item {
+		height: 1.5rem;
+		background-color:#F9F9F9;
+		border-bottom: 1px solid #eee;
+		.product-item {
+			font-size: 0.4rem;
+			padding-left: 0.4rem
+		}
+		.product-item-description {
+			font-size: 0.1rem;
+    		color: #C0C0C0;
+			padding-left: 0.4rem
+		}
+		.price {
+			font-size: 0.4rem;
+		}
+		.plus {
+			font-size: 0.8rem;
+			color: #ffec21;
+		}
+		.num {
+			font-size: 0.4rem;
+		}
+		.minus {
+			font-size: 0.8rem;
+			color: #ffec21;
+		}
+	}
+}
+.cart-detail-active {
+	bottom: 0px;
+}
+.mask {
+	position: fixed;
+    bottom: 0px;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: #131313;
+    z-index: 99;
+    opacity: 0.4;
 }
 </style>
 
@@ -353,7 +414,7 @@
 			<f7-grid no-gutter>
 				<f7-col class="cart" width="20">
 					<div class="button-num flex-row"><span class="num center">1</span></div>
-					<div class="button-cart flex-row">
+					<div class="button-cart flex-row" @click="open">
 						<i class="icon la la-shopping-cart center"></i>
 					</div>
 				</f7-col>
@@ -383,15 +444,62 @@
 				<i class="la la-user"></i> <span>我的</span>
 			</f7-link>
 		</f7-toolbar>
-		<f7-actions :opened="flag" class="action-modal" @actions:closed="actionModal(false)">
-			<f7-actions-group>
-				<f7-actions-button>商家电话12312132</f7-actions-button>
-				<f7-actions-button>客服电话12312132</f7-actions-button>
-			</f7-actions-group>
-			<f7-actions-group>
-				<f7-actions-button>取消</f7-actions-button>
-			</f7-actions-group>
-		</f7-actions>
+		<div class="cart-detail" v-show="isOpen">
+			<div class="flex-row title">
+				<div class="row-center-left span1 product-list">已选商品</div>
+				<div class="row-center-right span1 clear-cart">清空购物车</div>
+			</div>
+			<div class="flex-row item">
+				<div class="flex-column span2">
+					<div class="column-center-top span1 product-item">招牌磨刀牛腩</div>
+					<div class="column-center-top span1 product-item-description">含1份原件商品</div>
+				</div>
+				<div class="row-center-left span1 price">￥15</div>
+				<div class="flex-row span1" style="padding-right: 0.4rem">
+					<span class="span1 center plus"><i class="la la-plus-circle"></i></span>
+					<span class="span1 center num">1</span>
+					<span class="span1 center minus"><i class="la la-minus-circle"></i></span>
+				</div>
+			</div>
+			<div class="flex-row item">
+				<div class="flex-column span2">
+					<div class="column-center-top span1 product-item">招牌磨刀牛腩</div>
+					<div class="column-center-top span1 product-item-description">含1份原件商品</div>
+				</div>
+				<div class="row-center-left span1 price">￥15</div>
+				<div class="flex-row span1" style="padding-right: 0.4rem">
+					<span class="span1 center plus"><i class="la la-plus-circle"></i></span>
+					<span class="span1 center num">1</span>
+					<span class="span1 center minus"><i class="la la-minus-circle"></i></span>
+				</div>
+			</div>
+			<div class="flex-row item">
+				<div class="flex-column span2">
+					<div class="column-center-top span1 product-item">招牌磨刀牛腩</div>
+					<div class="column-center-top span1 product-item-description">含1份原件商品</div>
+				</div>
+				<div class="row-center-left span1 price">￥15</div>
+				<div class="flex-row span1" style="padding-right: 0.4rem">
+					<span class="span1 center plus"><i class="la la-plus-circle"></i></span>
+					<span class="span1 center num">1</span>
+					<span class="span1 center minus"><i class="la la-minus-circle"></i></span>
+				</div>
+			</div>
+			<div class="flex-row item">
+				<div class="flex-column span2">
+					<div class="column-center-top span1 product-item">招牌磨刀牛腩</div>
+					<div class="column-center-top span1 product-item-description">含1份原件商品</div>
+				</div>
+				<div class="row-center-left span1 price">￥15</div>
+				<div class="flex-row span1" style="padding-right: 0.4rem">
+					<span class="span1 center plus"><i class="la la-plus-circle"></i></span>
+					<span class="span1 center num">1</span>
+					<span class="span1 center minus"><i class="la la-minus-circle"></i></span>
+				</div>
+			</div>
+		</div>
+		<div class="mask" v-if="isOpen" @click="close">
+		</div>
 	</f7-page>
 </template>
 
@@ -424,10 +532,17 @@ export default {
                 }
             ],
 			number: 10,
-			isProduct: true
+			isProduct: true,
+			isOpen: false
 		}
 	},
 	methods: {
+		open() {
+			this.isOpen = true
+		},
+		close() {
+			this.isOpen = false
+		},
 		tabActive(index) {
 			if (index === 1) {
 				this.$$('.active-line').removeClass('right')

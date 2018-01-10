@@ -17,50 +17,62 @@
 
 //各种对齐方式
 .center {
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 .column-center-top {
+  display: flex;
   align-items: center;
 }
 .column-center-bottom {
+  display: flex;
   justify-content: flex-end;
   align-items: center;
 }
 .column-center-left {
+  display: flex;
   justify-content: center;
   align-items: flex-start;
 }
 .column-center-right {
+  display: flex;
   justify-content: center;
   align-items: flex-end;
 }
 .column-left-top {
+  display: flex;
   justify-content: flex-start;
   align-items: flex-start;
 }
 .column-right-top {
+  display: flex;
   justify-content: flex-start;
   align-items: flex-end;
 }
 .column-left-bottom {
+  display: flex;
   justify-content: flex-end;
   align-items: flex-start;
 }
 .column-right-bottom {
+  display: flex;
   justify-content: flex-end;
   align-items: flex-end;
 }
 .row-space-between {
+  display: flex;
   justify-content: space-between;
   align-items: center;
 }
 //flex-direction:row
 .row-center-top {
+  display: flex;
   justify-content: center;
   align-items: flex-start;
 }
 .row-center-bottom {
+  display: flex;
   justify-content: center;
   align-items: flex-end;
 }
@@ -75,18 +87,22 @@
   align-items: center;
 }
 .row-left-top {
+  display: flex;
   justify-content: flex-start;
   align-items: flex-start;
 }
 .row-right-top {
+  display: flex;
   justify-content: flex-end;
   align-items: flex-start;
 }
 .row-left-bottom {
+  display: flex;
   justify-content: flex-start;
   align-items: flex-end;
 }
 .row-right-bottom {
+  display: flex;
   justify-content: flex-end;
   align-items: flex-end;
 }
