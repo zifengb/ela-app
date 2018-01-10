@@ -156,5 +156,20 @@
 </template>
 
 <script>
-	export default {}
+	import back from './utils/index'
+	export default {
+		created() {
+			back(this.routerBack)	// 重写手机返回键退出App事件
+		},
+		methods: {
+			routerBack() {
+				// alert(this.$f7.mainView.history)
+				if (this.$f7.mainView.history.length === 1) {
+					navigator.app.exitApp(); // exit App
+				} else {
+					this.$router.back();
+				}
+			}
+		}
+	}
 </script>

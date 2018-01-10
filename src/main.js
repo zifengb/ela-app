@@ -10,6 +10,9 @@ import Framework7Vue from 'framework7-vue'
 // Import vue-amap
 import VueAMap from 'vue-amap'
 
+// Import vuex store
+import store from './services/index'
+
 // Import F7 iOS Theme Styles
 import Framework7Theme from 'framework7/dist/css/framework7.ios.min.css'
 import Framework7ThemeColors from 'framework7/dist/css/framework7.ios.colors.min.css'
@@ -49,10 +52,18 @@ VueAMap.initAMapApiLoader({
 //注入混合器
 Vue.mixin(mixins)
 
+
+// 测试路由导航守卫（该框架没集成！！！）
+// Routes.beforeEach((to, from, next) => {
+//   console.log('router handler')
+//   next();
+// })
+
 // Init App
 new Vue({
   el: '#app',
   template: '<app/>',
+  store,
   // Init Framework7 by passing parameters here
   framework7: {
     root: '#app',

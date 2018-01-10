@@ -62,6 +62,8 @@ export default {
 			});
 
 		})
+		// cordova 插件定位
+		this.Geolocation();
 	},
 	methods: {
 		onComplete(res) {
@@ -76,6 +78,23 @@ export default {
 		},
 		onError (err) {
 			console.dir(err)
+		},
+		Geolocation() {
+			window.LocationPlugin.getLocation(this.GeolocationSuccess, this.GeolocationError)
+		},
+		GeolocationSuccess(position) {
+			alert('Latitude: '          + position.latitude          + '\n' +
+              'Longitude: '         + position.longitude         + '\n' +
+              'Latitude: '          + position.latitude          + '\n' +
+              'Accuracy: '          + position.accuracy          + '\n' +
+              'Altitude Accuracy: ' + position.address  + '\n' +
+              'Heading: '           + position.province           + '\n' +
+              'Speed: '             + position.road             + '\n' +
+              'Timestamp: '         + position.speed                + '\n');
+		},
+		GeolocationError(error) {
+			alert('code: '    + error.code    + '\n' +
+              'message: ' + error.message + '\n');
 		}
 	}
 }

@@ -7,10 +7,10 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-whitelist": {
+    "call-number": {
       "PACKAGE_NAME": "com.ela.app"
     },
-    "call-number": {
+    "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.ela.app"
     }
   },

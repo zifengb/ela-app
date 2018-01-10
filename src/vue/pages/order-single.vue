@@ -322,6 +322,10 @@ export default {
 			flag: false
 		}
 	},
+	created() {
+		alert(this.$store.state.count);
+		alert(window.localStorage.getItem('count'));
+	},
 	methods: {
 		tabActive(index) {
 			index === 1 

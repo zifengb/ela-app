@@ -4,7 +4,7 @@
 	width: 30%;
 	background-color: #FFD21F;
 	color: #000;
-	font-size: 0.4rem;
+	font-size: 0.3rem;
 	text-align: center;
 	border-radius: 4%;
 }
@@ -53,7 +53,7 @@
 		<f7-list form class="login-form" ref="login-form">
 			<f7-list-item>
 				<f7-input type="text" placeholder="用户名或手机号" v-model="userInfo.name" />
-				<a href="#" class="getCode">获取验证码</a>
+				<a href="#" class="getCode" @click="increment">获取验证码</a>
 			</f7-list-item>
 			<f7-list-item>
 				<f7-input type="password" placeholder="密码或验证码" v-model="userInfo.password" />
@@ -98,9 +98,16 @@ export default {
 			}
 		}
 	},
+	created() {
+		alert(this.$store.state.count);
+	},
 	methods: {
 		login() {
 			console.log(this.userInfo)
+		},
+		increment() {
+			this.$store.commit('increment')
+			window.localStorage.setItem('count', this.$store.state.count)
 		}
 	}
 }
