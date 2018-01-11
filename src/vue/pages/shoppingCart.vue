@@ -401,7 +401,7 @@
 					</f7-list-item>
 				</f7-list>
 				<f7-list>
-					<f7-list-item link="#">
+					<f7-list-item link="/order-history/">
 						<f7-label>商家评价</f7-label>
 						<f7-link></f7-link>
 					</f7-list-item>

@@ -91,4 +91,8 @@ export default [
     path: '/picker-modal/',
     component: require('../vue/pages/picker-modal.vue')
   },
+  {
+    path: '/order-history/',
+    component: require('../vue/pages/orderHistory.vue')
+  },
 ]

@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import "common";
+@import "common.scss";
 
 //flex两种主轴row column
 .flex-row {
@@ -15,7 +15,7 @@
   flex-wrap: wrap;
 }
 
-//各种对齐方式
+//flex-direction:column
 .center {
   display: flex;
   justify-content: center;
@@ -156,3 +156,25 @@
 .no-margin{
   margin: 0;
 }
+
+// 通用样式
+.subtitle-text {
+  font-size: 0.3rem;
+  color:$color_subtitle;
+}
+.content-text {
+  font-size: 0.4rem
+}
+.star{
+  color: #FFD21F;
+  font-size: 0.5rem;
+}
+.star-o{
+  font-size: 0.5rem;
+}
+.padding-left-right {
+  padding: 0 0.4rem;
+}   
+.padding-top-bottom {
+  padding: 0.4rem 0rem;
+}    
