@@ -42,7 +42,7 @@
 				axios.post('http://localhost:3000/test', {name: 'zifengb', age: 12}).then(res => {
 					const ret = res.data;
 					console.log(ret)
-					alert(ret)
+					alert(JSON.stringify(ret))
 				}).catch(err => console.log(err))
 			},
 			restaurantTest() {

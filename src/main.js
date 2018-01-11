@@ -49,7 +49,7 @@ Vue.use(Framework7Vue)
 Vue.use(VueAMap)
 VueAMap.initAMapApiLoader({
   key: '1d9099d5148a82cc01f7f9930f4833ab',
-  plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor', 'AMap.Geolocation']
+  plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor', 'AMap.Geolocation', 'AMap.CitySearch']
 });
 
 // Init websocket

@@ -175,6 +175,7 @@
 			events: {
 				hello(data) {
 					console.log(data)
+					alert(data.info)
 				}
 			}
 		}

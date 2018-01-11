@@ -8,7 +8,7 @@
 <template>
 	<f7-page>
 		<f7-navbar title="高德地图测试" back-link="Back" sliding></f7-navbar>
-		<el-amap class="amapContainer" :vid="'amapContainer'" :center="center"></el-amap>
+		<el-amap class="amapContainer" :vid="'amapContainer'" :center="center" :plugin="plugin"></el-amap>
 	</f7-page>
 </template>
 
@@ -66,8 +66,29 @@ export default {
 		this.Geolocation();
 	},
 	methods: {
+		initGeo(o) {
+			const self = this;
+			o.getCurrentPosition((status, result) => {
+				if (result && result.position) {
+					alert(JSON.stringify(result.position))
+					console.dir(result)
+					self.longitude = result.position.lng;
+					self.latitude = result.position.lat;
+					self.center = [self.longitude, self.latitude];
+					self.loaded = true;
+					self.$nextTick();
+				}
+			});
+		},
+		initCity(o) {
+			const self = this;
+			o.getLocalCity((status, result) => {
+				console.dir(status)
+				console.dir(result)
+			})
+		},
 		onComplete(res) {
-			console.dir(res)
+			console.dir('success', res)
 			if (res && res.position) {
 				this.longitude = res.position.lng;
 				this.latitude = res.position.lat;
