@@ -170,6 +170,13 @@
 					this.$router.back();
 				}
 			}
+		},
+		socket: {	// 放置在顶层mainView监听服务端socket
+			events: {
+				hello(data) {
+					console.log(data)
+				}
+			}
 		}
 	}
 </script>

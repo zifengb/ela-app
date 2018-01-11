@@ -50,6 +50,7 @@
         "loglevel": "^1.4.1",
         "vue": "^2.2.4",
         "vue-amap": "^0.4.5",
+        "vue-websocket": "^0.2.2",
         "vuex": "^3.0.1"
     },
     "cordova": {

@@ -325,6 +325,7 @@ export default {
 	created() {
 		alert(this.$store.state.count);
 		alert(window.localStorage.getItem('count'));
+		this.listener();
 	},
 	methods: {
 		tabActive(index) {
@@ -352,6 +353,9 @@ export default {
 		callError(result) {
 			console.log("Success:"+result);
 			// alert("Success:"+result);
+		},
+		listener() {
+			this.$socket.emit('listener', { info: 'message from vue template' })
 		}
 	}
 }

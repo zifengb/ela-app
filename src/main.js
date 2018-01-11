@@ -10,6 +10,9 @@ import Framework7Vue from 'framework7-vue'
 // Import vue-amap
 import VueAMap from 'vue-amap'
 
+// Import vue-websocket plugin
+import VueWebSocket from 'vue-websocket'
+
 // Import vuex store
 import store from './services/index'
 
@@ -48,6 +51,11 @@ VueAMap.initAMapApiLoader({
   key: '1d9099d5148a82cc01f7f9930f4833ab',
   plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor', 'AMap.Geolocation']
 });
+
+// Init websocket
+Vue.use(VueWebSocket, 'ws://localhost:3000', {
+  reconnection: true  // 开发阶段使用false， 上线使用true?
+})
 
 //注入混合器
 Vue.mixin(mixins)
