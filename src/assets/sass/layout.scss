@@ -173,8 +173,14 @@
   font-size: 0.5rem;
 }
 .padding-left-right {
-  padding: 0 0.4rem;
+  padding-left:.4rem;
+  padding-right:.4rem;
 }   
 .padding-top-bottom {
-  padding: 0.4rem 0rem;
+  padding-top:.4rem;
+  padding-bottom:.4rem;
 }    
+.row-padding {
+  padding-top:.1rem;
+  padding-bottom:.1rem;
+}

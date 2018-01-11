@@ -95,4 +95,8 @@ export default [
     path: '/order-history/',
     component: require('../vue/pages/orderHistory.vue')
   },
+  {
+    path: '/send-order',
+    component: require('../vue/pages/send-order.vue')
+  }
 ]
