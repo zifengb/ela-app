@@ -169,233 +169,24 @@
 			</f7-accordion-item>
 		</f7-accordion>
 
+		<!-- 商家列表 -->
 		<ul class="rt-list" style="margin-top: 40px;">
-			<li>
+			<li v-for="item in list" :key="item.restaurant_id" @click="jumpTo('/shoppingCart/')">
 				<f7-grid class="rt-list-grid">
 					<f7-col width="30" class="aside">
-						<img src="../../assets/images/pic-dl.png" />
+						<img :src="item.image" />
 					</f7-col>
 					<f7-col width="70">
 						<f7-grid>
 							<f7-col width="70" class="content">
-								<h3>墨刀餐厅</h3>
-								<p><span class="rating">{{ calcRate(2) }}</span>月售13131单</p>
-								<p><span>起送￥111</span><span class="agent-fee">配送￥122</span></p>
-								<p><f7-badge>折</f7-badge>折扣商品6.22折起</p>
+								<h3>{{ item.restaurant_name }}</h3>
+								<p><span class="rating">{{ calcRate(item.numRatings || 2) }}</span>月售{{ item.recent_order_num }}单</p>
+								<p><span>起送￥{{ item.deliver_amount }}</span><span class="agent-fee">配送￥{{ item.agent_fee }}</span></p>
+								<p><f7-badge>折</f7-badge>满30元减5</p>
 							</f7-col>
 							<f7-col width="30" class="tip">
-								<p>1.0km</p>
-								<p>48分钟</p>
-							</f7-col>
-						</f7-grid>
-					</f7-col>
-				</f7-grid>
-			</li>
-			<li>
-				<f7-grid class="rt-list-grid">
-					<f7-col width="30" class="aside">
-						<img src="../../assets/images/pic-dl.png" />
-					</f7-col>
-					<f7-col width="70">
-						<f7-grid>
-							<f7-col width="70" class="content">
-								<h3>墨刀餐厅</h3>
-								<p><span class="rating">{{ calcRate(2) }}</span>月售13131单</p>
-								<p><span>起送￥111</span><span class="agent-fee">配送￥122</span></p>
-								<p><f7-badge>折</f7-badge>折扣商品6.22折起</p>
-							</f7-col>
-							<f7-col width="30" class="tip">
-								<p>1.0km</p>
-								<p>48分钟</p>
-							</f7-col>
-						</f7-grid>
-					</f7-col>
-				</f7-grid>
-			</li>
-			<li>
-				<f7-grid class="rt-list-grid">
-					<f7-col width="30" class="aside">
-						<img src="../../assets/images/pic-dl.png" />
-					</f7-col>
-					<f7-col width="70">
-						<f7-grid>
-							<f7-col width="70" class="content">
-								<h3>墨刀餐厅</h3>
-								<p><span class="rating">{{ calcRate(2) }}</span>月售13131单</p>
-								<p><span>起送￥111</span><span class="agent-fee">配送￥122</span></p>
-								<p><f7-badge>折</f7-badge>折扣商品6.22折起</p>
-							</f7-col>
-							<f7-col width="30" class="tip">
-								<p>1.0km</p>
-								<p>48分钟</p>
-							</f7-col>
-						</f7-grid>
-					</f7-col>
-				</f7-grid>
-			</li>
-			<li>
-				<f7-grid class="rt-list-grid">
-					<f7-col width="30" class="aside">
-						<img src="../../assets/images/pic-dl.png" />
-					</f7-col>
-					<f7-col width="70">
-						<f7-grid>
-							<f7-col width="70" class="content">
-								<h3>墨刀餐厅</h3>
-								<p><span class="rating">{{ calcRate(2) }}</span>月售13131单</p>
-								<p><span>起送￥111</span><span class="agent-fee">配送￥122</span></p>
-								<p><f7-badge>折</f7-badge>折扣商品6.22折起</p>
-							</f7-col>
-							<f7-col width="30" class="tip">
-								<p>1.0km</p>
-								<p>48分钟</p>
-							</f7-col>
-						</f7-grid>
-					</f7-col>
-				</f7-grid>
-			</li>
-			<li>
-				<f7-grid class="rt-list-grid">
-					<f7-col width="30" class="aside">
-						<img src="../../assets/images/pic-dl.png" />
-					</f7-col>
-					<f7-col width="70">
-						<f7-grid>
-							<f7-col width="70" class="content">
-								<h3>墨刀餐厅</h3>
-								<p><span class="rating">{{ calcRate(2) }}</span>月售13131单</p>
-								<p><span>起送￥111</span><span class="agent-fee">配送￥122</span></p>
-								<p><f7-badge>折</f7-badge>折扣商品6.22折起</p>
-							</f7-col>
-							<f7-col width="30" class="tip">
-								<p>1.0km</p>
-								<p>48分钟</p>
-							</f7-col>
-						</f7-grid>
-					</f7-col>
-				</f7-grid>
-			</li>
-			<li>
-				<f7-grid class="rt-list-grid">
-					<f7-col width="30" class="aside">
-						<img src="../../assets/images/pic-dl.png" />
-					</f7-col>
-					<f7-col width="70">
-						<f7-grid>
-							<f7-col width="70" class="content">
-								<h3>墨刀餐厅</h3>
-								<p><span class="rating">{{ calcRate(2) }}</span>月售13131单</p>
-								<p><span>起送￥111</span><span class="agent-fee">配送￥122</span></p>
-								<p><f7-badge>折</f7-badge>折扣商品6.22折起</p>
-							</f7-col>
-							<f7-col width="30" class="tip">
-								<p>1.0km</p>
-								<p>48分钟</p>
-							</f7-col>
-						</f7-grid>
-					</f7-col>
-				</f7-grid>
-			</li>
-			<li>
-				<f7-grid class="rt-list-grid">
-					<f7-col width="30" class="aside">
-						<img src="../../assets/images/pic-dl.png" />
-					</f7-col>
-					<f7-col width="70">
-						<f7-grid>
-							<f7-col width="70" class="content">
-								<h3>墨刀餐厅</h3>
-								<p><span class="rating">{{ calcRate(2) }}</span>月售13131单</p>
-								<p><span>起送￥111</span><span class="agent-fee">配送￥122</span></p>
-								<p><f7-badge>折</f7-badge>折扣商品6.22折起</p>
-							</f7-col>
-							<f7-col width="30" class="tip">
-								<p>1.0km</p>
-								<p>48分钟</p>
-							</f7-col>
-						</f7-grid>
-					</f7-col>
-				</f7-grid>
-			</li>
-			<li>
-				<f7-grid class="rt-list-grid">
-					<f7-col width="30" class="aside">
-						<img src="../../assets/images/pic-dl.png" />
-					</f7-col>
-					<f7-col width="70">
-						<f7-grid>
-							<f7-col width="70" class="content">
-								<h3>墨刀餐厅</h3>
-								<p><span class="rating">{{ calcRate(2) }}</span>月售13131单</p>
-								<p><span>起送￥111</span><span class="agent-fee">配送￥122</span></p>
-								<p><f7-badge>折</f7-badge>折扣商品6.22折起</p>
-							</f7-col>
-							<f7-col width="30" class="tip">
-								<p>1.0km</p>
-								<p>48分钟</p>
-							</f7-col>
-						</f7-grid>
-					</f7-col>
-				</f7-grid>
-			</li>
-			<li>
-				<f7-grid class="rt-list-grid">
-					<f7-col width="30" class="aside">
-						<img src="../../assets/images/pic-dl.png" />
-					</f7-col>
-					<f7-col width="70">
-						<f7-grid>
-							<f7-col width="70" class="content">
-								<h3>墨刀餐厅</h3>
-								<p><span class="rating">{{ calcRate(2) }}</span>月售13131单</p>
-								<p><span>起送￥111</span><span class="agent-fee">配送￥122</span></p>
-								<p><f7-badge>折</f7-badge>折扣商品6.22折起</p>
-							</f7-col>
-							<f7-col width="30" class="tip">
-								<p>1.0km</p>
-								<p>48分钟</p>
-							</f7-col>
-						</f7-grid>
-					</f7-col>
-				</f7-grid>
-			</li>
-			<li>
-				<f7-grid class="rt-list-grid">
-					<f7-col width="30" class="aside">
-						<img src="../../assets/images/pic-dl.png" />
-					</f7-col>
-					<f7-col width="70">
-						<f7-grid>
-							<f7-col width="70" class="content">
-								<h3>墨刀餐厅</h3>
-								<p><span class="rating">{{ calcRate(2) }}</span>月售13131单</p>
-								<p><span>起送￥111</span><span class="agent-fee">配送￥122</span></p>
-								<p><f7-badge>折</f7-badge>折扣商品6.22折起</p>
-							</f7-col>
-							<f7-col width="30" class="tip">
-								<p>1.0km</p>
-								<p>48分钟</p>
-							</f7-col>
-						</f7-grid>
-					</f7-col>
-				</f7-grid>
-			</li>
-			<li>
-				<f7-grid class="rt-list-grid">
-					<f7-col width="30" class="aside">
-						<img src="../../assets/images/pic-dl.png" />
-					</f7-col>
-					<f7-col width="70">
-						<f7-grid>
-							<f7-col width="70" class="content">
-								<h3>墨刀餐厅</h3>
-								<p><span class="rating">{{ calcRate(2) }}</span>月售13131单</p>
-								<p><span>起送￥111</span><span class="agent-fee">配送￥122</span></p>
-								<p><f7-badge>折</f7-badge>折扣商品6.22折起</p>
-							</f7-col>
-							<f7-col width="30" class="tip">
-								<p>1.0km</p>
-								<p>48分钟</p>
+								<p>{{ item.distance + 'km' }}</p>
+								<p>{{ item.deliver_spent }}分钟</p>
 							</f7-col>
 						</f7-grid>
 					</f7-col>
@@ -407,15 +198,18 @@
 
 
 <script>
+import axios from 'axios'
 export default {
 	data() {
 		return {
-			isOpened: false
+			isOpened: false,
+			list: []
 		}
 	},
 	created() {
 		// 查看this实例可以发现，DOM7($$)、framework7($f7)实例已经注册在原型上
 		console.dir(this)
+		this.loadList();
 	},
 	computed: {
 		classList() {
@@ -431,6 +225,16 @@ export default {
 		},
 		toggleAccordion() {
 			this.isOpened = !this.isOpened;
+		},
+		loadList() {
+			axios.get(this.$store.state.global.host + '/restaurant/range').then(res => {
+				this.list = res.data;
+			}).catch(err => console.log(err))
+		},
+		filterList() {
+			axios.get('/').then(res => {
+				
+			}).catch(err => console.log(err))
 		}
 	}
 }

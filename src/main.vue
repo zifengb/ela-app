@@ -241,7 +241,6 @@ import back from './utils/index'
 export default {
 	data() {
 		return {
-			HOST: 'http://localhost:3000/restaurant',
 			categories: [],
 			sliders: [],
 			restaurants: []
@@ -261,7 +260,7 @@ export default {
 			this.$f7.mainView.router.loadPage(url);
 		},
 		loadRestaurants() {
-			axios.get(this.HOST+'/range').then(res => {
+			axios.get(this.$store.state.global.host +'/restaurant/range').then(res => {
 				this.restaurants = res.data;
 			}).catch(err => console.log(err))
 		},

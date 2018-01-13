@@ -1,7 +1,8 @@
 export default {
 	namespaced: true,
 	state: {
-			flag: true
+			flag: true,
+			host: 'http://localhost:3000'
 	},
 	getters: {
 
