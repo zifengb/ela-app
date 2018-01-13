@@ -219,7 +219,7 @@
 				</f7-pages>
 
 				<!-- toolbar -->
-				<f7-toolbar tabbar labels class="toolbar" v-show="$store.state.flag">
+				<f7-toolbar tabbar labels class="toolbar" v-show="$store.state.global.flag">
 					<f7-link href="/home/">
 						<i class="la la-home"></i> <span>首页</span>
 					</f7-link>

@@ -543,7 +543,7 @@ export default {
 		}
 	},
 	created() {
-		this.$store.commit('hideToolbar')
+		this.$store.commit('global/hideToolbar')
 	},
 	methods: {
 		open() {
@@ -583,7 +583,7 @@ export default {
 			console.log('add')
 		},
 		showToolbar() {
-			this.$store.commit('showToolbar')
+			this.$store.commit('global/showToolbar')
 		}
 	}
 }
