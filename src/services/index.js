@@ -6,18 +6,18 @@ Vue.use(Vuex)
 // vuex模块总入口文件
 export default new Vuex.Store({
     state: {
-        count: 0
+        flag: true
     },
     getters: {
 
     },
     mutations: {
-        increment(state) {
-            state.count++
+        showToolbar(state) {
+            state.flag = true
         },
-        decrement(state) {
-            state.count--
-        }
+        hideToolbar(state) {
+            state.flag = false
+        },
     },
     actions: {
         

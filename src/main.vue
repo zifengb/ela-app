@@ -1,3 +1,92 @@
+<style lang="scss" scoped>
+.main {
+	background-color: #fff;
+}
+.header {
+	width: 94%;
+	margin: 2% auto 4%;
+	> p {
+		font-size: 0.4rem;
+		margin-bottom: 2%;
+	}
+}
+.search-bar {
+	text-align: center;
+	border: 1px solid #BBB;
+	> input {
+		border: none;
+		width: 40%;
+		height: 100%;
+		min-height: 30px;
+		text-align: center;
+	}
+}
+.category {
+	margin: 4% 0;
+}
+.gallery {
+	display: block;
+	text-align: center;
+	.gallery-grid {
+		margin: 0 auto;
+		width: 50%;
+		height: 50%;
+		> img {
+			border-radius: 50%;
+		}
+	}
+}
+.rt-list {
+	color: #878787;
+	border-top: 1px solid #DEDEDE;
+	margin-bottom: 50px;
+	> li {
+		margin: 4% 2%;
+		border-bottom: 1px solid #DEDEDE;
+	}
+	.rt-list-grid {
+		font-size: 0.35555rem;
+		.content {
+			margin-bottom: 4%;
+			> h3 {
+				color: #000;
+				font-size: 0.55555rem;
+				font-weight: lighter;
+				line-height: 1.5;
+			}
+			> p {
+				line-height: 1.8;
+			}
+			.rating {
+				color: #FFD21F;
+			}
+			.agent-fee::before {
+				content: "|";
+				margin: 0 4px;
+			}
+		}
+		.badge {
+			margin-right: 2%;
+			background-color: #A938A9;
+			border-radius: 0;
+			vertical-align: text-bottom;
+		}
+		.tip {
+			color: #ADADAD;
+			transform: translateY(34%);
+		}
+	}
+}
+.toolbar {
+	i {
+		font-size: 0.6rem;
+	}
+	span {
+		font-size: 0.3rem;
+	}
+}
+</style>
+
 <template>
 	<!-- App -->
 	<div id="app">
@@ -5,179 +94,193 @@
 		<!-- Statusbar -->
 		<f7-statusbar></f7-statusbar>
 		
-		<!-- Left Panel -->
-		<f7-panel left reveal layout="dark">
-			<f7-view id="left-panel-view" navbar-through :dynamic-navbar="true">
-				<f7-navbar title="Left Panel"></f7-navbar>
-				<f7-pages>
-					<f7-page>
-						<f7-block inner>
-							<p>2Left panel content goes here</p>
-							<p>{{$t('coupon_use_now')}}</p>
-						</f7-block>
-						<f7-block-title>Load page in panel</f7-block-title>
-						<f7-list>
-							<f7-list-item link="/about/" title="About"></f7-list-item>
-							<f7-list-item link="/form/" title="Form"></f7-list-item>
-						</f7-list>
-						<f7-block-title>Load page in main view</f7-block-title>
-						<f7-list>
-							<f7-list-item link="/about/" title="About" link-view="#main-view" link-close-panel></f7-list-item>
-							<f7-list-item link="/form/" title="Form" link-view="#main-view" link-close-panel></f7-list-item>
-						</f7-list>
-					</f7-page>
-				</f7-pages>
-			</f7-view>
-		</f7-panel>
-		
-		<!-- Right Panel -->
-		<f7-panel right cover layout="dark">
-			<f7-view id="right-panel-view" navbar-through :dynamic-navbar="true">
-				<f7-navbar title="Right Panel" sliding></f7-navbar>
-				<f7-pages>
-					<f7-page>
-						<f7-block>
-							<p>Right panel content goes here</p>
-						</f7-block>
-						<f7-block-title>Load page in panel</f7-block-title>
-						<f7-list>
-							<f7-list-item link="/about/" title="About"></f7-list-item>
-							<f7-list-item link="/form/" title="Form"></f7-list-item>
-						</f7-list>
-						<f7-block-title>Load page in main view</f7-block-title>
-						<f7-list>
-							<f7-list-item link="/about/" title="About" link-view="#main-view" link-close-panel></f7-list-item>
-							<f7-list-item link="/form/" title="Form" link-view="#main-view" link-close-panel></f7-list-item>
-						</f7-list>
-					</f7-page>
-				</f7-pages>
-			</f7-view>
-		</f7-panel>
-		
 		<!-- Main Views -->
 		<f7-views>
 			<f7-view id="main-view" navbar-through :dynamic-navbar="true" main>
 				<!-- Navbar -->
-				<f7-navbar>
-					<f7-nav-left>
-						<f7-link icon="icon-bars" open-panel="left"></f7-link>
-					</f7-nav-left>
-					<f7-nav-center sliding>Framework7(bingo)</f7-nav-center>
-					<f7-nav-right>
-						<f7-link icon="icon-bars" open-panel="right"></f7-link>
-					</f7-nav-right>
-				</f7-navbar>
+				<f7-navbar title="饿了吧" back-link="Back" sliding></f7-navbar>
 				<!-- Pages -->
 				<f7-pages>
-					<f7-page>
-						<f7-block-title>Welcome to my App</f7-block-title>
-						<f7-block inner>
-							<p>Duis sed erat ac eros ultrices pharetra id ut tellus. Praesent rhoncus enim ornare ipsum aliquet ultricies. Pellentesque sodales erat quis elementum sagittis.</p>
-						</f7-block>
-						<f7-block-title>Navigation</f7-block-title>
-						<f7-list>
-							<f7-list-item link="/about/" title="About"></f7-list-item>
-							<f7-list-item link="/form/" title="Form"></f7-list-item>
-							<f7-list-item link="/dynamic-route/blog/45/post/125/?foo=bar#about" title="Dynamic Route"></f7-list-item>
-							<f7-list-item link="/picker-modal/" title="PickerModal"></f7-list-item>
-							<f7-list-item link="/my-route/" title="My Route"></f7-list-item>
-						</f7-list>
-						<f7-block-title>Side Panels</f7-block-title>
-						<f7-block>
+					<f7-page class="main">
+						<!-- 头部搜索 start -->
+						<div class="header">
+							<p><i class="la la-map-marker"></i>广州某地</p>
+							<form class="search-bar">
+								<i class="la la-search la-rotate-270"></i><input type="text" placeholder="搜索商家、商品名称">
+							</form>
+						</div>
+						<!-- 头部搜索 end -->
+
+						<!-- 商品分类grid start -->
+						<div class="category">
 							<f7-grid>
-								<f7-col width="50">
-									<f7-button open-panel="left">Left Panel</f7-button>
+								<f7-col class="gallery" width="33">
+									<div class="gallery-grid" @click="jumpTo('/restaurants/')">
+										<img src="./assets/images/pic-dl.png" alt="早餐">
+									</div>
+									<span>早餐</span>
 								</f7-col>
-								<f7-col width="50">
-									<f7-button open-panel="right">Right Panel</f7-button>
+								<f7-col class="gallery" width="33">
+									<div class="gallery-grid" @click="jumpTo('/restaurants/')">
+										<img src="./assets/images/pic-dl.png" alt="快餐">
+									</div>
+									<span>快餐</span>
+								</f7-col>
+								<f7-col class="gallery" width="33">
+									<div class="gallery-grid" @click="jumpTo('/restaurants/')">
+										<img src="./assets/images/pic-dl.png" alt="甜品饮品">
+									</div>
+									<span>甜品饮品</span>
+								</f7-col>
+								<f7-col class="gallery" width="33">
+									<div class="gallery-grid" @click="jumpTo('/restaurants/')">
+										<img src="./assets/images/pic-dl.png" alt="特色菜系">
+									</div>
+									<span>特色菜系</span>
+								</f7-col>
+								<f7-col class="gallery" width="33">
+									<div class="gallery-grid" @click="jumpTo('/restaurants/')">
+										<img src="./assets/images/pic-dl.png" alt="果蔬生鲜">
+									</div>
+									<span>果蔬生鲜</span>
+								</f7-col>
+								<f7-col class="gallery" width="33">
+									<div class="gallery-grid" @click="jumpTo('/restaurants/')">
+										<img src="./assets/images/pic-dl.png" alt="新店优惠">
+									</div>
+									<span>新店优惠</span>
 								</f7-col>
 							</f7-grid>
-						</f7-block>
-						<f7-block-title>Modals</f7-block-title>
-						<f7-block>
-							<f7-grid>
-								<f7-col width="50">
-									<f7-button open-popup="#popup">Popup</f7-button>
-								</f7-col>
-								<f7-col width="50">
-									<f7-button open-login-screen="#login-screen">Login Screen</f7-button>
-								</f7-col>
-							</f7-grid>
-						</f7-block>
+						</div>
+						<!-- 商品分类grid end -->
+
+						<!-- swiper start -->
+						<f7-swiper pagination :params="{speed:500, slidesPerView: 1, spaceBetween: 0}">
+							<f7-swiper-slide>
+								<img style="width: 100%; height: 160px" src="./assets/images/pic-dl.png" alt="" />
+							</f7-swiper-slide>
+							<f7-swiper-slide>
+								<img style="width: 100%; height: 160px" src="./assets/images/pic-dl.png" alt="" />
+							</f7-swiper-slide>
+							<f7-swiper-slide>
+								<img style="width: 100%; height: 160px" src="./assets/images/pic-dl.png" alt="" />
+							</f7-swiper-slide>
+						</f7-swiper>
+						<!-- swiper end -->
+
+						<!-- 特惠活动grid start -->
+						<f7-block-title>特惠活动</f7-block-title>
+						<f7-grid no-gutter>
+							<f7-col width="50">
+								<img src="./assets/images/pic-dl.png" alt="" />
+							</f7-col>
+							<f7-col width="50">
+								<img src="./assets/images/pic-dl.png" alt="" />
+							</f7-col>
+							<f7-col width="33">
+								<img src="./assets/images/pic-dl.png" alt="" />
+							</f7-col>
+							<f7-col width="33">
+								<img src="./assets/images/pic-dl.png" alt="" />
+							</f7-col>
+							<f7-col width="33">
+								<img src="./assets/images/pic-dl.png" alt="" />
+							</f7-col>
+						</f7-grid>
+						<!-- 特惠活动grid end -->
+
+						<!-- 商家列表 start -->
+						<f7-block-title>附近商家</f7-block-title>
+						<ul class="rt-list">
+							<li v-for="item in restaurants" :key="item.restaurant_id" @click="jumpTo('/shoppingCart/')">
+								<f7-grid class="rt-list-grid">
+									<f7-col width="30" class="aside">
+										<img :src="item.image" />
+									</f7-col>
+									<f7-col width="70">
+										<f7-grid>
+											<f7-col width="70" class="content">
+												<h3>{{ item.restaurant_name }}</h3>
+												<p><span class="rating">{{ calcRate(item.numRatings || 2) }}</span>月售{{ item.recent_order_num }}单</p>
+												<p><span>起送￥{{ item.deliver_amount }}</span><span class="agent-fee">配送￥{{ item.agent_fee }}</span></p>
+												<p><f7-badge>折</f7-badge>满30元减5</p>
+											</f7-col>
+											<f7-col width="30" class="tip">
+												<p>{{ item.distance + 'km' }}</p>
+												<p>{{ item.deliver_spent }}分钟</p>
+											</f7-col>
+										</f7-grid>
+									</f7-col>
+								</f7-grid>
+							</li>
+						</ul>
+						<!-- 商家列表 end -->
 					</f7-page>
 				</f7-pages>
+
+				<!-- toolbar -->
+				<f7-toolbar tabbar labels class="toolbar" v-show="$store.state.flag">
+					<f7-link href="/home/">
+						<i class="la la-home"></i> <span>首页</span>
+					</f7-link>
+					<f7-link href="/order/">
+						<i class="la la-navicon"></i> <span>订单</span>
+					</f7-link>
+					<f7-link href="/user/">
+						<i class="la la-user"></i> <span>我的</span>
+					</f7-link>
+				</f7-toolbar>
 			</f7-view>
-		</f7-views>
-		
-		<!-- Popup -->
-		<f7-popup id="popup">
-			<f7-view navbar-fixed>
-				<f7-pages>
-					<f7-page>
-						<f7-navbar title="Popup">
-							<f7-nav-right>
-								<f7-link :close-popup="true">Close</f7-link>
-							</f7-nav-right>
-						</f7-navbar>
-						<f7-block>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, architecto. Cupiditate laudantium rem nesciunt numquam, ipsam. Voluptates omnis, a inventore atque ratione aliquam. Omnis iusto nemo quos ullam obcaecati, quod.</f7-block>
-					</f7-page>
-				</f7-pages>
-			</f7-view>
-		</f7-popup>
-		
-		<!-- Login Screen -->
-		<f7-login-screen id="login-screen">
-			<f7-view>
-				<f7-pages>
-					<f7-page login-screen>
-						<f7-login-screen-title>Login</f7-login-screen-title>
-						<f7-list form>
-							<f7-list-item>
-								<f7-label>Username</f7-label>
-								<f7-input name="username" placeholder="Username" type="text"></f7-input>
-							</f7-list-item>
-							<f7-list-item>
-								<f7-label>Password</f7-label>
-								<f7-input name="password" type="password" placeholder="Password"></f7-input>
-							</f7-list-item>
-						</f7-list>
-						<f7-list>
-							<f7-list-button title="Sign In" close-login-screen></f7-list-button>
-							<f7-list-label>
-								<p>Click Sign In to close Login Screen</p>
-							</f7-list-label>
-						</f7-list>
-					</f7-page>
-				</f7-pages>
-			</f7-view>
-		</f7-login-screen>
-	
+		</f7-views>		
 	</div>
 </template>
 
 <script>
-	import back from './utils/index'
-	export default {
-		created() {
-			back(this.routerBack)	// 重写手机返回键退出App事件
+import axios from 'axios'
+import back from './utils/index'
+export default {
+	data() {
+		return {
+			HOST: 'http://localhost:3000/restaurant',
+			categories: [],
+			sliders: [],
+			restaurants: []
+		}
+	},
+	created() {
+		// this.categories = categories;
+		// this.sliders = sliders;
+		this.loadRestaurants();
+		back(this.routerBack)	// 重写手机返回键退出App事件
+	},
+	methods: {
+		calcRate(rate) {
+			return "★★★★★☆☆☆☆☆".slice(5 - rate, 10 - rate);
 		},
-		methods: {
-			routerBack() {
-				// alert(this.$f7.mainView.history)
-				if (this.$f7.mainView.history.length === 1) {
-					navigator.app.exitApp(); // exit App
-				} else {
-					this.$router.back();
-				}
+		jumpTo(url) {
+			this.$f7.mainView.router.loadPage(url);
+		},
+		loadRestaurants() {
+			axios.get(this.HOST+'/range').then(res => {
+				this.restaurants = res.data;
+			}).catch(err => console.log(err))
+		},
+		routerBack() {
+			// alert(this.$f7.mainView.history)
+			if (this.$f7.mainView.history.length === 1) {
+				navigator.app.exitApp(); // exit App
+			} else {
+				this.$router.back();
 			}
-		},
-		socket: {	// 放置在顶层mainView监听服务端socket
-			events: {
-				hello(data) {
-					console.log(data)
-					alert(data.info)
-				}
+		}
+	},
+	socket: {	// 放置在顶层mainView监听服务端socket
+		events: {
+			hello(data) {
+				console.log(data)
+				// alert(data.info)
 			}
 		}
 	}
+}
 </script>

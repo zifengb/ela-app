@@ -276,7 +276,7 @@
 
 <template>
 	<f7-page class="main">
-		<f7-navbar title="墨刀餐厅xxx" back-link="Back" sliding></f7-navbar>
+		<f7-navbar title="墨刀餐厅xxx" back-link="Back" sliding @back-click="showToolbar"></f7-navbar>
 		<div class="tabs-links">
 			<f7-link tab-link="#tab-1" class="tab-link1" @click="tabActive(1)">点菜</f7-link>
 			<f7-link tab-link="#tab-2" class="tab-link2" @click="tabActive(2)">商家</f7-link>
@@ -542,6 +542,9 @@ export default {
 			isOpen: false
 		}
 	},
+	created() {
+		this.$store.commit('hideToolbar')
+	},
 	methods: {
 		open() {
 			this.isOpen = true
@@ -578,6 +581,9 @@ export default {
 		},
 		add() {
 			console.log('add')
+		},
+		showToolbar() {
+			this.$store.commit('showToolbar')
 		}
 	}
 }

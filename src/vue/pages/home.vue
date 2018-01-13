@@ -105,11 +105,41 @@
 		<!-- 商品分类grid start -->
 		<div class="category">
 			<f7-grid>
-				<f7-col class="gallery" width="33" v-for="(item, index) in categories" :key="index">
-					<div class="gallery-grid" @click="jumpTo">
-						<img :src="item.url" :alt="item.text">
+				<f7-col class="gallery" width="33">
+					<div class="gallery-grid" @click="jumpTo('/restaurants/')">
+						<img src="../../assets/images/pic-dl.png" alt="早餐">
 					</div>
-					<span>{{ item.text }}</span>
+					<span>早餐</span>
+				</f7-col>
+				<f7-col class="gallery" width="33">
+					<div class="gallery-grid" @click="jumpTo('/restaurants/')">
+						<img src="../../assets/images/pic-dl.png" alt="快餐">
+					</div>
+					<span>快餐</span>
+				</f7-col>
+				<f7-col class="gallery" width="33">
+					<div class="gallery-grid" @click="jumpTo('/restaurants/')">
+						<img src="../../assets/images/pic-dl.png" alt="甜品饮品">
+					</div>
+					<span>甜品饮品</span>
+				</f7-col>
+				<f7-col class="gallery" width="33">
+					<div class="gallery-grid" @click="jumpTo('/restaurants/')">
+						<img src="../../assets/images/pic-dl.png" alt="特色菜系">
+					</div>
+					<span>特色菜系</span>
+				</f7-col>
+				<f7-col class="gallery" width="33">
+					<div class="gallery-grid" @click="jumpTo('/restaurants/')">
+						<img src="../../assets/images/pic-dl.png" alt="果蔬生鲜">
+					</div>
+					<span>果蔬生鲜</span>
+				</f7-col>
+				<f7-col class="gallery" width="33">
+					<div class="gallery-grid" @click="jumpTo('/restaurants/')">
+						<img src="../../assets/images/pic-dl.png" alt="新店优惠">
+					</div>
+					<span>新店优惠</span>
 				</f7-col>
 			</f7-grid>
 		</div>
@@ -117,8 +147,14 @@
 
 		<!-- swiper start -->
 		<f7-swiper pagination :params="{speed:500, slidesPerView: 1, spaceBetween: 0}">
-			<f7-swiper-slide v-for="(item, index) in sliders" :key="index">
-				<img style="width: 100%; height: 160px" :src="item" alt="" />
+			<f7-swiper-slide>
+				<img style="width: 100%; height: 160px" src="../../assets/images/pic-dl.png" alt="" />
+			</f7-swiper-slide>
+			<f7-swiper-slide>
+				<img style="width: 100%; height: 160px" src="../../assets/images/pic-dl.png" alt="" />
+			</f7-swiper-slide>
+			<f7-swiper-slide>
+				<img style="width: 100%; height: 160px" src="../../assets/images/pic-dl.png" alt="" />
 			</f7-swiper-slide>
 		</f7-swiper>
 		<!-- swiper end -->
@@ -147,64 +183,22 @@
 		<!-- 商家列表 start -->
 		<f7-block-title>附近商家</f7-block-title>
 		<ul class="rt-list">
-			<li>
+			<li v-for="item in restaurants" :key="item.restaurant_id" @click="jumpTo('/shoppingCart/')">
 				<f7-grid class="rt-list-grid">
 					<f7-col width="30" class="aside">
-						<img src="../../assets/images/pic-dl.png" />
+						<img :src="item.image" />
 					</f7-col>
 					<f7-col width="70">
 						<f7-grid>
 							<f7-col width="70" class="content">
-								<h3>墨刀餐厅</h3>
-								<p><span class="rating">{{ calcRate(2) }}</span>月售13131单</p>
-								<p><span>起送￥111</span><span class="agent-fee">配送￥122</span></p>
-								<p><f7-badge>折</f7-badge>折扣商品6.22折起</p>
+								<h3>{{ item.restaurant_name }}</h3>
+								<p><span class="rating">{{ calcRate(item.numRatings || 2) }}</span>月售{{ item.recent_order_num }}单</p>
+								<p><span>起送￥{{ item.deliver_amount }}</span><span class="agent-fee">配送￥{{ item.agent_fee }}</span></p>
+								<p><f7-badge>折</f7-badge>满30元减5</p>
 							</f7-col>
 							<f7-col width="30" class="tip">
-								<p>1.0km</p>
-								<p>48分钟</p>
-							</f7-col>
-						</f7-grid>
-					</f7-col>
-				</f7-grid>
-			</li>
-			<li>
-				<f7-grid class="rt-list-grid">
-					<f7-col width="30" class="aside">
-						<img src="../../assets/images/pic-dl.png" />
-					</f7-col>
-					<f7-col width="70">
-						<f7-grid>
-							<f7-col width="70" class="content">
-								<h3>墨刀餐厅</h3>
-								<p><span class="rating">{{ calcRate(2) }}</span>月售13131单</p>
-								<p><span>起送￥111</span><span class="agent-fee">配送￥122</span></p>
-								<p><f7-badge>折</f7-badge>折扣商品6.22折起</p>
-							</f7-col>
-							<f7-col width="30" class="tip">
-								<p>1.0km</p>
-								<p>48分钟</p>
-							</f7-col>
-						</f7-grid>
-					</f7-col>
-				</f7-grid>
-			</li>
-			<li>
-				<f7-grid class="rt-list-grid">
-					<f7-col width="30" class="aside">
-						<img src="../../assets/images/pic-dl.png" />
-					</f7-col>
-					<f7-col width="70">
-						<f7-grid>
-							<f7-col width="70" class="content">
-								<h3>墨刀餐厅</h3>
-								<p><span class="rating">{{ calcRate(2) }}</span>月售13131单</p>
-								<p><span>起送￥111</span><span class="agent-fee">配送￥122</span></p>
-								<p><f7-badge>折</f7-badge>折扣商品6.22折起</p>
-							</f7-col>
-							<f7-col width="30" class="tip">
-								<p>1.0km</p>
-								<p>48分钟</p>
+								<p>{{ item.distance + 'km' }}</p>
+								<p>{{ item.deliver_spent }}分钟</p>
 							</f7-col>
 						</f7-grid>
 					</f7-col>
@@ -213,8 +207,8 @@
 		</ul>
 		<!-- 商家列表 end -->
 
-		<f7-toolbar tabbar labels class="toolbar">
-			<f7-link href="#">
+		<!-- <f7-toolbar tabbar labels class="toolbar">
+			<f7-link href="/home/">
 				<i class="la la-home"></i> <span>首页</span>
 			</f7-link>
 			<f7-link href="/order/">
@@ -223,30 +217,39 @@
 			<f7-link href="/user/">
 				<i class="la la-user"></i> <span>我的</span>
 			</f7-link>
-		</f7-toolbar>
+		</f7-toolbar> -->
 	</f7-page>
 </template>
 
 
 <script>
-import { categories, sliders } from 'assets/js/home.js'
+import axios from 'axios'
+// import { categories, sliders } from 'assets/js/home.js'
 export default {
 	data() {
 		return {
+			HOST: 'http://localhost:3000/restaurant',
 			categories: [],
-			sliders: []
+			sliders: [],
+			restaurants: []
 		}
 	},
 	created() {
-		this.categories = categories;
-		this.sliders = sliders;
+		// this.categories = categories;
+		// this.sliders = sliders;
+		this.loadRestaurants();
 	},
 	methods: {
 		calcRate(rate) {
 			return "★★★★★☆☆☆☆☆".slice(5 - rate, 10 - rate);
 		},
-		jumpTo() {
-			this.$router.loadPage('/restaurants/');
+		jumpTo(url) {
+			this.$router.loadPage(url);
+		},
+		loadRestaurants() {
+			axios.get(this.HOST+'/range').then(res => {
+				this.restaurants = res.data;
+			}).catch(err => console.log(err))
 		}
 	}
 }
