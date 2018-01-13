@@ -1,4 +1,14 @@
+<style lang="scss">
+.ad-searchbar input[type=search] {
+	background-color: #F0F0F0;
+	font-size: 0.4rem;
+}
+</style>
+
 <style lang="scss" scoped>
+.searchbar {
+	background-color: #fff;
+}
 .main {
 	background-color: #fff;
 }
@@ -90,16 +100,19 @@
 
 <template>
 	<f7-page class="main">
-
-		<f7-navbar title="饿了吧" back-link="Back" sliding></f7-navbar>
-
 		<!-- 头部搜索 start -->
-		<div class="header">
-			<p><i class="la la-map-marker"></i>广州某地</p>
-			<form class="search-bar">
-				<i class="la la-search la-rotate-270"></i><input type="text" placeholder="搜索商家、商品名称">
-			</form>
-		</div>
+		<f7-searchbar
+			class="ad-searchbar"
+			cancel-link="搜索"
+			search-list="#search-list"
+			placeholder="搜索商家、商品名称"
+			:clear-button="active"
+			@searchbar:search="onSearch"
+			@searchbar:enable="onEnable"
+			@searchbar:disable="onDisable"
+			@searchbar:clear="onClear"
+			@blur="onBlur"
+		></f7-searchbar>
 		<!-- 头部搜索 end -->
 
 		<!-- 商品分类grid start -->
@@ -107,37 +120,37 @@
 			<f7-grid>
 				<f7-col class="gallery" width="33">
 					<div class="gallery-grid" @click="jumpTo('/restaurants/')">
-						<img src="../../assets/images/pic-dl.png" alt="早餐">
+						<img src="../../assets/images/1.jpeg" alt="早餐">
 					</div>
 					<span>早餐</span>
 				</f7-col>
 				<f7-col class="gallery" width="33">
 					<div class="gallery-grid" @click="jumpTo('/restaurants/')">
-						<img src="../../assets/images/pic-dl.png" alt="快餐">
+						<img src="../../assets/images/2.jpeg" alt="快餐">
 					</div>
 					<span>快餐</span>
 				</f7-col>
 				<f7-col class="gallery" width="33">
 					<div class="gallery-grid" @click="jumpTo('/restaurants/')">
-						<img src="../../assets/images/pic-dl.png" alt="甜品饮品">
+						<img src="../../assets/images/3.jpeg" alt="甜品饮品">
 					</div>
 					<span>甜品饮品</span>
 				</f7-col>
 				<f7-col class="gallery" width="33">
 					<div class="gallery-grid" @click="jumpTo('/restaurants/')">
-						<img src="../../assets/images/pic-dl.png" alt="特色菜系">
+						<img src="../../assets/images/4.jpeg" alt="特色菜系">
 					</div>
 					<span>特色菜系</span>
 				</f7-col>
 				<f7-col class="gallery" width="33">
 					<div class="gallery-grid" @click="jumpTo('/restaurants/')">
-						<img src="../../assets/images/pic-dl.png" alt="果蔬生鲜">
+						<img src="../../assets/images/5.jpeg" alt="果蔬生鲜">
 					</div>
 					<span>果蔬生鲜</span>
 				</f7-col>
 				<f7-col class="gallery" width="33">
 					<div class="gallery-grid" @click="jumpTo('/restaurants/')">
-						<img src="../../assets/images/pic-dl.png" alt="新店优惠">
+						<img src="../../assets/images/6.jpeg" alt="新店优惠">
 					</div>
 					<span>新店优惠</span>
 				</f7-col>
@@ -163,19 +176,19 @@
 		<f7-block-title>特惠活动</f7-block-title>
 		<f7-grid no-gutter>
 			<f7-col width="50">
-				<img src="../../assets/images/pic-dl.png" alt="" />
+				<img src="../../assets/images/raw_1509897607.jpeg" alt="" />
 			</f7-col>
 			<f7-col width="50">
-				<img src="../../assets/images/pic-dl.png" alt="" />
+				<img src="../../assets/images/raw_1509897626.gif" alt="" />
 			</f7-col>
 			<f7-col width="33">
-				<img src="../../assets/images/pic-dl.png" alt="" />
+				<img src="../../assets/images/raw_1.gif" alt="" />
 			</f7-col>
 			<f7-col width="33">
-				<img src="../../assets/images/pic-dl.png" alt="" />
+				<img src="../../assets/images/raw_2.gif" alt="" />
 			</f7-col>
 			<f7-col width="33">
-				<img src="../../assets/images/pic-dl.png" alt="" />
+				<img src="../../assets/images/raw_3.gif" alt="" />
 			</f7-col>
 		</f7-grid>
 		<!-- 特惠活动grid end -->
@@ -207,17 +220,7 @@
 		</ul>
 		<!-- 商家列表 end -->
 
-		<!-- <f7-toolbar tabbar labels class="toolbar">
-			<f7-link href="/home/">
-				<i class="la la-home"></i> <span>首页</span>
-			</f7-link>
-			<f7-link href="/order/">
-				<i class="la la-navicon"></i> <span>订单</span>
-			</f7-link>
-			<f7-link href="/user/">
-				<i class="la la-user"></i> <span>我的</span>
-			</f7-link>
-		</f7-toolbar> -->
+		<f7-list id="search-list"></f7-list>
 	</f7-page>
 </template>
 
@@ -228,6 +231,7 @@ import axios from 'axios'
 export default {
 	data() {
 		return {
+			active: true,
 			categories: [],
 			sliders: [],
 			restaurants: []
@@ -243,12 +247,28 @@ export default {
 			return "★★★★★☆☆☆☆☆".slice(5 - rate, 10 - rate);
 		},
 		jumpTo(url) {
-			this.$router.loadPage(url);
+			let router = this.$router || this.$f7.mainView.router;
+			router.loadPage(url);
 		},
 		loadRestaurants() {
 			axios.get(this.$store.state.global.host + '/restaurant/range').then(res => {
 				this.restaurants = res.data;
 			}).catch(err => console.log(err))
+		},
+		onSearch: function (query, found) {
+			console.log('search', query);
+		},
+		onClear: function (event) {
+			console.log('clear');
+		},
+		onEnable: function (event) {
+			console.log('enable');
+		},
+		onDisable: function (event) {
+			console.log('disable');
+		},
+		onBlur: function () {
+			console.log('blur')
 		}
 	}
 }

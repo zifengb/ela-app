@@ -1,11 +1,11 @@
 export default [
   {
-    path: '/login/',  // 首页
-    component: require('../vue/pages/login.vue')
+    path: '/',  // 首页
+    component: require('../vue/pages/home.vue')
   },
   {
-    path: '/home/',  // 首页
-    component: require('../vue/pages/home.vue')
+    path: '/login/',  // 首页
+    component: require('../vue/pages/login.vue')
   },
   {
     path: '/restaurants/',  // 商家列表
