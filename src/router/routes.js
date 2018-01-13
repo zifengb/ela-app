@@ -60,7 +60,15 @@ export default [
     component: require('../vue/pages/orderHistory.vue')
   },
   {
-    path: '/send-order',
+    path: '/send-order/',
     component: require('../vue/pages/send-order.vue')
-  }
+  },
+  {
+    path: '/infoList/', // 营养资讯
+    component: require('../vue/pages/infoList.vue')
+  },
+  {
+    path: '/infoDetail/', // 营养资讯详情
+    component: require('../vue/pages/infoDetail.vue')
+  },
 ]

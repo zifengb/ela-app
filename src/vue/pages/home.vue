@@ -107,11 +107,8 @@
 			search-list="#search-list"
 			placeholder="搜索商家、商品名称"
 			:clear-button="active"
-			@searchbar:search="onSearch"
-			@searchbar:enable="onEnable"
-			@searchbar:disable="onDisable"
-			@searchbar:clear="onClear"
-			@blur="onBlur"
+			@click:cancel="onClear"
+			@input="onInput"
 		></f7-searchbar>
 		<!-- 头部搜索 end -->
 
@@ -119,37 +116,37 @@
 		<div class="category">
 			<f7-grid>
 				<f7-col class="gallery" width="33">
-					<div class="gallery-grid" @click="jumpTo('/restaurants/')">
+					<div class="gallery-grid" @click="jumpTo('/restaurants/?category=1')">
 						<img src="../../assets/images/1.jpeg" alt="早餐">
 					</div>
 					<span>早餐</span>
 				</f7-col>
 				<f7-col class="gallery" width="33">
-					<div class="gallery-grid" @click="jumpTo('/restaurants/')">
+					<div class="gallery-grid" @click="jumpTo('/restaurants/?category=2')">
 						<img src="../../assets/images/2.jpeg" alt="快餐">
 					</div>
 					<span>快餐</span>
 				</f7-col>
 				<f7-col class="gallery" width="33">
-					<div class="gallery-grid" @click="jumpTo('/restaurants/')">
+					<div class="gallery-grid" @click="jumpTo('/restaurants/?category=3')">
 						<img src="../../assets/images/3.jpeg" alt="甜品饮品">
 					</div>
 					<span>甜品饮品</span>
 				</f7-col>
 				<f7-col class="gallery" width="33">
-					<div class="gallery-grid" @click="jumpTo('/restaurants/')">
+					<div class="gallery-grid" @click="jumpTo('/restaurants/?category=4')">
 						<img src="../../assets/images/4.jpeg" alt="特色菜系">
 					</div>
 					<span>特色菜系</span>
 				</f7-col>
 				<f7-col class="gallery" width="33">
-					<div class="gallery-grid" @click="jumpTo('/restaurants/')">
+					<div class="gallery-grid" @click="jumpTo('/restaurants/?category=5')">
 						<img src="../../assets/images/5.jpeg" alt="果蔬生鲜">
 					</div>
 					<span>果蔬生鲜</span>
 				</f7-col>
 				<f7-col class="gallery" width="33">
-					<div class="gallery-grid" @click="jumpTo('/restaurants/')">
+					<div class="gallery-grid" @click="jumpTo('/restaurants/?category=6')">
 						<img src="../../assets/images/6.jpeg" alt="新店优惠">
 					</div>
 					<span>新店优惠</span>
@@ -161,13 +158,13 @@
 		<!-- swiper start -->
 		<f7-swiper pagination :params="{speed:500, slidesPerView: 1, spaceBetween: 0}">
 			<f7-swiper-slide>
-				<img style="width: 100%; height: 160px" src="../../assets/images/pic-dl.png" alt="" />
+				<img style="width: 100%; height: 160px" src="../../assets/images/pic-dl.png" alt="" @click="jumpTo('/infoList/')" />
 			</f7-swiper-slide>
 			<f7-swiper-slide>
-				<img style="width: 100%; height: 160px" src="../../assets/images/pic-dl.png" alt="" />
+				<img style="width: 100%; height: 160px" src="../../assets/images/pic-dl.png" alt="" @click="jumpTo('/infoList/')" />
 			</f7-swiper-slide>
 			<f7-swiper-slide>
-				<img style="width: 100%; height: 160px" src="../../assets/images/pic-dl.png" alt="" />
+				<img style="width: 100%; height: 160px" src="../../assets/images/pic-dl.png" alt="" @click="jumpTo('/infoList/')" />
 			</f7-swiper-slide>
 		</f7-swiper>
 		<!-- swiper end -->
@@ -176,19 +173,19 @@
 		<f7-block-title>特惠活动</f7-block-title>
 		<f7-grid no-gutter>
 			<f7-col width="50">
-				<img src="../../assets/images/raw_1509897607.jpeg" alt="" />
+				<img src="../../assets/images/raw_1509897607.jpeg" alt="" @click="jumpTo('/restaurants/?class=1')" />
 			</f7-col>
 			<f7-col width="50">
-				<img src="../../assets/images/raw_1509897626.gif" alt="" />
+				<img src="../../assets/images/raw_1509897626.gif" alt="" @click="jumpTo('/restaurants/?class=2')" />
 			</f7-col>
 			<f7-col width="33">
-				<img src="../../assets/images/raw_1.gif" alt="" />
+				<img src="../../assets/images/raw_1.gif" alt="" @click="jumpTo('/restaurants/?class=3')" />
 			</f7-col>
 			<f7-col width="33">
-				<img src="../../assets/images/raw_2.gif" alt="" />
+				<img src="../../assets/images/raw_2.gif" alt="" @click="jumpTo('/restaurants/?class=4')" />
 			</f7-col>
 			<f7-col width="33">
-				<img src="../../assets/images/raw_3.gif" alt="" />
+				<img src="../../assets/images/raw_3.gif" alt="" @click="jumpTo('/restaurants/?class=5')" />
 			</f7-col>
 		</f7-grid>
 		<!-- 特惠活动grid end -->
@@ -196,7 +193,7 @@
 		<!-- 商家列表 start -->
 		<f7-block-title>附近商家</f7-block-title>
 		<ul class="rt-list">
-			<li v-for="item in restaurants" :key="item.restaurant_id" @click="jumpTo('/shoppingCart/')">
+			<li v-for="item in restaurants" :key="item.restaurant_id" @click="jumpTo('/shoppingCart/?id='+ item.restaurant_id)">
 				<f7-grid class="rt-list-grid">
 					<f7-col width="30" class="aside">
 						<img :src="item.image" />
@@ -234,7 +231,8 @@ export default {
 			active: true,
 			categories: [],
 			sliders: [],
-			restaurants: []
+			restaurants: [],
+			keyword: ''
 		}
 	},
 	created() {
@@ -255,20 +253,12 @@ export default {
 				this.restaurants = res.data;
 			}).catch(err => console.log(err))
 		},
-		onSearch: function (query, found) {
-			console.log('search', query);
-		},
 		onClear: function (event) {
-			console.log('clear');
+			let router = this.$router || this.$f7.mainView.router;
+			router.loadPage('/restaurants/?keyword=' + this.keyword);
 		},
-		onEnable: function (event) {
-			console.log('enable');
-		},
-		onDisable: function (event) {
-			console.log('disable');
-		},
-		onBlur: function () {
-			console.log('blur')
+		onInput(e) {
+			this.keyword = e;
 		}
 	}
 }

@@ -119,9 +119,9 @@
 				</f7-accordion-toggle>
 				<f7-accordion-content>
 					<f7-list form>
-						<f7-list-item radio name="my-radio" value="1" title="Radio 1" @click="closeAccordion('.sort')" checked></f7-list-item>
-						<f7-list-item radio name="my-radio" value="2" title="Radio 2" @click="closeAccordion('.sort')"></f7-list-item>
-						<f7-list-item radio name="my-radio" value="3" title="Radio 3" @click="closeAccordion('.sort')"></f7-list-item>
+						<f7-list-item radio name="my-radio" value="1" title="综合排序" @click="closeAccordion('.sort', 1)" checked></f7-list-item>
+						<f7-list-item radio name="my-radio" value="2" title="距离最近" @click="closeAccordion('.sort', 2)"></f7-list-item>
+						<f7-list-item radio name="my-radio" value="3" title="评价最好" @click="closeAccordion('.sort', 3)"></f7-list-item>
 					</f7-list>
 				</f7-accordion-content>
 			</f7-accordion-item>
@@ -170,7 +170,7 @@
 		</f7-accordion>
 
 		<!-- 商家列表 -->
-		<ul class="rt-list" style="margin-top: 40px;">
+		<ul v-if="list.length > 0" class="rt-list" style="margin-top: 40px;">
 			<li v-for="item in list" :key="item.restaurant_id" @click="jumpTo('/shoppingCart/')">
 				<f7-grid class="rt-list-grid">
 					<f7-col width="30" class="aside">
@@ -193,6 +193,8 @@
 				</f7-grid>
 			</li>
 		</ul>
+
+		<p v-else style="margin-top: 50px; text-align: center">暂时没有该类别商家~</p>
 	</f7-page>
 </template>
 
@@ -203,13 +205,14 @@ export default {
 	data() {
 		return {
 			isOpened: false,
-			list: []
+			list: [],
+			category: ''
 		}
 	},
 	created() {
 		// 查看this实例可以发现，DOM7($$)、framework7($f7)实例已经注册在原型上
-		console.dir(this)
-		this.loadList();
+		let param = this.$route.query;
+		param.class ? this.loadClass() : param.keyword ? this.loadMixQuery() : this.loadList();
 	},
 	computed: {
 		classList() {
@@ -220,22 +223,50 @@ export default {
 		calcRate(rate) {
 			return "★★★★★☆☆☆☆☆".slice(5 - rate, 10 - rate);
 		},
-		closeAccordion(selector) {
+		closeAccordion(selector, order_by) {
 			this.$f7.accordionClose(selector)
+			this.loadList(order_by)
 		},
 		toggleAccordion() {
 			this.isOpened = !this.isOpened;
 		},
-		loadList() {
-			axios.get(this.$store.state.global.host + '/restaurant/range').then(res => {
+		loadMixQuery() {
+			axios.get(this.$store.state.global.host + '/restaurant/query/restaurant_foods',
+				{
+					params: { keyword: this.$route.query.keyword }
+				}
+			).then(res => {
 				this.list = res.data;
 			}).catch(err => console.log(err))
 		},
-		filterList() {
-			axios.get('/').then(res => {
-				
+		loadList(order_by) {
+			axios.get(this.$store.state.global.host + '/restaurant',
+				{
+					params: {
+						category: [this.$route.query.category],
+						order_by: order_by || 1
+					}
+				}
+			).then(res => {
+				this.list = res.data;
+			}).catch(err => console.log(err))
+		},
+		loadClass() {
+			axios.get(this.$store.state.global.host + '/restaurant/class', {
+				params: { classification: this.$route.query.class }
+			}).then(res => {
+				this.list = res.data;
 			}).catch(err => console.log(err))
 		}
+		// filterList() {
+		// 	axios.get('/', {
+		// 		params: {
+
+		// 		}
+		// 	}).then(res => {
+				
+		// 	}).catch(err => console.log(err))
+		// }
 	}
 }
 </script>

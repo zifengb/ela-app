@@ -277,101 +277,34 @@
 <template>
 	<f7-page class="main">
 		<f7-navbar title="墨刀餐厅xxx" back-link="Back" sliding @back-click="showToolbar"></f7-navbar>
+
+		<!-- tab links -->
 		<div class="tabs-links">
 			<f7-link tab-link="#tab-1" class="tab-link1" @click="tabActive(1)">点菜</f7-link>
 			<f7-link tab-link="#tab-2" class="tab-link2" @click="tabActive(2)">商家</f7-link>
 			<div ref="line" class="active-line"></div>
 		</div>
+		<!-- tab content -->
 		<f7-tabs class="tabs-content">
 			<f7-tab id="tab-1" active>
                 <f7-grid no-gutter>
                     <f7-col class="types flex-column" width="25">
                         <div class="item center" :class="{ 'active': value.isActived }" v-for="(value, key) in types" :key="key"  @click="changeType(key)">
-                            <span>{{ value.title }}</span>
+                            <span>{{ value.name }}</span>
                         </div>
                     </f7-col>
-                    <f7-col class="products" width="75" style="margin-left:25%;">
+                    <f7-col class="products" width="75" style="margin-left:25%;" v-for="item in foods" :key="item.id">
                         <f7-grid no-gutter class="item">
                             <f7-col width="25" class="pic">
-                                <img src="../../assets/images/pic-dl.png" />
+                                <img :src="item.image" />
                             </f7-col>
                             <f7-col width="75" class="content">
-                                <p class="title">红烧排骨套餐</p>
-                                <p class="description">一个主菜加两个配菜</p>
-                                <p><span class="sales">月售429</span><span class="zan">赞19</span></p>
+                                <p class="title">{{ item.food_name }}</p>
+                                <p class="description">{{ item.description }}</p>
+                                <p><span class="sales">{{ '月售' + item.recent_popularity }}</span><span class="zan">{{ '赞' + item.recent_rating }}</span></p>
                                 <div class="flex-row">
-                                    <p class="money row-center-left span1">￥15</p>
-                                    <p class="plus row-center-right span1" @click="add"><i class="la la-plus-circle"></i></p>
-                                </div>
-                            </f7-col>
-                        </f7-grid>
-                        <f7-grid no-gutter class="item">
-                            <f7-col width="25" class="pic">
-                                <img src="../../assets/images/pic-dl.png" />
-                            </f7-col>
-                            <f7-col width="75" class="content">
-                                <p class="title">红烧排骨套餐</p>
-                                <p class="description">一个主菜加两个配菜</p>
-                                <p><span class="sales">月售429</span><span class="zan">赞19</span></p>
-                                <div class="flex-row">
-                                    <p class="money row-center-left span1">￥15</p>
-                                    <p class="plus row-center-right span1" @click="add"><i class="la la-plus-circle"></i></p>
-                                </div>
-                            </f7-col>
-                        </f7-grid>
-                        <f7-grid no-gutter class="item">
-                            <f7-col width="25" class="pic">
-                                <img src="../../assets/images/pic-dl.png" />
-                            </f7-col>
-                            <f7-col width="75" class="content">
-                                <p class="title">红烧排骨套餐</p>
-                                <p class="description">一个主菜加两个配菜</p>
-                                <p><span class="sales">月售429</span><span class="zan">赞19</span></p>
-                                <div class="flex-row">
-                                    <p class="money row-center-left span1">￥15</p>
-                                    <p class="plus row-center-right span1" @click="add"><i class="la la-plus-circle"></i></p>
-                                </div>
-                            </f7-col>
-                        </f7-grid>
-						<f7-grid no-gutter class="item">
-                            <f7-col width="25" class="pic">
-                                <img src="../../assets/images/pic-dl.png" />
-                            </f7-col>
-                            <f7-col width="75" class="content">
-                                <p class="title">红烧排骨套餐</p>
-                                <p class="description">一个主菜加两个配菜</p>
-                                <p><span class="sales">月售429</span><span class="zan">赞19</span></p>
-                                <div class="flex-row">
-                                    <p class="money row-center-left span1">￥15</p>
-                                    <p class="plus row-center-right span1" @click="add"><i class="la la-plus-circle"></i></p>
-                                </div>
-                            </f7-col>
-                        </f7-grid>
-						<f7-grid no-gutter class="item">
-                            <f7-col width="25" class="pic">
-                                <img src="../../assets/images/pic-dl.png" />
-                            </f7-col>
-                            <f7-col width="75" class="content">
-                                <p class="title">红烧排骨套餐</p>
-                                <p class="description">一个主菜加两个配菜</p>
-                                <p><span class="sales">月售429</span><span class="zan">赞19</span></p>
-                                <div class="flex-row">
-                                    <p class="money row-center-left span1">￥15</p>
-                                    <p class="plus row-center-right span1" @click="add"><i class="la la-plus-circle"></i></p>
-                                </div>
-                            </f7-col>
-                        </f7-grid>
-                        <f7-grid no-gutter class="item">
-                            <f7-col width="25" class="pic">
-                                <img src="../../assets/images/pic-dl.png" />
-                            </f7-col>
-                            <f7-col width="75" class="content">
-                                <p class="title">红烧排骨套餐</p>
-                                <p class="description">一个主菜加两个配菜</p>
-                                <p><span class="sales">月售429</span><span class="zan">赞19</span></p>
-                                <div class="flex-row">
-                                    <p class="money row-center-left span1">￥15</p>
-                                    <p class="plus row-center-right span1" @click="add"><i class="la la-plus-circle"></i></p>
+                                    <p class="money row-center-left span1">{{ '￥' + item.price }}</p>
+                                    <p class="plus row-center-right span1" @click="addItem(item)"><i class="la la-plus-circle"></i></p>
                                 </div>
                             </f7-col>
                         </f7-grid>
@@ -382,22 +315,21 @@
 				<!-- 订单信息 start -->
 				<f7-list>
 					<f7-list-item class="phone">
-						<f7-label>订单号码</f7-label>
-						<span>12312312</span>
+						<f7-label><i class="la la-phone"></i> 商家电话</f7-label>
+						<span>{{ resInfo.mobile }}</span>
 					</f7-list-item>
 					<f7-list-item class="location">
-						<f7-label>地址</f7-label>
-						<span>广东工业大学</span>
+						<p><i class="la la-map-marker"></i>{{ resInfo.address_text }}</p>
 					</f7-list-item>
 				</f7-list>
 				<f7-list>
 					<f7-list-item class="time">
-						<f7-label>配送时间</f7-label>
-						<span>08:30-22:00</span>
+						<f7-label><i class="la la-clock-o"></i> 配送时间</f7-label>
+						<span>{{ resInfo.deliver_times }}</span>
 					</f7-list-item>
 					<f7-list-item class="service">
-						<f7-label>配送服务</f7-label>
-						<span>又商家提供配送服务</span>
+						<f7-label><i class="la la-send-o"></i> 配送服务</f7-label>
+						<span>由商家提供配送服务</span>
 					</f7-list-item>
 				</f7-list>
 				<f7-list>
@@ -416,10 +348,12 @@
 
 			</f7-tab>
 		</f7-tabs>
+
+		<!-- toolbar / bottom-tab -->
 		<div class="bottom-tab" v-show="isProduct">
 			<f7-grid no-gutter>
 				<f7-col class="cart" width="20">
-					<div class="button-num flex-row"><span class="num center">1</span></div>
+					<div class="button-num flex-row"><span class="num center">{{ cartLen }}</span></div>
 					<div class="button-cart flex-row" @click="open">
 						<i class="icon la la-shopping-cart center"></i>
 					</div>
@@ -427,20 +361,20 @@
 				<f7-col class="flex-row" width="50">
 					<div class="content row-center-left">
 						<div class="flex-column">
-							<p class="price column-center-top">￥15</p>
-							<p class="tip column-center-top">另需配送费￥3</p>
+							<p class="price column-center-top">{{ '￥' + cart.total }}</p>
+							<p class="tip column-center-top">{{ '另需配送费 ￥' + agent_fee }}</p>
 						</div>
 					</div>
 				</f7-col>
 				<f7-col class="flex-row" width="30">
-					<span class="button-sum center">
+					<span class="button-sum center" @click="addCart">
 						去结算
 					</span>
 				</f7-col>
 			</f7-grid>
 		</div>
 		<f7-toolbar tabbar labels class="toolbar" v-show="!isProduct">
-			<f7-link href="#">
+			<f7-link href="/">
 				<i class="la la-home"></i> <span>首页</span>
 			</f7-link>
 			<f7-link href="/order/">
@@ -450,57 +384,23 @@
 				<i class="la la-user"></i> <span>我的</span>
 			</f7-link>
 		</f7-toolbar>
+
+		<!-- cart detail -->
 		<div class="cart-detail" v-show="isOpen">
 			<div class="flex-row title">
 				<div class="row-center-left span1 product-list">已选商品</div>
-				<div class="row-center-right span1 clear-cart">清空购物车</div>
+				<div class="row-center-right span1 clear-cart" @click="clearCart">清空购物车</div>
 			</div>
-			<div class="flex-row item">
+			<div class="flex-row item" v-for="item in cart.cartItems" :key="item.id">
 				<div class="flex-column span2">
-					<div class="column-center-top span1 product-item">招牌磨刀牛腩</div>
-					<div class="column-center-top span1 product-item-description">含1份原件商品</div>
+					<div class="column-center-top span1 product-item">{{ item.food_name }}</div>
+					<div class="column-center-top span1 product-item-description">含{{ item.amount }}份原件商品</div>
 				</div>
-				<div class="row-center-left span1 price">￥15</div>
+				<div class="row-center-left span1 price">{{ '￥' + item.price }}</div>
 				<div class="flex-row span1" style="padding-right: 0.4rem">
-					<span class="span1 center plus"><i class="la la-plus-circle"></i></span>
-					<span class="span1 center num">1</span>
-					<span class="span1 center minus"><i class="la la-minus-circle"></i></span>
-				</div>
-			</div>
-			<div class="flex-row item">
-				<div class="flex-column span2">
-					<div class="column-center-top span1 product-item">招牌磨刀牛腩</div>
-					<div class="column-center-top span1 product-item-description">含1份原件商品</div>
-				</div>
-				<div class="row-center-left span1 price">￥15</div>
-				<div class="flex-row span1" style="padding-right: 0.4rem">
-					<span class="span1 center plus"><i class="la la-plus-circle"></i></span>
-					<span class="span1 center num">1</span>
-					<span class="span1 center minus"><i class="la la-minus-circle"></i></span>
-				</div>
-			</div>
-			<div class="flex-row item">
-				<div class="flex-column span2">
-					<div class="column-center-top span1 product-item">招牌磨刀牛腩</div>
-					<div class="column-center-top span1 product-item-description">含1份原件商品</div>
-				</div>
-				<div class="row-center-left span1 price">￥15</div>
-				<div class="flex-row span1" style="padding-right: 0.4rem">
-					<span class="span1 center plus"><i class="la la-plus-circle"></i></span>
-					<span class="span1 center num">1</span>
-					<span class="span1 center minus"><i class="la la-minus-circle"></i></span>
-				</div>
-			</div>
-			<div class="flex-row item">
-				<div class="flex-column span2">
-					<div class="column-center-top span1 product-item">招牌磨刀牛腩</div>
-					<div class="column-center-top span1 product-item-description">含1份原件商品</div>
-				</div>
-				<div class="row-center-left span1 price">￥15</div>
-				<div class="flex-row span1" style="padding-right: 0.4rem">
-					<span class="span1 center plus"><i class="la la-plus-circle"></i></span>
-					<span class="span1 center num">1</span>
-					<span class="span1 center minus"><i class="la la-minus-circle"></i></span>
+					<span class="span1 center minus" @click="addItem(item, -1)"><i class="la la-minus-circle"></i></span>
+					<span class="span1 center num">{{ item.amount }}</span>
+					<span class="span1 center plus" @click="addItem(item)"><i class="la la-plus-circle"></i></span>
 				</div>
 			</div>
 		</div>
@@ -511,41 +411,171 @@
 
 
 <script>
+import axios from 'axios'
+import { mapGetters } from 'vuex'
 export default {
 	data() {
 		return {
             flag: false,
             types: [
                 {
-                    title: '美食1',
+					id: 1,
+                    name: '美食1',
                     isActived: true
                 },
                 {
-                    title: '美食2',
+					id: 2,
+                    name: '美食2',
                     isActived: false
                 },
                 {
-                    title: '美食3',
+					id: 3,
+                    name: '美食3',
                     isActived: false
                 },
                 {
-                    title: '美食4',
+					id: 4,
+                    name: '美食4',
                     isActived: false
                 },
                 {
-                    title: '美食5',
+					id: 5,
+                    name: '美食5',
                     isActived: false
                 }
-            ],
-			number: 10,
+			],
+			foods: [
+				{
+					id: 1,
+					food_name: '红烧排骨套餐',
+					image: '../../assets/images/pic-dl.png',
+					description: '一个主菜加两个配菜',
+					recent_popularity: 123,
+					recent_rating: 12,
+					price: 15,
+					packing_fee: 5,
+					stock: 200
+				},
+				{
+					id: 2,
+					food_name: '红烧排骨套餐',
+					image: '../../assets/images/pic-dl.png',
+					description: '一个主菜加两个配菜',
+					recent_popularity: 123,
+					recent_rating: 12,
+					price: 15,
+					packing_fee: 5,
+					stock: 200
+				},
+				{
+					id: 3,
+					food_name: '红烧排骨套餐',
+					image: '../../assets/images/pic-dl.png',
+					description: '一个主菜加两个配菜',
+					recent_popularity: 123,
+					recent_rating: 12,
+					price: 15,
+					packing_fee: 5,
+					stock: 200
+				},
+				{
+					id: 5,
+					food_name: '红烧排骨套餐',
+					image: '../../assets/images/pic-dl.png',
+					description: '一个主菜加两个配菜',
+					recent_popularity: 123,
+					recent_rating: 12,
+					price: 15,
+					packing_fee: 5,
+					stock: 200
+				},
+				{
+					id: 6,
+					food_name: '红烧排骨套餐',
+					image: '../../assets/images/pic-dl.png',
+					description: '一个主菜加两个配菜',
+					recent_popularity: 123,
+					recent_rating: 12,
+					price: 15,
+					packing_fee: 5,
+					stock: 200
+				},
+				{
+					id: 7,
+					food_name: '红烧排骨套餐',
+					image: '../../assets/images/pic-dl.png',
+					description: '一个主菜加两个配菜',
+					recent_popularity: 123,
+					recent_rating: 12,
+					price: 15,
+					packing_fee: 5,
+					stock: 200
+				},
+				{
+					id: 8,
+					food_name: '红烧排骨套餐',
+					image: '../../assets/images/pic-dl.png',
+					description: '一个主菜加两个配菜',
+					recent_popularity: 123,
+					recent_rating: 12,
+					price: 15,
+					packing_fee: 5,
+					stock: 200
+				}
+			],
+			agent_fee: 3,
+			cart: {},
+			resInfo: {},
 			isProduct: true,
 			isOpen: false
 		}
 	},
 	created() {
+		this.HOST = this.$store.state.global.host;
 		this.$store.commit('global/hideToolbar')
+		this.init()
+	},
+	computed: {
+		cartLen() {
+			return this.cart.cartItems.length > 0
+				? this.cart.cartItems.reduce((pre, cur) => pre.amount + cur.amount, {amount: 0})
+				: 0
+		}
 	},
 	methods: {
+		init() {
+			this.loadResInfo()
+			this.loadMenu()
+			this.loadFood()
+			this.loadCart()
+		},
+		loadMenu() {
+			// this.$route.query.id
+			axios.get(this.HOST + '/restaurant/' + 4 + '/menu').then(res => {
+				this.types = res.data.map((el, i) => 
+					({
+						id: el.id,
+						name: el.name,
+						isActived: i === 0
+					})
+				);
+			}).catch(err => console.log(err))
+		},
+		loadFood(id) {
+			// this.$route.query.id
+			axios.get(this.HOST + '/food/category/' + (id || 1) + '/foods').then(res => {
+				this.foods = res.data;
+			}).catch(err => console.log(err))
+		},
+		loadCart() {
+			this.cart = this.$store.state.cart.cartObj;
+		},
+		loadResInfo() {
+			// this.$route/query.id
+			axios.get(this.HOST + '/restaurant/' + 4).then(res => {
+				this.resInfo = res.data;
+			}).catch(err => console.log(err))
+		},
 		open() {
 			this.isOpen = true
 		},
@@ -561,26 +591,29 @@ export default {
 				this.isProduct = false
 			}
 		},
-		actionModal(f) {
-			if (f === false) {
-				this.flag = f;
-			} else {
-				this.flag = !this.flag
-			}
-		},
-		popup() {
-			this.flag = !this.flag;
-        },
         changeType(key) {
             for (let i = 0; i < this.types.length; i++) {
                  this.types[i].isActived = false;
             }
             this.types[key].isActived = true;
-            // var element = document.getElementById('box');
-            // element.scrollIntoView({block: "center", behavior: "smooth"});
+            this.loadFood(this.types[key].id)
 		},
-		add() {
-			console.log('add')
+		addItem(item, n = 1) {	// 添加购物车项
+			let cartItem = {
+				food_id: item.food_id,
+				food_name: item.food_name,
+				amount: n,
+				price: item.price
+			}
+			this.$store.commit('cart/saveItem', cartItem)
+		},
+		addCart() {	// 添加购物车
+			axios.post(this.HOST + '/cart/save', this.cart).then(res => {
+				res.status === 200 && this.$router.load('/order-single/')
+			}).catch(err => console.log(err))
+		},
+		clearCart() {
+			this.$store.commit('cart/emptyItem')
 		},
 		showToolbar() {
 			this.$store.commit('global/showToolbar')
