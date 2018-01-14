@@ -1,20 +1,14 @@
 export default {
 	namespaced: true,
 	state: {
-			flag: true
-	},
-	getters: {
-
+		userInfo: null
 	},
 	mutations: {
-			showToolbar(state) {
-					state.flag = true
-			},
-			hideToolbar(state) {
-					state.flag = false
-			},
+		removeUserInfo(state) {
+			state.userInfo = null
+		},
+		setUserInfo(state, payload) {
+			state.userInfo = payload
+		}
 	},
-	actions: {
-			
-	}
 }

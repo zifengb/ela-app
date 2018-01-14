@@ -30,7 +30,7 @@
 			</f7-list-item>
 			<f7-list-item link="/profileChange/">
 				<span>用户名</span>
-				<span>zifengb</span>
+				<span>{{ this.$store.state.userAuth.userInfo.userName }}</span>
 			</f7-list-item>
 		</f7-list>
 
@@ -58,11 +58,16 @@
 			<f7-list-item class="list-header">安全设置</f7-list-item>
 			<f7-list-item>
 				<span>登陆密码</span>
-				<f7-link href="/profileChange/#pwd">修改</f7-link>
+				<f7-link href="/profileChange/#loginPassword">修改</f7-link>
 			</f7-list-item>
 			<f7-list-item>
 				<span>支付密码</span>
-				<a href="#">未设置</a>
+				<a v-if="this.$store.state.userAuth.userInfo.payPassword" href="/profileChange/#resetPayPassword">修改</a>
+				<a v-else href="/profileChange/#addPayPassword">设置</a>
+			</f7-list-item>
+			<f7-list-item @click="logout">
+				<span>退出</span>
+				<a href="/">退出</a>
 			</f7-list-item>
 		</f7-list>
 
@@ -99,6 +104,9 @@ export default {
 		},
 		upload() {
 			console.log('upload prepare');
+		},
+		logout() {
+			this.$store.commit('userAuth/removeUserInfo')
 		}
 	}
 }

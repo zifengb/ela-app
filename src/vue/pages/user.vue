@@ -39,7 +39,6 @@
 }
 </style>
 
-
 <template>
 	<f7-page class="main">
 
@@ -47,13 +46,20 @@
 
 		<!-- 个人信息 start -->
 		<f7-list class="user-block">
-			<f7-list-item link="/account/">
+			<f7-list-item link="/account/" v-if="this.$store.state.userAuth.userInfo">
 				<div class="avatar">
 					<img src="../../assets/images/pic-dl.png" alt="">
 				</div>
 				<div class="info">
-					<p>用户名</p>
-					<p>1234564155</p>
+					<p>{{ this.$store.state.userAuth.userInfo.userName }}</p>
+				</div>
+			</f7-list-item>
+			<f7-list-item link="/login/" v-else>
+				<div class="avatar">
+					<img src="../../assets/images/pic-dl.png" alt="">
+				</div>
+				<div class="info">
+					<p>还未登录，请先前往登录</p>
 				</div>
 			</f7-list-item>
 		</f7-list>
@@ -62,7 +68,8 @@
 		<!-- 个人优惠信息 start -->
 		<f7-grid class="user-profile">
 			<f7-col width="33">
-				<Strong>0.00<sub class="unit">元</sub></Strong>
+				<Strong v-if="this.$store.state.userAuth.userInfo">{{ this.$store.state.userAuth.userInfo.balance }}<sub class="unit">元</sub></Strong>
+				<Strong v-else >0<sub class="unit">元</sub></Strong>
 				<p>钱包</p>
 			</f7-col>
 			<f7-col width="33">
@@ -96,6 +103,14 @@
 
 <script>
 export default {
-	
+	data() {
+		return {
+            
+		}
+	},
+	created() {
+	},
+	methods: {
+ 	}
 }
 </script>

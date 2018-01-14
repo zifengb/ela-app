@@ -17,6 +17,12 @@
 	margin: 0 2%;
 	background-color: #ffd21f;
 }
+.register-btn {
+	color: #000;
+	margin: 0 2%;
+	margin-top: 15px;
+	background-color: #ffd21f;
+}
 .third-part--login {
 	position: relative;
 	margin: 30% auto 0;
@@ -52,11 +58,10 @@
 
 		<f7-list form class="login-form" ref="login-form">
 			<f7-list-item>
-				<f7-input type="text" placeholder="用户名或手机号" v-model="userInfo.name" />
-				<a href="#" class="getCode" @click="increment">获取验证码</a>
+				<f7-input type="text" placeholder="用户名或手机号" v-model="userInfo.userName" />
 			</f7-list-item>
 			<f7-list-item>
-				<f7-input type="password" placeholder="密码或验证码" v-model="userInfo.password" />
+				<f7-input type="password" placeholder="密码或验证码" v-model="userInfo.loginPassword" />
 			</f7-list-item>
 		</f7-list>
 
@@ -65,6 +70,7 @@
 		</f7-block>
 
 		<f7-button big fill raised class="login-btn" @click="login">登录</f7-button>
+		<f7-button big fill raised class="register-btn" @click="register">注册</f7-button>
 
 		<div class="third-part--login">
 			<p>第三方登录</p>
@@ -89,26 +95,40 @@
 
 
 <script>
+import axios from 'axios'
 export default {
 	data() {
 		return {
 			userInfo: {
-				name: '',
-				password: ''
+				userName: '',
+				loginPassword: ''
 			}
 		}
 	},
 	created() {
-		alert(this.$store.state.count);
 	},
 	methods: {
 		login() {
-			console.log(this.userInfo)
+			axios.post(this.$store.state.global.host + '/user/login', this.userInfo).then(res => {
+				let result = res.data
+				if (result.result) {
+					this.$store.commit('userAuth/setUserInfo', result.result.list[0])
+					this.$router.loadPage('/')
+				} else {
+					alert(result.msg)
+				}
+			}).catch(err => {
+				console.log(err)
+			})
 		},
-		increment() {
-			this.$store.commit('increment')
-			window.localStorage.setItem('count', this.$store.state.count)
-		}
+		register() {
+			axios.post(this.$store.state.global.host + '/user/register', this.userInfo).then(res => {
+				let result = res.data
+				alert(result.msg)
+			}).catch(err => {
+				console.log(err)
+			})
+		},
 	}
 }
 </script>
