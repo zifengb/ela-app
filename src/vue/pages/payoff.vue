@@ -25,6 +25,7 @@
 	margin-top: 0;
 	margin-bottom: 4%;
 	.list-content{
+		width: 100%;
 		margin: 4% 0;
 	}
 	.delivery-time {
@@ -79,15 +80,15 @@
 		<f7-list class="address-list">
 			<f7-list-item link="#" @click="popup">
 				<f7-grid class="list-content">
-					<f7-col width="20" class="username">濛子</f7-col>
-					<f7-col width="20" class="sex">女士</f7-col>
-					<f7-col width="60" class="mobile">18010097302</f7-col>
-					<f7-col width="100" class="address">北京市朝阳区朝外大街外交部4号 890室</f7-col>
+					<f7-col width="20" class="username">{{ defaultAddress.consignee }}</f7-col>
+					<f7-col width="20" class="sex">{{ defaultAddress.sex ? '先生' : '女士'}}</f7-col>
+					<f7-col width="60" class="mobile">{{ defaultAddress.phone }}</f7-col>
+					<f7-col width="100" class="address">{{ defaultAddress.address }}</f7-col>
 				</f7-grid>
 			</f7-list-item>
 			<f7-list-item link="#">
 				<f7-label>送达时间</f7-label>
-				<f7-link href="#" class="delivery-time">今天(周二)立即送出(大概19:40送达)</f7-link>
+				<f7-link href="#" class="delivery-time">立即送出(大概30分钟后送达)</f7-link>
 			</f7-list-item>
 		</f7-list>
 
@@ -102,22 +103,25 @@
 		<f7-list class="order-list">
 			<f7-list-item class="restaurent-info">
 				<f7-grid class="inner-grid">
-					<f7-col width="50">墨刀餐厅</f7-col>
+					<f7-col width="50">{{ order.restaurantName }}</f7-col>
 					<f7-col width="50">由 商家 提供配送服务</f7-col>
 				</f7-grid>
 			</f7-list-item>
 			<f7-list-item class="food-list">
 				<f7-grid class="inner-grid">
-					<f7-col width="55">
-						<f7-badge>折</f7-badge>
-						菜式1
-					</f7-col>
-					<f7-col width="15">* 3</f7-col>
-					<f7-col width="15">￥10</f7-col>
-					<f7-col width="15">￥30</f7-col>
+					<template v-for="food in order.detail.cartItems">
+						<f7-col width="55">
+							<f7-badge>折</f7-badge>
+							{{food.food_name}}
+						</f7-col>
+						<f7-col width="15">{{'* ' + food.amount}}</f7-col>
+						<f7-col width="15">{{'￥'+food.price}}</f7-col>
+						<f7-col width="15">{{'￥'+order.detail.total}}</f7-col>
+					</template>
 				</f7-grid>
 			</f7-list-item>
-			<f7-list-item class="coupun-list">
+			<!-- 活动优惠 -->
+			<!-- <f7-list-item class="coupun-list">
 				<f7-grid class="inner-grid">
 					<f7-col width="85">
 						<f7-badge>折</f7-badge>
@@ -134,30 +138,31 @@
 						-￥5
 					</f7-col>
 				</f7-grid>
-			</f7-list-item>
+			</f7-list-item> -->
+			<!-- 活动优惠 -->
 			<f7-list-item class="fee-list">
 				<f7-grid class="inner-grid">
-					<f7-col width="85">餐盒费</f7-col>
-					<f7-col width="15">￥10</f7-col>
+					<!-- <f7-col width="85">餐盒费</f7-col>
+					<f7-col width="15">￥10</f7-col> -->
 					<f7-col width="85">配送费</f7-col>
-					<f7-col width="15">￥10</f7-col>
+					<f7-col width="15">{{'￥'+order.deliverFee}}</f7-col>
 				</f7-grid>
 			</f7-list-item>
 			<f7-list-item class="final-sum">
 				<f7-grid class="inner-grid">
 					<f7-col width="70">
-						<span>总计 ￥10</span>
-						<span>优惠 ￥10</span>
+						<span>{{'总计 ￥'+originalPrice}}</span>
+						<span>{{'优惠 ￥'+(originalPrice-totalPrice)}}</span>
 					</f7-col>
-					<f7-col width="30">实付 ￥10</f7-col>
+					<f7-col width="30">{{'实付 ￥'+totalPrice}}</f7-col>
 				</f7-grid>
 			</f7-list-item>
 		</f7-list>
 
 		<f7-toolbar class="pay-toolbar">
 			<f7-grid class="toolbar-grid">
-				<f7-col width="4">已优惠 ￥10</f7-col>
-				<f7-col width="30">待支付 ￥30</f7-col>
+				<f7-col width="4">{{'已优惠 ￥' +(originalPrice-totalPrice)}}</f7-col>
+				<f7-col width="30">{{'待支付 ￥' +totalPrice}}</f7-col>
 				<f7-col width="30" class="pay-btn">
 					<a href="#" @click="submit">提交订单</a>
 				</f7-col>
@@ -175,25 +180,17 @@
 						</f7-grid>
 					</f7-list-item>
 
-					<f7-list-item radio name="my-radio" value="1" checked>
+					<f7-list-item v-for="(item, index) in order.address" 
+					:key="index"
+					radio
+					name="my-radio"
+					value="1"
+					@change="radioChange(index)"
+					:checked="item.isDefault">
 						<f7-link href="/addressDetail/"><i class="icon la la-edit"></i></f7-link>
 						<div class="address-info">
-							<p>濛子女神 132464153415</p>
-							<p>北京市朝阳区朝外大街外交部4号 890室</p>
-						</div>
-					</f7-list-item>
-					<f7-list-item radio name="my-radio" value="2" checked>
-						<f7-link href="/addressDetail/"><i class="icon la la-edit"></i></f7-link>
-						<div class="address-info">
-							<p>濛子女神 132464153415</p>
-							<p>北京市朝阳区朝外大街外交部4号 890室</p>
-						</div>
-					</f7-list-item>
-					<f7-list-item radio name="my-radio" value="3" checked>
-						<f7-link href="/addressDetail/"><i class="icon la la-edit"></i></f7-link>
-						<div class="address-info">
-							<p>濛子女神 132464153415</p>
-							<p>北京市朝阳区朝外大街外交部4号 890室</p>
+							<p>{{item.consignee+ ' ' +item.phone}}</p>
+							<p>{{item.address}}</p>
 						</div>
 					</f7-list-item>
 
@@ -210,11 +207,30 @@
 
 
 <script>
+import axios from 'axios'
 export default {
 	data() {
 		return {
-			flag: false
+			flag: false,
+			order: {}
 		}
+	},
+	computed: {
+		defaultAddress() {
+			return this.order.address.filter(el => el.isDefault)[0]
+		},
+		originalPrice() {
+			return this.order.detail.total + this.order.deliverFee
+		},
+		totalPrice() {
+			let t = this.order.detail.total + this.order.deliverFee,
+					cp = 3;
+			 return t > 15 ? t - cp : t;
+		}
+	},
+	created() {
+		this.HOST = this.$store.state.global.host
+		this.order = this.$store.state.order.orderObj
 	},
 	methods: {
 		popup() {
@@ -224,8 +240,32 @@ export default {
 			this.popup();
 			this.$router.loadPage('/addressDetail/')
 		},
+		radioChange(i) {
+			this.$store.commit('order/adChange', i)
+		},
 		submit() {
-			
+			let json = {
+				address: JSON.stringify(this.defaultAddress),
+				deliverFee: this.order.deliverFee,
+				detail: JSON.stringify(this.order.detail.cartItems),
+				userId: this.order.userId,
+				userName: this.order.userName,
+				restaurantId: this.order.restaurantId,
+				restaurantName: this.order.restaurantName,
+				phoneList: JSON.stringify(this.defaultAddress.phone),
+				consignee: this.order.consignee,
+				deliveryGeo: this.order.deliveryGeo,
+				totalPrice: this.totalPrice,
+				originalPrice: this.originalPrice,
+				restaurantImagePath: this.order.restaurantImagePath
+			}
+			axios.post(this.HOST + '/order/update', json).then(res => {
+				if (res.status === 200) {
+					// 更新订单状态
+					// 清空购物车
+					// 更新路由
+				}
+			}).catch(err => console.log(err))
 		}
 	}
 }

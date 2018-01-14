@@ -56,11 +56,11 @@ export default [
     component: require('../vue/pages/AmapTest.vue')
   },
   {
-    path: '/order-history/',
+    path: '/order-history/',  // 商家评价
     component: require('../vue/pages/orderHistory.vue')
   },
   {
-    path: '/send-order/',
+    path: '/send-order/', // 对订单评价
     component: require('../vue/pages/send-order.vue')
   },
   {

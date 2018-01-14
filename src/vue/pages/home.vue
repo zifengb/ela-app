@@ -204,7 +204,7 @@
 								<h3>{{ item.restaurant_name }}</h3>
 								<p><span class="rating">{{ calcRate(item.numRatings || 2) }}</span>月售{{ item.recent_order_num }}单</p>
 								<p><span>起送￥{{ item.deliver_amount }}</span><span class="agent-fee">配送￥{{ item.agent_fee }}</span></p>
-								<p><f7-badge>折</f7-badge>满30元减5</p>
+								<p><f7-badge>折</f7-badge>满15元减3</p>
 							</f7-col>
 							<f7-col width="30" class="tip">
 								<p>{{ item.distance + 'km' }}</p>

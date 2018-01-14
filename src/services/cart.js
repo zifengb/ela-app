@@ -13,6 +13,9 @@ export default {
 		}
 	},
 	mutations: {
+		initCart(state, cart) {
+			state.cartObj = cart;
+		},
 		saveItem(state, item) {
 			let cartItems = state.cartObj.cartItems;
 			for (var i = 0; i < cartItems.length; i++) {
@@ -24,9 +27,17 @@ export default {
 			}
 			i === cartItems.length && cartItems.push(item)
 			cartItems[i].amount === 0 && cartItems.splice(i, 1)
-			state.cartObj.total = cartItems.length > 0 
-															? cartItems.reduce((pre, cur) => pre.price * pre.amount + cur.price * cur.amount, {price: 0, amount: 0})
-															: 0
+			let sum = 0;
+			if (cartItems.length > 0) {
+				for (let i = 0; i < cartItems.length; i++) {
+					let cur = cartItems[i];
+					sum += cur.amount * cur.price;
+				}
+				
+			} else {
+				sum = 0
+			}
+			state.cartObj.total = sum;
 		},
 		emptyItem(state) {
 			state.cartObj.cartItems = []

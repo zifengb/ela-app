@@ -42,36 +42,59 @@
 
 		<f7-navbar title="我的订单" back-link="Back" sliding></f7-navbar>
 
-		<f7-list class="order-list">
-			<f7-list-item class="list-header">
-				<f7-grid no-gutter>
-					<f7-col width="55">
-						<f7-link href="#" class="ret-name">墨刀餐厅(太阳宫店)<i class="arrow"></i></f7-link>
-					</f7-col>
-					<f7-col width="45" class="tips">
-						<f7-link href="#">等待送达</f7-link>
-						<f7-link href="#">待评价</f7-link>
-					</f7-col>
-				</f7-grid>
-			</f7-list-item>
-			<f7-list-item link="#" class="list-content">
-				<div class="ret-img">
-					<img src="../../assets/images/pic-dl.png" alt="">
-				</div>
-				<div class="order-info">
-					<p><strong class="order-fee">￥12</strong></p>
-					<p>2018-01-3 15:00</p>
-					<p>由 商家 提供配送服务</p>
-				</div>
-			</f7-list-item>
-		</f7-list>
-
+		<template v-if="page.list && page.list.length > 0 ">
+			<f7-list class="order-list" v-for="item in page.list" :key="item.orderId">
+				<f7-list-item class="list-header">
+					<f7-grid no-gutter>
+						<f7-col width="55">
+							<f7-link :href="'/shoppingCart/?id='+item.restaurantId" class="ret-name">墨刀餐厅(太阳宫店)<i class="arrow"></i></f7-link>
+						</f7-col>
+						<f7-col width="45" class="tips">
+							<template v-if="item.deliverStatus === 2">
+								<f7-link :href="'/order-single/?id='+item.orderId">再来一单</f7-link>
+								<f7-link :href="'/order-single/?id='+item.orderId">待评价</f7-link>
+							</template>
+							<f7-link v-else-if="item.deliverStatus === 1" :href="'/order-single/?id='+item.orderId">等待送达</f7-link>
+							<f7-link v-else-if="item.deliverStatus === 0" :href="'/order-single/?id='+item.orderId">等待接单</f7-link>
+						</f7-col>
+					</f7-grid>
+				</f7-list-item>
+				<f7-list-item :link="'/order-single/?id='+item.orderId" class="list-content">
+					<div class="ret-img">
+						<img :src="item.restaurantImagePath" alt="">
+					</div>
+					<div class="order-info">
+						<p><strong class="order-fee">{{ '￥' + item.totalPrice }}</strong></p>
+						<p>{{ item.createdAt }}</p>
+						<p>由 商家 提供配送服务</p>
+					</div>
+				</f7-list-item>
+			</f7-list>
+		</template>
+		<p v-else style="margin-top: 20px; text-align: center">您暂时没有订单记录~快去下单吧</p>
 	</f7-page>
 </template>
 
 
 <script>
+import axios from 'axios'
 export default {
-	
+	data() {
+		return {
+			page: {}
+		}
+	},
+	created() {
+		this.HOST = this.$store.state.global.host
+		this.init()
+	},
+	methods: {
+		init() {
+			// this.$store.state.userAuth.userId
+			axios.get(this.HOST + '/order/query?userId=' + 74).then(res => {
+				this.page = res.data;
+			}).catch(err => console.log(err))
+		}
+	}
 }
 </script>

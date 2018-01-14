@@ -82,20 +82,6 @@
 		vertical-align: text-bottom;
 	}
 }
-
-// 自定义picker-modal
-.modal-popup {
-	background-color: rgba(0, 0, 0, 0.4);
-	height: 100vh;
-}
-.popup-content {
-	width: 100%;
-	position: absolute;
-	bottom: 0;
-	background-color: #fff;
-}
-// #自定义picker-modal
-
 // 重新设置tab-link样式
 .tab-link.active:not(.offline), .tab-link.active:not(.online) {
   background-color: transparent;
@@ -125,7 +111,7 @@
 								<h4>订单已提交</h4>
 								<p>耐心等待商家确认</p>
 							</f7-col>
-							<f7-col width="20">112313</f7-col>
+							<f7-col width="20"></f7-col>
 						</f7-grid>
 					</f7-timeline-item>
 					<f7-timeline-item class="timeline-list-item">
@@ -134,34 +120,34 @@
 								<h4>支付成功</h4>
 								<p>耐心等待商家确认</p>
 							</f7-col>
-							<f7-col width="20">112313</f7-col>
+							<f7-col width="20"></f7-col>
 						</f7-grid>
 					</f7-timeline-item>
-					<f7-timeline-item class="timeline-list-item">
+					<f7-timeline-item class="timeline-list-item" v-if="order.deliverStatus == 1">
 						<f7-grid class="tl-item-content">
 							<f7-col width="80">
 								<h4>商家已接单</h4>
-								<p>耐心等待商家确认</p>
+								<p>商家准备中，由商家配送，配送进度请咨询商家</p>
 							</f7-col>
-							<f7-col width="20">112313</f7-col>
+							<f7-col width="20"></f7-col>
 						</f7-grid>
 					</f7-timeline-item>
-					<f7-timeline-item class="timeline-list-item">
+					<f7-timeline-item class="timeline-list-item" v-if="order.deliverStatus == 1">
 						<f7-grid class="tl-item-content">
 							<f7-col width="80">
 								<h4>商家配送中</h4>
-								<p>耐心等待商家确认</p>
+								<p>请等待配送</p>
 							</f7-col>
-							<f7-col width="20">112313</f7-col>
+							<f7-col width="20"></f7-col>
 						</f7-grid>
 					</f7-timeline-item>
-					<f7-timeline-item class="timeline-list-item">
+					<f7-timeline-item class="timeline-list-item" v-if="order.deliverStatus == 2">
 						<f7-grid class="tl-item-content">
 							<f7-col width="80">
 								<h4>订单已完成</h4>
-								<p>耐心等待商家确认</p>
+								<p>已完成订单，可以评价订单哟</p>
 							</f7-col>
-							<f7-col width="20">112313</f7-col>
+							<f7-col width="20"></f7-col>
 						</f7-grid>
 					</f7-timeline-item>
 				</f7-timeline>
@@ -173,50 +159,35 @@
 				<f7-list class="order-detail">
 					<f7-list-item class="restaurant">
 						<f7-grid class="inner-grid">
-							<f7-col width="70">墨刀餐厅</f7-col>
+							<f7-col width="70">{{ order.restaurantName }}</f7-col>
 							<f7-col width="30">非美团转送</f7-col>
 						</f7-grid>
 					</f7-list-item>
 					<f7-list-item class="food-list">
 						<f7-grid class="inner-grid">
 							<!-- item -->
-							<f7-col width="55">
-								<f7-badge>折</f7-badge>
-								菜式1
-							</f7-col>
-							<f7-col width="15">* 1</f7-col>
-							<f7-col width="15">￥10</f7-col>
-							<f7-col width="15">￥10</f7-col>
-							<!-- item -->
-							<!-- item -->
-							<f7-col width="55">
-								<f7-badge>折</f7-badge>
-								菜式1
-							</f7-col>
-							<f7-col width="15">* 1</f7-col>
-							<f7-col width="15">￥10</f7-col>
-							<f7-col width="15">￥10</f7-col>
-							<!-- item -->
-							<!-- item -->
-							<f7-col width="55">
-								<f7-badge>折</f7-badge>
-								菜式1
-							</f7-col>
-							<f7-col width="15">* 1</f7-col>
-							<f7-col width="15">￥10</f7-col>
-							<f7-col width="15">￥10</f7-col>
+							<template v-for="food in order.detail">
+								<f7-col width="55">
+									<f7-badge>折</f7-badge>
+									{{ food.food_name }}
+								</f7-col>
+								<f7-col width="15">{{'*' +food.amount}}</f7-col>
+								<f7-col width="15">{{'￥'+ food.price}}</f7-col>
+								<f7-col width="15">{{'￥'+ food.price}}</f7-col>
+							</template>
 							<!-- item -->
 						</f7-grid>
 					</f7-list-item>
 					<f7-list-item class="fee-list">
 						<f7-grid class="inner-grid">
-							<f7-col width="85">餐盒费</f7-col>
-							<f7-col width="15">￥10</f7-col>
+							<!-- <f7-col width="85">餐盒费</f7-col>
+							<f7-col width="15">￥10</f7-col> -->
 							<f7-col width="85">配送费</f7-col>
-							<f7-col width="15">￥10</f7-col>
+							<f7-col width="15">{{'￥' + order.deliverFee }}</f7-col>
 						</f7-grid>
 					</f7-list-item>
-					<f7-list-item class="coupun-list">
+					<!-- 活动 -->
+					<!-- <f7-list-item class="coupun-list">
 						<f7-grid class="inner-grid">
 							<f7-col width="85">
 								<f7-badge>折</f7-badge>
@@ -233,14 +204,15 @@
 								-￥5
 							</f7-col>
 						</f7-grid>
-					</f7-list-item>
+					</f7-list-item> -->
+					<!-- 活动 -->
 					<f7-list-item class="final-fee">
 						<f7-grid class="inner-grid">
 							<f7-col width="70">
-								<span>总计 ￥10</span>
-								<span>优惠 ￥10</span>
+								<span>{{'总计 ￥'+ order.originalPrice}}</span>
+								<span>{{'优惠 ￥'+ (order.originalPrice - order.totalPrice)}}</span>
 							</f7-col>
-							<f7-col width="30">实付 ￥10</f7-col>
+							<f7-col width="30">{{'实付 ￥'+ order.totalPrice}}</f7-col>
 						</f7-grid>
 					</f7-list-item>
 				</f7-list>
@@ -250,14 +222,14 @@
 				<f7-block-title class="block-title">配送信息</f7-block-title>
 				<f7-list class="delivery-info">
 					<f7-list-item class="delivery-tip">
-						<f7-label>期望xxx</f7-label>
+						<f7-label>期望信息</f7-label>
 						<span>立即配送</span>
 					</f7-list-item>
 					<f7-list-item class="address">
 						<f7-label>配送地址</f7-label>
 						<div>
-							<p>濛子（女士） 213131534</p>
-							<p>这是地址这是地址这是地址这是地址</p>
+							<p>{{order.consignee+ ' ' + 213131534}}</p>
+							<p>{{ order.address }}</p>
 						</div>
 					</f7-list-item>
 					<f7-list-item class="service">
@@ -272,11 +244,11 @@
 				<f7-list class="order-info">
 					<f7-list-item class="phone">
 						<f7-label>订单号码</f7-label>
-						<span>12312312</span>
+						<span>{{ order.orderId }}</span>
 					</f7-list-item>
 					<f7-list-item class="time">
 						<f7-label>订单时间</f7-label>
-						<span>1231233</span>
+						<span>{{ order.createdAt }}</span>
 					</f7-list-item>
 					<f7-list-item class="method">
 						<f7-label>支付方式</f7-label>
@@ -290,42 +262,32 @@
 
 		<f7-actions :opened="flag" class="action-modal" @actions:closed="actionModal(false)">
 			<f7-actions-group>
-				<f7-actions-button @click="phonecall(12312132)">商家电话12312132</f7-actions-button>
-				<f7-actions-button @click="phonecall(12312132)">客服电话12312132</f7-actions-button>
+				<f7-actions-button @click="phonecall(order.phoneList)">商家电话12312132</f7-actions-button>
+				<f7-actions-button @click="phonecall(13432389260)">客服电话12312132</f7-actions-button>
 			</f7-actions-group>
 			<f7-actions-group>
 				<f7-actions-button>取消</f7-actions-button>
 			</f7-actions-group>
 		</f7-actions>
-
-		<!-- <f7-picker-modal class="modal-popup" :opened="flag">
-			<div class="popup-content">
-				<p>fsdfd</p>
-				<p>fsdfd</p>
-				<p>fsdfd</p>
-				<p>fsdfd</p>
-				<p>fsdfd</p>
-				<p>fsdfd</p>
-				<p>fsdfd</p>
-				<f7-button @click="popup">关闭按钮</f7-button>
-			</div>
-		</f7-picker-modal> -->
-
 	</f7-page>
 </template>
 
 
 <script>
+import axios from 'axios'
 export default {
 	data() {
 		return {
-			flag: false
+			flag: false,
+			order: {}
 		}
 	},
 	created() {
-		alert(this.$store.state.count);
-		alert(window.localStorage.getItem('count'));
+		// alert(this.$store.state.count);
+		// alert(window.localStorage.getItem('count'));
+		this.HOST = this.$store.state.global.host;
 		this.listener();
+		this.loadOrder();
 	},
 	methods: {
 		tabActive(index) {
@@ -356,6 +318,17 @@ export default {
 		},
 		listener() {
 			this.$socket.emit('listener', { info: 'message from vue template' })
+		},
+		loadOrder() {
+			axios.get(this.HOST + '/order/query?orderId=' + this.$route.query.id).then(res => {
+				this.order = res.data;
+			}).catch(err => console.log(err))
+		},
+		updateOrder() {
+			let json = {}
+			axios.post(this.HOST + '/order/update', json).then(res => {
+				this.order = res.data;
+			}).catch(err => console.log(err))
 		}
 	}
 }

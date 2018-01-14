@@ -5,6 +5,7 @@ import Vuex from 'vuex'
 import global from './global';
 import userAuth from './userAuth';
 import cart from './cart';
+import order from './order';
 
 Vue.use(Vuex)
 
@@ -13,6 +14,7 @@ export default new Vuex.Store({
     modules: {
         global: global,
         userAuth: userAuth,
-        cart: cart
+        cart: cart,
+        order: order
     }
 })

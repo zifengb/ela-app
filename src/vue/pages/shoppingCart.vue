@@ -332,7 +332,7 @@
 						<span>由商家提供配送服务</span>
 					</f7-list-item>
 				</f7-list>
-				<f7-list>
+				<!-- <f7-list>
 					<f7-list-item link="/order-history/">
 						<f7-label>商家评价</f7-label>
 						<f7-link></f7-link>
@@ -343,7 +343,7 @@
 						<f7-label>发布评价</f7-label>
 						<f7-link></f7-link>
 					</f7-list-item>
-				</f7-list>
+				</f7-list> -->
 				<!-- 订单信息 end -->
 
 			</f7-tab>
@@ -537,21 +537,29 @@ export default {
 	},
 	computed: {
 		cartLen() {
-			return this.cart.cartItems.length > 0
-				? this.cart.cartItems.reduce((pre, cur) => pre.amount + cur.amount, {amount: 0})
-				: 0
+			let sum = 0,
+				cartItems = this.cart.cartItems;
+			if (cartItems && cartItems.length > 0) {
+				for (let i = 0; i < cartItems.length; i++) {
+					let cur = cartItems[i];
+					sum += cur.amount;
+				}
+				
+			} else {
+				sum = 0
+			}
+			return sum;
 		}
 	},
 	methods: {
 		init() {
 			this.loadResInfo()
 			this.loadMenu()
-			this.loadFood()
 			this.loadCart()
 		},
 		loadMenu() {
 			// this.$route.query.id
-			axios.get(this.HOST + '/restaurant/' + 4 + '/menu').then(res => {
+			axios.get(this.HOST + '/restaurant/' + this.$route.query.id + '/menu').then(res => {
 				this.types = res.data.map((el, i) => 
 					({
 						id: el.id,
@@ -559,20 +567,28 @@ export default {
 						isActived: i === 0
 					})
 				);
+
+				this.loadFood()
 			}).catch(err => console.log(err))
 		},
 		loadFood(id) {
 			// this.$route.query.id
-			axios.get(this.HOST + '/food/category/' + (id || 1) + '/foods').then(res => {
+			axios.get(this.HOST + '/food/category/' + (id || this.types[0].id) + '/foods').then(res => {
 				this.foods = res.data;
 			}).catch(err => console.log(err))
 		},
 		loadCart() {
-			this.cart = this.$store.state.cart.cartObj;
+			// this.cart = this.$store.state.cart.cartObj
+			axios.get(this.HOST + '/cart', {
+				params: { user_id: 1 }
+			}).then(res => {
+				this.cart = res.data || this.$store.state.cart.cartObj;
+				this.$store.commit('cart/initCart', this.cart)
+			}).catch(err => console.log(err))
 		},
 		loadResInfo() {
-			// this.$route/query.id
-			axios.get(this.HOST + '/restaurant/' + 4).then(res => {
+			// this.$route.query.id
+			axios.get(this.HOST + '/restaurant/' + this.$route.query.id).then(res => {
 				this.resInfo = res.data;
 			}).catch(err => console.log(err))
 		},
@@ -612,15 +628,29 @@ export default {
 				alert('购物车为空~，请先添加商品')
 				return;
 			}
-			axios.post(this.HOST + '/cart/save', this.cart).then(res => {
-				res.status === 200 && this.$router.loadPage('/payoff/')
-			}).catch(err => console.log(err))
+			// axios.post(this.HOST + '/cart/save', this.cart).then(res => {
+			//	this.orderInstance()
+			// 	res.status === 200 && this.$router.loadPage('/payoff/')
+			// }).catch(err => console.log(err))
+			this.orderInstance()
+			this.$router.loadPage('/payoff/')
 		},
 		clearCart() {
 			this.$store.commit('cart/emptyItem')
 		},
 		showToolbar() {
 			this.$store.commit('global/showToolbar')
+		},
+		orderInstance() {
+			let obj = Object.assign({
+				deliverFee: 3,
+				detail: this.$store.state.cart.cartObj,
+				restaurantId: this.resInfo.restaurant_id,
+				restaurantName: this.resInfo.restaurant_name,
+				deliveryGeo: "150,200,300,60",
+				restaurantImagePath: this.resInfo.image
+			}, this.$store.state.userAuth.userInfo)
+			this.$store.commit('order/assign', obj)
 		}
 	}
 }

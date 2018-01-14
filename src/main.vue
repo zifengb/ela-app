@@ -33,7 +33,7 @@
 
 <script>
 import axios from 'axios'
-import back from './utils/index'
+import { back } from './utils/index'
 import home from './vue/pages/home.vue'
 export default {
 	created() {
