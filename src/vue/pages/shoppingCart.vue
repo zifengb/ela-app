@@ -276,7 +276,7 @@
 
 <template>
 	<f7-page class="main">
-		<f7-navbar title="墨刀餐厅xxx" back-link="Back" sliding @back-click="showToolbar"></f7-navbar>
+		<f7-navbar :title="resInfo.restaurant_name" back-link="Back" sliding @back-click="showToolbar"></f7-navbar>
 
 		<!-- tab links -->
 		<div class="tabs-links">
@@ -608,8 +608,12 @@ export default {
 			this.$store.commit('cart/saveItem', cartItem)
 		},
 		addCart() {	// 添加购物车
+			if (this.cart.cartItems.length ===0 ) {
+				alert('购物车为空~，请先添加商品')
+				return;
+			}
 			axios.post(this.HOST + '/cart/save', this.cart).then(res => {
-				res.status === 200 && this.$router.load('/order-single/')
+				res.status === 200 && this.$router.loadPage('/payoff/')
 			}).catch(err => console.log(err))
 		},
 		clearCart() {

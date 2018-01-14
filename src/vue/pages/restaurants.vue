@@ -109,7 +109,7 @@
 
 <template>
 	<f7-page class="main">
-		<f7-navbar title="商家列表" back-link="Back" sliding></f7-navbar>
+		<f7-navbar title="全部商家" back-link="Back" sliding></f7-navbar>
 		
 		<f7-accordion class="accordion-bar clearfix">
 			<!-- Item 1 -->
