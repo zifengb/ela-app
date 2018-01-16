@@ -53,7 +53,8 @@ VueAMap.initAMapApiLoader({
 });
 
 // Init websocket
-Vue.use(VueWebSocket, 'ws://localhost:3000', {
+// Vue.use(VueWebSocket, 'ws://localhost:3000', {
+Vue.use(VueWebSocket, 'ws://39.108.190.87:3389', {
   reconnection: true  // 开发阶段使用false， 上线使用true?
 })
 

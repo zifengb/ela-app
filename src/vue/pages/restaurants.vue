@@ -171,7 +171,7 @@
 
 		<!-- 商家列表 -->
 		<ul v-if="list.length > 0" class="rt-list" style="margin-top: 40px;">
-			<li v-for="item in list" :key="item.restaurant_id" @click="jumpTo('/shoppingCart/')">
+			<li v-for="item in list" :key="item.restaurant_id" @click="jumpTo('/shoppingCart/?id='+item.restaurant_id)">
 				<f7-grid class="rt-list-grid">
 					<f7-col width="30" class="aside">
 						<img :src="item.image" />
@@ -257,6 +257,10 @@ export default {
 			}).then(res => {
 				this.list = res.data;
 			}).catch(err => console.log(err))
+		},
+		jumpTo(url) {
+			let router = this.$router || this.$f7.mainView.router;
+			router.loadPage(url);
 		}
 		// filterList() {
 		// 	axios.get('/', {

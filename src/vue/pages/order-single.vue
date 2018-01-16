@@ -93,7 +93,7 @@
 <template>
 	<f7-page class="main">
 
-		<f7-navbar title="墨刀餐厅xxx" back-link="Back" sliding></f7-navbar>
+		<f7-navbar :title="order.restaurantName" back-link="Back" sliding></f7-navbar>
 
 		<div class="tabs-links">
 			<f7-link tab-link="#tab-1" class="tab-link1" @click="tabActive(1)">订单状态</f7-link>
@@ -228,8 +228,8 @@
 					<f7-list-item class="address">
 						<f7-label>配送地址</f7-label>
 						<div>
-							<p>{{order.consignee+ ' ' + 213131534}}</p>
-							<p>{{ order.address }}</p>
+							<p>{{ order.addressText && (order.addressText.consignee+ ' ' + order.addressText.phone)}}</p>
+							<p>{{ order.addressText && order.addressText.address }}</p>
 						</div>
 					</f7-list-item>
 					<f7-list-item class="service">
@@ -322,9 +322,11 @@ export default {
 		loadOrder() {
 			axios.get(this.HOST + '/order/query?orderId=' + this.$route.query.id).then(res => {
 				this.order = res.data;
+				this.order.detail = JSON.parse(res.data.detail)
+				this.order.addressText = JSON.parse(res.data.addressText)
 			}).catch(err => console.log(err))
 		},
-		updateOrder() {
+		updateOrder() {	// 更新订单状态
 			let json = {}
 			axios.post(this.HOST + '/order/update', json).then(res => {
 				this.order = res.data;

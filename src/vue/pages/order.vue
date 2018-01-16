@@ -47,7 +47,7 @@
 				<f7-list-item class="list-header">
 					<f7-grid no-gutter>
 						<f7-col width="55">
-							<f7-link :href="'/shoppingCart/?id='+item.restaurantId" class="ret-name">墨刀餐厅(太阳宫店)<i class="arrow"></i></f7-link>
+							<f7-link :href="'/shoppingCart/?id='+item.restaurantId" class="ret-name">{{item.restaurantName}}<i class="arrow"></i></f7-link>
 						</f7-col>
 						<f7-col width="45" class="tips">
 							<template v-if="item.deliverStatus === 2">
@@ -71,6 +71,7 @@
 				</f7-list-item>
 			</f7-list>
 		</template>
+		<p v-else-if="!userInfo" style="margin-top: 20px; text-align: center">您还没有登录账户~请跳转<f7-link href="/login/">登录页</f7-link></p>
 		<p v-else style="margin-top: 20px; text-align: center">您暂时没有订单记录~快去下单吧</p>
 	</f7-page>
 </template>
@@ -81,19 +82,23 @@ import axios from 'axios'
 export default {
 	data() {
 		return {
-			page: {}
+			page: {},
+			userInfo: {}
 		}
 	},
 	created() {
 		this.HOST = this.$store.state.global.host
-		this.init()
+		this.userInfo = this.$store.state.userAuth.userInfo
+		!!this.userInfo ? this.init() : this.login()
 	},
 	methods: {
 		init() {
-			// this.$store.state.userAuth.userId
-			axios.get(this.HOST + '/order/query?userId=' + 74).then(res => {
+			axios.get(this.HOST + '/order/query?userId=' + this.userInfo.userId).then(res => {
 				this.page = res.data;
 			}).catch(err => console.log(err))
+		},
+		login() {
+			this.$router.loadPage('/login/')
 		}
 	}
 }

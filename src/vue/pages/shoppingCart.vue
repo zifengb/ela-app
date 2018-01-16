@@ -532,6 +532,7 @@ export default {
 	},
 	created() {
 		this.HOST = this.$store.state.global.host;
+		this.userInfo = this.$store.state.userAuth.userInfo;
 		this.$store.commit('global/hideToolbar')
 		this.init()
 	},
@@ -578,9 +579,12 @@ export default {
 			}).catch(err => console.log(err))
 		},
 		loadCart() {
-			// this.cart = this.$store.state.cart.cartObj
+			if (!this.userInfo) {
+				this.cart = this.$store.state.cart.cartObj;
+				return ;
+			}
 			axios.get(this.HOST + '/cart', {
-				params: { user_id: 1 }
+				params: { user_id: this.userInfo.userId }
 			}).then(res => {
 				this.cart = res.data || this.$store.state.cart.cartObj;
 				this.$store.commit('cart/initCart', this.cart)
@@ -624,16 +628,16 @@ export default {
 			this.$store.commit('cart/saveItem', cartItem)
 		},
 		addCart() {	// 添加购物车
+			// this.orderInstance()
+			// this.$router.loadPage('/payoff/')
 			if (this.cart.cartItems.length ===0 ) {
 				alert('购物车为空~，请先添加商品')
 				return;
 			}
-			// axios.post(this.HOST + '/cart/save', this.cart).then(res => {
-			//	this.orderInstance()
-			// 	res.status === 200 && this.$router.loadPage('/payoff/')
-			// }).catch(err => console.log(err))
-			this.orderInstance()
-			this.$router.loadPage('/payoff/')
+			axios.post(this.HOST + '/cart/save', this.cart).then(res => {
+				this.orderInstance()
+				res.status === 200 && this.$router.loadPage('/payoff/')
+			}).catch(err => console.log(err))
 		},
 		clearCart() {
 			this.$store.commit('cart/emptyItem')

@@ -11,14 +11,16 @@ export default {
 			state.orderObj = source
 		},
 		adChange(state, i){
-			if (state.orderObj.address) {
-				state.orderObj.address.forEach(el => el.isDefault = false);
-				state.orderObj.address[i].isDefault = true;
+			if (state.orderObj.addressText) {
+				state.orderObj.addressText.forEach(el => el.isDefault = false);
+				state.orderObj.addressText[i].isDefault = true;
 			}
-			
 		},
 		clear(state) {
 			state.orderObj = {}
+		},
+		appendId(state, id) {
+			state.orderObj.orderId = id;
 		}
 	},
 	actions: {

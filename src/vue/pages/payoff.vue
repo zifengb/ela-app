@@ -81,7 +81,7 @@
 			<f7-list-item link="#" @click="popup">
 				<f7-grid class="list-content">
 					<f7-col width="20" class="username">{{ defaultAddress.consignee }}</f7-col>
-					<f7-col width="20" class="sex">{{ defaultAddress.sex ? '先生' : '女士'}}</f7-col>
+					<f7-col width="20" class="sex">{{ defaultAddress.sex === 0 ? '先生' : '女士'}}</f7-col>
 					<f7-col width="60" class="mobile">{{ defaultAddress.phone }}</f7-col>
 					<f7-col width="100" class="address">{{ defaultAddress.address }}</f7-col>
 				</f7-grid>
@@ -116,7 +116,7 @@
 						</f7-col>
 						<f7-col width="15">{{'* ' + food.amount}}</f7-col>
 						<f7-col width="15">{{'￥'+food.price}}</f7-col>
-						<f7-col width="15">{{'￥'+order.detail.total}}</f7-col>
+						<f7-col width="15">{{'￥'+food.amount * food.price}}</f7-col>
 					</template>
 				</f7-grid>
 			</f7-list-item>
@@ -180,7 +180,7 @@
 						</f7-grid>
 					</f7-list-item>
 
-					<f7-list-item v-for="(item, index) in order.address" 
+					<f7-list-item v-for="(item, index) in order.addressText" 
 					:key="index"
 					radio
 					name="my-radio"
@@ -217,7 +217,7 @@ export default {
 	},
 	computed: {
 		defaultAddress() {
-			return this.order.address.filter(el => el.isDefault)[0]
+			return this.order.addressText.filter(el => el.isDefault)[0]
 		},
 		originalPrice() {
 			return this.order.detail.total + this.order.deliverFee
@@ -243,9 +243,20 @@ export default {
 		radioChange(i) {
 			this.$store.commit('order/adChange', i)
 		},
+		updateOrder(json ={}) {
+			// json = {
+			// 	orderId: 4,
+			// 	statusCode: 2
+			// }
+			return axios.post(this.HOST + '/cart/update', json)
+		},
+		clearCart() {
+			let userId = this.$store.state.user.userAuth.userInfo.userId;
+			return axios.get(this.HOST + '/cart/clear?user_id=' + userId)
+		},
 		submit() {
 			let json = {
-				address: JSON.stringify(this.defaultAddress),
+				addressText: JSON.stringify(this.defaultAddress),
 				deliverFee: this.order.deliverFee,
 				detail: JSON.stringify(this.order.detail.cartItems),
 				userId: this.order.userId,
@@ -261,9 +272,11 @@ export default {
 			}
 			axios.post(this.HOST + '/order/update', json).then(res => {
 				if (res.status === 200) {
-					// 更新订单状态
 					// 清空购物车
-					// 更新路由
+					this.clearCart().then(res => {
+						// 更新路由
+						res.status === 200 && this.$router.loadPage('/order-single/?id='+res.data.orderId)
+					})
 				}
 			}).catch(err => console.log(err))
 		}

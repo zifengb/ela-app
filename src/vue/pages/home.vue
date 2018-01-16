@@ -1,5 +1,5 @@
 <style lang="scss">
-.ad-searchbar input[type=search] {
+.home-searchbar input[type=search] {
 	background-color: #F0F0F0;
 	font-size: 0.4rem;
 }
@@ -100,11 +100,12 @@
 
 <template>
 	<f7-page class="main">
+		<f7-navbar title="饿了吧" back-link="Back" sliding></f7-navbar>
 		<!-- 头部搜索 start -->
 		<f7-searchbar
-			class="ad-searchbar"
+			class="home-searchbar"
 			cancel-link="搜索"
-			search-list="#search-list"
+			search-list="#search-result"
 			placeholder="搜索商家、商品名称"
 			:clear-button="active"
 			@click:cancel="onClear"
@@ -217,7 +218,7 @@
 		</ul>
 		<!-- 商家列表 end -->
 
-		<f7-list id="search-list"></f7-list>
+		<f7-list id="search-result"></f7-list>
 	</f7-page>
 </template>
 
@@ -254,6 +255,9 @@ export default {
 			}).catch(err => console.log(err))
 		},
 		onClear: function (event) {
+			if (!this.keyword) {
+				return;
+			}
 			let router = this.$router || this.$f7.mainView.router;
 			router.loadPage('/restaurants/?keyword=' + this.keyword);
 		},

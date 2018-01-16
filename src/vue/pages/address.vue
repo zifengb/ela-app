@@ -3,6 +3,9 @@
 	background-color: #F0F0F0;
 	font-size: 0.4rem;
 }
+#search-list .item-title {
+	display: none;
+}
 </style>
 
 <style lang="scss" scoped>
@@ -47,7 +50,6 @@ i.la {
     @searchbar:enable="onEnable"
     @searchbar:disable="onDisable"
     @searchbar:clear="onClear"
-		@blur="onBlur"
   ></f7-searchbar>
 
 	<f7-list>
@@ -65,13 +67,13 @@ i.la {
 
 	<!-- Will be visible if there is no any results found, defined by "searchbar-not-found" class -->
   <f7-list class="searchbar-not-found">
-    <f7-list-item title="没有任何结果~"></f7-list-item>
+    <f7-list-item title="没有符合的收货地址~"></f7-list-item>
   </f7-list>
 
   <!-- Search-through list -->
 	<f7-block-title>我的收货地址</f7-block-title>
   <f7-list class="searchbar-found" id="search-list">
-    <f7-list-item link="#" v-for="(item, index) in address" :key="item.index">
+    <f7-list-item link="#" v-for="(item, index) in address" :key="index" :title="item.address">
 			<f7-grid class="list-content">
 				<f7-col width="100" class="address">{{item.address}}</f7-col>
 				<f7-col width="20" class="username">{{item.consignee}}</f7-col>
@@ -79,7 +81,7 @@ i.la {
 				<f7-col width="60" class="mobile">{{item.phone}}</f7-col>
 			</f7-grid>
 		</f7-list-item>
-		<f7-list-item class="more"><a href="#">展开更多地址</a></f7-list-item>
+		<!-- <f7-list-item class="more"><a href="#">展开更多地址</a></f7-list-item> -->
   </f7-list>
 		
 	</f7-page>
@@ -88,19 +90,14 @@ i.la {
 
 <script>
 export default {
-	created() {
-		this.address = this.$store.state.userAuth.userInfo.address
-	},
 	data() {
 		return {
 			active: true,
-			items: (function () {
-				var it = [];
-				for (var i = 0; i < 3; i++) it.push(i+1);
-				return it;
-			})(),
 			address:[]
 		}
+	},
+	created() {
+		this.address = this.$store.state.userAuth.userInfo.addressText
 	},
 	methods: {
 		onSearch: function (query, found) {
@@ -114,9 +111,6 @@ export default {
 		},
 		onDisable: function (event) {
 			console.log('disable');
-		},
-		onBlur: function () {
-			console.log('blur')
 		}
 	}
 }
