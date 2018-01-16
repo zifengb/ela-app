@@ -30,7 +30,7 @@
 			</f7-list-item>
 			<f7-list-item link="/profileChange/">
 				<span>用户名</span>
-				<span>{{ this.$store.state.userAuth.userInfo.userName }}</span>
+				<span v-if="this.$store.state.userAuth.userInfo.userName">{{ this.$store.state.userAuth.userInfo.userName }}</span>
 			</f7-list-item>
 		</f7-list>
 

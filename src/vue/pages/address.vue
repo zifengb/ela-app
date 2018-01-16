@@ -71,12 +71,12 @@ i.la {
   <!-- Search-through list -->
 	<f7-block-title>我的收货地址</f7-block-title>
   <f7-list class="searchbar-found" id="search-list">
-    <f7-list-item link="#" v-for="(item, index) in items" :key="index">
+    <f7-list-item link="#" v-for="(item, index) in address" :key="item.index">
 			<f7-grid class="list-content">
-				<f7-col width="100" class="address">北京市朝阳区朝外大街外交部4号 890室</f7-col>
-				<f7-col width="20" class="username">濛子{{item}}</f7-col>
-				<f7-col width="20" class="sex">女士</f7-col>
-				<f7-col width="60" class="mobile">18010097302</f7-col>
+				<f7-col width="100" class="address">{{item.address}}</f7-col>
+				<f7-col width="20" class="username">{{item.consignee}}</f7-col>
+				<f7-col width="20" class="sex">{{item.sex === 0 ? '男': '女'}}</f7-col>
+				<f7-col width="60" class="mobile">{{item.phone}}</f7-col>
 			</f7-grid>
 		</f7-list-item>
 		<f7-list-item class="more"><a href="#">展开更多地址</a></f7-list-item>
@@ -88,6 +88,9 @@ i.la {
 
 <script>
 export default {
+	created() {
+		this.address = this.$store.state.userAuth.userInfo.address
+	},
 	data() {
 		return {
 			active: true,
@@ -95,7 +98,8 @@ export default {
 				var it = [];
 				for (var i = 0; i < 3; i++) it.push(i+1);
 				return it;
-			})()
+			})(),
+			address:[]
 		}
 	},
 	methods: {
