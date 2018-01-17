@@ -36,7 +36,7 @@
 		transform: translateX(-10%);
 	}
 }
-#tab-2 .block-title {
+#s-tab-2 .block-title {
 	margin: 0;
 	padding: 3% 0 3% 4%;
 	background-color: #F0F0F2;
@@ -138,6 +138,9 @@
             }
         }
     }
+		&:last-of-type {
+			margin-bottom: 46px;
+		}
 }
 
 // 底部按钮条
@@ -280,13 +283,13 @@
 
 		<!-- tab links -->
 		<div class="tabs-links">
-			<f7-link tab-link="#tab-1" class="tab-link1" @click="tabActive(1)">点菜</f7-link>
-			<f7-link tab-link="#tab-2" class="tab-link2" @click="tabActive(2)">商家</f7-link>
+			<f7-link tab-link="#s-tab-1" class="tab-link1" @click="tabActive(1)">点菜</f7-link>
+			<f7-link tab-link="#s-tab-2" class="tab-link2" @click="tabActive(2)">商家</f7-link>
 			<div ref="line" class="active-line"></div>
 		</div>
 		<!-- tab content -->
 		<f7-tabs class="tabs-content">
-			<f7-tab id="tab-1" active>
+			<f7-tab id="s-tab-1" active>
                 <f7-grid no-gutter>
                     <f7-col class="types flex-column" width="25">
                         <div class="item center" :class="{ 'active': value.isActived }" v-for="(value, key) in types" :key="key"  @click="changeType(key)">
@@ -311,7 +314,7 @@
                     </f7-col>
                 </f7-grid>
 			</f7-tab>
-			<f7-tab id="tab-2">
+			<f7-tab id="s-tab-2">
 				<!-- 订单信息 start -->
 				<f7-list>
 					<f7-list-item class="phone">
@@ -579,6 +582,7 @@ export default {
 			}).catch(err => console.log(err))
 		},
 		loadCart() {
+			this.$store.commit('cart/emptyItem')
 			if (!this.userInfo) {
 				this.cart = this.$store.state.cart.cartObj;
 				return ;
@@ -628,12 +632,16 @@ export default {
 			this.$store.commit('cart/saveItem', cartItem)
 		},
 		addCart() {	// 添加购物车
-			// this.orderInstance()
-			// this.$router.loadPage('/payoff/')
+			let userInfo = this.$store.state.userAuth.userInfo
+			if (!userInfo) {
+				alert('先登录才能下单~')
+				return;
+			}
 			if (this.cart.cartItems.length ===0 ) {
 				alert('购物车为空~，请先添加商品')
 				return;
 			}
+			this.$store.state.cart.cartObj.user_id = userInfo.userId
 			axios.post(this.HOST + '/cart/save', this.cart).then(res => {
 				this.orderInstance()
 				res.status === 200 && this.$router.loadPage('/payoff/')

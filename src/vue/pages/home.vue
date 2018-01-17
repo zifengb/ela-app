@@ -204,11 +204,11 @@
 							<f7-col width="70" class="content">
 								<h3>{{ item.restaurant_name }}</h3>
 								<p><span class="rating">{{ calcRate(item.numRatings || 2) }}</span>月售{{ item.recent_order_num }}单</p>
-								<p><span>起送￥{{ item.deliver_amount }}</span><span class="agent-fee">配送￥{{ item.agent_fee }}</span></p>
+								<p><span>起送￥{{ item.deliver_amount }}</span><span class="agent-fee">配送￥{{ item.delivery_fee }}</span></p>
 								<p><f7-badge>折</f7-badge>满15元减3</p>
 							</f7-col>
 							<f7-col width="30" class="tip">
-								<p>{{ item.distance + 'km' }}</p>
+								<p>{{ distanceFormat(item.distance) + 'km' }}</p>
 								<p>{{ item.deliver_spent }}分钟</p>
 							</f7-col>
 						</f7-grid>
@@ -225,6 +225,7 @@
 
 <script>
 import axios from 'axios'
+import { distanceFormat } from '../../utils/index'
 // import { categories, sliders } from 'assets/js/home.js'
 export default {
 	data() {
@@ -233,13 +234,15 @@ export default {
 			categories: [],
 			sliders: [],
 			restaurants: [],
-			keyword: ''
+			keyword: '',
+			distanceFormat: distanceFormat
 		}
 	},
 	created() {
 		// this.categories = categories;
 		// this.sliders = sliders;
 		this.loadRestaurants();
+		this.$store.commit('global/showToolbar')
 	},
 	methods: {
 		calcRate(rate) {

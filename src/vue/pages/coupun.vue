@@ -68,13 +68,13 @@
 		<f7-navbar title="我的优惠" back-link="Back" sliding></f7-navbar>
 
 		<div class="tabs-links">
-			<f7-link tab-link="#tab-1" class="tab-link1" @click="tabActive(1)">红包</f7-link>
-			<f7-link tab-link="#tab-2" class="tab-link2" @click="tabActive(2)">代金券</f7-link>
+			<f7-link tab-link="#c-tab-1" class="tab-link1" @click="tabActive(1)">红包</f7-link>
+			<f7-link tab-link="#c-tab-2" class="tab-link2" @click="tabActive(2)">代金券</f7-link>
 			<div ref="line" class="active-line"></div>
 		</div>
 
 		<f7-tabs>
-			<f7-tab id="tab-1" active>
+			<f7-tab id="c-tab-1" active>
 				<ul class="coupun-list">
 					<li class="item">
 						<f7-grid>
@@ -143,7 +143,7 @@
 					<li class="no-more">没有更多了~</li>
 				</ul>
 			</f7-tab>
-			<f7-tab id="tab-2">
+			<f7-tab id="c-tab-2">
 				Tab2
 			</f7-tab>
 		</f7-tabs>

@@ -22,6 +22,9 @@
 	margin: 0 2%;
 	margin-top: 15px;
 	background-color: #ffd21f;
+	&.hide{
+		display: none;
+	}
 }
 .third-part--login {
 	position: relative;
@@ -54,7 +57,7 @@
 <template>
 	<f7-page>
 
-		<f7-navbar title="登录" back-link="Back" sliding></f7-navbar>
+		<f7-navbar title="登录" back-link="Back" sliding @back-click="showToolbar"></f7-navbar>
 
 		<f7-list form class="login-form" ref="login-form">
 			<f7-list-item>
@@ -70,7 +73,7 @@
 		</f7-block>
 
 		<f7-button big fill raised class="login-btn" @click="login">登录</f7-button>
-		<f7-button big fill raised class="register-btn" @click="register">注册</f7-button>
+		<f7-button big fill raised :class="['register-btn',{'hide': regBtn}]" @click="register">注册</f7-button>
 
 		<div class="third-part--login">
 			<p>第三方登录</p>
@@ -102,10 +105,12 @@ export default {
 			userInfo: {
 				userName: '',
 				loginPassword: ''
-			}
+			},
+			regBtn: false
 		}
 	},
 	created() {
+		this.$store.commit('global/hideToolbar')
 	},
 	methods: {
 		login() {
@@ -124,11 +129,15 @@ export default {
 		register() {
 			axios.post(this.$store.state.global.host + '/user/register', this.userInfo).then(res => {
 				let result = res.data
+				this.regBtn = true
 				alert(result.msg)
 			}).catch(err => {
 				console.log(err)
 			})
 		},
+		showToolbar() {
+			this.$store.commit('global/showToolbar')
+		}
 	}
 }
 </script>

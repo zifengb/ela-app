@@ -61,7 +61,7 @@
 		transform: translateX(-10%);
 	}
 }
-#tab-2 .block-title {
+#o-tab-2 .block-title {
 	margin: 0;
 	padding: 3% 0 3% 4%;
 	background-color: #F0F0F2;
@@ -82,6 +82,13 @@
 		vertical-align: text-bottom;
 	}
 }
+.cancel-btn {
+	color: #000;
+	background-color: #ffd21f;
+}
+.order-info {
+	margin-bottom: 50px;
+}
 // 重新设置tab-link样式
 .tab-link.active:not(.offline), .tab-link.active:not(.online) {
   background-color: transparent;
@@ -96,14 +103,14 @@
 		<f7-navbar :title="order.restaurantName" back-link="Back" sliding></f7-navbar>
 
 		<div class="tabs-links">
-			<f7-link tab-link="#tab-1" class="tab-link1" @click="tabActive(1)">订单状态</f7-link>
-			<f7-link tab-link="#tab-2" class="tab-link2" @click="tabActive(2)">订单详情</f7-link>
+			<f7-link tab-link="#o-tab-1" class="tab-link1" @click="tabActive(1)">订单状态</f7-link>
+			<f7-link tab-link="#o-tab-2" class="tab-link2" @click="tabActive(2)">订单详情</f7-link>
 			<f7-link href="#" class="phone-call" @click="popup"><i class="la la-phone"></i></f7-link>
 			<div ref="line" class="active-line"></div>
 		</div>
 
 		<f7-tabs>
-			<f7-tab id="tab-1" active>
+			<f7-tab id="o-tab-1" active>
 				<f7-timeline class="timeline-list">
 					<f7-timeline-item class="timeline-list-item">
 						<f7-grid class="tl-item-content">
@@ -118,7 +125,7 @@
 						<f7-grid class="tl-item-content">
 							<f7-col width="80">
 								<h4>支付成功</h4>
-								<p>耐心等待商家确认</p>
+								<p>耐心等待商家确认</p><f7-badge class="cancel-btn" v-if="order.deliverStatus == 0" @click="updateOrder">取消订单</f7-badge>
 							</f7-col>
 							<f7-col width="20"></f7-col>
 						</f7-grid>
@@ -152,7 +159,7 @@
 					</f7-timeline-item>
 				</f7-timeline>
 			</f7-tab>
-			<f7-tab id="tab-2">
+			<f7-tab id="o-tab-2">
 
 				<!-- 订单详情 start -->
 				<f7-block-title class="block-title">订单详情</f7-block-title>
@@ -262,8 +269,8 @@
 
 		<f7-actions :opened="flag" class="action-modal" @actions:closed="actionModal(false)">
 			<f7-actions-group>
-				<f7-actions-button @click="phonecall(order.phoneList)">商家电话12312132</f7-actions-button>
-				<f7-actions-button @click="phonecall(13432389260)">客服电话12312132</f7-actions-button>
+				<f7-actions-button @click="phonecall(order.phoneList)">商家电话</f7-actions-button>
+				<f7-actions-button @click="phonecall(13432389260)">客服电话</f7-actions-button>
 			</f7-actions-group>
 			<f7-actions-group>
 				<f7-actions-button>取消</f7-actions-button>
@@ -326,8 +333,11 @@ export default {
 				this.order.addressText = JSON.parse(res.data.addressText)
 			}).catch(err => console.log(err))
 		},
-		updateOrder() {	// 更新订单状态
-			let json = {}
+		updateOrder(id) {	// 更新订单状态
+			let json = {
+				orderId: id || this.$route.query.id,
+				statusCode: 3
+			}
 			axios.post(this.HOST + '/order/update', json).then(res => {
 				this.order = res.data;
 			}).catch(err => console.log(err))

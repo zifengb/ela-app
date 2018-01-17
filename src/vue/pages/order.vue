@@ -51,7 +51,7 @@
 						</f7-col>
 						<f7-col width="45" class="tips">
 							<template v-if="item.deliverStatus === 2">
-								<f7-link :href="'/order-single/?id='+item.orderId">再来一单</f7-link>
+								<f7-link href="#" @click="oneMore(item)">再来一单</f7-link>
 								<f7-link :href="'/order-single/?id='+item.orderId">待评价</f7-link>
 							</template>
 							<f7-link v-else-if="item.deliverStatus === 1" :href="'/order-single/?id='+item.orderId">等待送达</f7-link>
@@ -99,6 +99,17 @@ export default {
 		},
 		login() {
 			this.$router.loadPage('/login/')
+		},
+		oneMore(item) {
+			let json = Object.assign({}, item);
+			delete json.orderId;
+			axios.post(this.HOST + '/order/update', json).then(res => {
+				if (res.status === 200) {
+					let id = res.data.orderId
+					// 更新路由
+					this.$router.loadPage('/order-single/?id='+id)
+				}
+			}).catch(err => console.log(err))
 		}
 	}
 }

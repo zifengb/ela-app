@@ -2,7 +2,7 @@
 <widget id="com.ela.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <hook src="hooks/hookers.js" type="before_prepare" />
     <hook src="hooks/beforedep.js" type="before_deploy" />
-    <name>Cordova - Framework7 - Vue - Webpack Template</name>
+    <name>饿了吧APP</name>
     <description>
         Brand new cordova project!
     </description>
@@ -20,6 +20,11 @@
     <allow-intent href="geo:*" />
     <platform name="android">
         <allow-intent href="market:*" />
+        <icon density="mdpi" src="res/android/mipmap-mdpi/ic_launcher_round.png" />
+        <icon density="hdpi" src="res/android/mipmap-hdpi/ic_launcher_round.png" />
+        <icon density="xhdpi" src="res/android/mipmap-xhdpi/ic_launcher_round.png" />
+        <icon density="xxhdpi" src="res/android/mipmap-xxhdpi/ic_launcher_round.png" />
+        <icon density="xxxhdpi" src="res/android/mipmap-xxxhdpi/ic_launcher_round.png" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />

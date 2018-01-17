@@ -28,3 +28,8 @@ export function imageCodeToURL(state, code) {
 		code.substr(3) + '.' + ext
 	].join('')
 };
+
+export function distanceFormat(num) {
+	let n = (num / 1000).toFixed(2);
+	return n;
+}

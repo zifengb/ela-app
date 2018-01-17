@@ -14,7 +14,7 @@
 <template>
 	<f7-page>
 
-		<f7-navbar :title="navbarInfo" back-link="Back" sliding></f7-navbar>
+		<f7-navbar :title="navbarInfo" back-link="Back" sliding @back-click="showToolbar"></f7-navbar>
 
 		<f7-list form class="form">
 			<template v-if="routeHash === 'loginPassword'">
@@ -70,6 +70,9 @@ export default {
 			payPassword: '',
 			payPassword2: ''
 		}
+	},
+	created() {
+		this.$store.commit('global/hideToolbar')
 	},
 	computed: {
 		routeHash: function () {
@@ -164,6 +167,9 @@ export default {
 			}).catch(err => {
 				console.log(err)
 			})
+		},
+		showToolbar() {
+			this.$store.commit('global/showToolbar')
 		}
 	}
 }

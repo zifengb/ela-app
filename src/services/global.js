@@ -2,7 +2,7 @@ export default {
 	namespaced: true,
 	state: {
 			flag: true,
-			// host: 'http://localhost:3000'
+			// host: 'http://localhost:3389'
 			host: 'http://39.108.190.87:3389'
 	},
 	getters: {

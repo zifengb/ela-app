@@ -243,16 +243,16 @@ export default {
 		radioChange(i) {
 			this.$store.commit('order/adChange', i)
 		},
-		updateOrder(json ={}) {
-			// json = {
-			// 	orderId: 4,
-			// 	statusCode: 2
-			// }
-			return axios.post(this.HOST + '/cart/update', json)
+		updateOrder(id) {
+			let json = {
+				orderId: id,
+				statusCode: 2
+			}
+			return axios.post(this.HOST + '/order/update', json)
 		},
 		clearCart() {
-			let userId = this.$store.state.user.userAuth.userInfo.userId;
-			return axios.get(this.HOST + '/cart/clear?user_id=' + userId)
+			let userId = this.$store.state.userAuth.userInfo.userId;
+			return axios.get(this.HOST + '/cart/clear?user_id=' + userId).then(res => {}).catch(err => console.log(err))
 		},
 		submit() {
 			let json = {
@@ -272,11 +272,18 @@ export default {
 			}
 			axios.post(this.HOST + '/order/update', json).then(res => {
 				if (res.status === 200) {
+					let id = res.data.orderId;
 					// 清空购物车
-					this.clearCart().then(res => {
+					this.clearCart()
+					this.updateOrder(id).then(res => {
 						// 更新路由
-						res.status === 200 && this.$router.loadPage('/order-single/?id='+res.data.orderId)
-					})
+						if (res.status === 200) {
+							alert('商家已接单~')
+							this.$store.commit('order/clear')
+							this.$store.commit('cart/emptyItem')
+							this.$router.loadPage('/order-single/?id='+id)
+						}
+					}).catch(err => console.log(err))
 				}
 			}).catch(err => console.log(err))
 		}

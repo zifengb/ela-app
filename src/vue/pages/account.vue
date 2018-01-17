@@ -1,6 +1,7 @@
 <style lang="scss" scoped>
 .user-block {
 	margin-top: 0;
+	margin-bottom: 50px
 }
 .list-header {
 	color: #C5C5C5;
@@ -30,7 +31,7 @@
 			</f7-list-item>
 			<f7-list-item link="/profileChange/">
 				<span>用户名</span>
-				<span v-if="this.$store.state.userAuth.userInfo.userName">{{ this.$store.state.userAuth.userInfo.userName }}</span>
+				<span v-if="this.userInfo && this.userInfo.userName">{{ this.userInfo.userName }}</span>
 			</f7-list-item>
 		</f7-list>
 
@@ -62,7 +63,7 @@
 			</f7-list-item>
 			<f7-list-item>
 				<span>支付密码</span>
-				<a v-if="this.$store.state.userAuth.userInfo.payPassword" href="/profileChange/#resetPayPassword">修改</a>
+				<a v-if="this.userInfo && this.userInfo.payPassword" href="/profileChange/#resetPayPassword">修改</a>
 				<a v-else href="/profileChange/#addPayPassword">设置</a>
 			</f7-list-item>
 			<f7-list-item @click="logout">
@@ -93,6 +94,9 @@ export default {
 		return {
 			flag: false
 		}
+	},
+	created() {
+		this.userInfo = this.$store.state.userAuth.userInfo
 	},
 	methods: {
 		actionModal(f) {
