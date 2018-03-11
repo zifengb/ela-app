@@ -11,7 +11,7 @@
     "keywords": [
         "ecosystem:cordova"
     ],
-    "license": "ISC",
+    "license": "Apache-2.0",
     "devDependencies": {
         "cheerio": "^1.0.0-rc.2",
         "chokidar": "^1.6.1",
