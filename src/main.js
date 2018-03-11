@@ -1,11 +1,11 @@
 // Import Vue
 import Vue from 'vue'
 
-// Import F7
-import Framework7 from 'framework7'
+// Import Framework7
+import Framework7 from 'framework7/dist/framework7.esm.bundle.js';
 
-// Import F7 Vue Plugin
-import Framework7Vue from 'framework7-vue'
+// Import Framework7 Vue
+import Framework7Vue from 'framework7-vue/dist/framework7-vue.esm.bundle.js';
 
 // Import vue-amap
 import VueAMap from 'vue-amap'
@@ -16,13 +16,8 @@ import VueWebSocket from 'vue-websocket'
 // Import vuex store
 import store from './services/index'
 
-// Import F7 iOS Theme Styles
-import Framework7Theme from 'framework7/dist/css/framework7.ios.min.css'
-import Framework7ThemeColors from 'framework7/dist/css/framework7.ios.colors.min.css'
-/* OR for Material Theme:
- import Framework7Theme from 'framework7/dist/css/framework7.material.min.css'
- import Framework7ThemeColors from 'framework7/dist/css/framework7.material.colors.min.css'
- */
+// Import F7 Styles
+import Framework7CSS from 'framework7/dist/css/framework7.css'
 
 // Import App Custom Styles
 import AppStyles from './assets/sass/main.scss'
@@ -43,7 +38,7 @@ import App from './main.vue'
 import mixins from './mixins'
 
 // Init F7 Vue Plugin
-Vue.use(Framework7Vue)
+Vue.use(Framework7Vue, Framework7)
 
 // Init VueAMap
 Vue.use(VueAMap)
@@ -61,6 +56,10 @@ Vue.use(VueWebSocket, 'ws://39.108.190.87:3389', {
 //注入混合器
 Vue.mixin(mixins)
 
+let theme = 'auto';
+if (document.location.search.indexOf('theme=') >= 0) {
+  theme = document.location.search.split('theme=')[1].split('&')[0];
+}
 
 // 测试路由导航守卫（该框架没集成！！！）
 // Routes.beforeEach((to, from, next) => {
@@ -71,17 +70,16 @@ Vue.mixin(mixins)
 // Init App
 new Vue({
   el: '#app',
-  template: '<app/>',
+  render: c => c('app'),
   store,
   // Init Framework7 by passing parameters here
   framework7: {
-    root: '#app',
-    /* Uncomment to enable Material theme: */
-    // material: true,
-    routes: Routes
+    id: 'com.ela.app',
+    theme
   },
   // Register App Component
   components: {
     app: App
-  }
+  },
+  routes: Routes
 })
