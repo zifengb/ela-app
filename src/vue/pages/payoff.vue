@@ -238,7 +238,7 @@ export default {
 		},
 		jumpTo() {
 			this.popup();
-			this.$router.loadPage('/addressDetail/')
+			this.$f7router.navigate('/addressDetail/')
 		},
 		radioChange(i) {
 			this.$store.commit('order/adChange', i)
@@ -281,7 +281,7 @@ export default {
 							alert('商家已接单~')
 							this.$store.commit('order/clear')
 							this.$store.commit('cart/emptyItem')
-							this.$router.loadPage('/order-single/?id='+id)
+							this.$f7router.navigate('/order-single/?id='+id)
 						}
 					}).catch(err => console.log(err))
 				}

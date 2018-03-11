@@ -91,7 +91,7 @@ export default {
 			}).catch(err => console.log(err))
 		},
 		jumpTo(url) {
-			this.$router.loadPage(url)
+			this.$f7router.navigate(url)
 		},
 		textEllipsis(t) {
 			let text = t.toString();

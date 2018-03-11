@@ -327,7 +327,7 @@ export default {
 			this.$socket.emit('listener', { info: 'message from vue template' })
 		},
 		loadOrder() {
-			axios.get(this.HOST + '/order/query?orderId=' + this.$route.query.id).then(res => {
+			axios.get(this.HOST + '/order/query?orderId=' + this.$f7route.query.id).then(res => {
 				this.order = res.data;
 				this.order.detail = JSON.parse(res.data.detail)
 				this.order.addressText = JSON.parse(res.data.addressText)
@@ -335,7 +335,7 @@ export default {
 		},
 		updateOrder(id) {	// 更新订单状态
 			let json = {
-				orderId: id || this.$route.query.id,
+				orderId: id || this.$f7route.query.id,
 				statusCode: 3
 			}
 			axios.post(this.HOST + '/order/update', json).then(res => {

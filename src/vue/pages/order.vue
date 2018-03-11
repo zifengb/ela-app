@@ -98,7 +98,7 @@ export default {
 			}).catch(err => console.log(err))
 		},
 		login() {
-			this.$router.loadPage('/login/')
+			this.$f7router.navigate('/login/')
 		},
 		oneMore(item) {
 			let json = Object.assign({}, item);
@@ -107,7 +107,7 @@ export default {
 				if (res.status === 200) {
 					let id = res.data.orderId
 					// 更新路由
-					this.$router.loadPage('/order-single/?id='+id)
+					this.$f7router.navigate('/order-single/?id='+id)
 				}
 			}).catch(err => console.log(err))
 		}

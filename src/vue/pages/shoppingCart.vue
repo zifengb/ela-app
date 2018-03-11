@@ -279,7 +279,7 @@
 
 <template>
 	<f7-page class="main">
-		<f7-navbar :title="resInfo.restaurant_name" back-link="Back" sliding @back-click="showToolbar"></f7-navbar>
+		<f7-navbar :title="resInfo.restaurant_name" back-link="Back" sliding></f7-navbar>
 
 		<!-- tab links -->
 		<div class="tabs-links">
@@ -562,8 +562,8 @@ export default {
 			this.loadCart()
 		},
 		loadMenu() {
-			// this.$route.query.id
-			axios.get(this.HOST + '/restaurant/' + this.$route.query.id + '/menu').then(res => {
+			// this.$f7route.query.id
+			axios.get(this.HOST + '/restaurant/' + this.$f7route.query.id + '/menu').then(res => {
 				this.types = res.data.map((el, i) => 
 					({
 						id: el.id,
@@ -576,7 +576,7 @@ export default {
 			}).catch(err => console.log(err))
 		},
 		loadFood(id) {
-			// this.$route.query.id
+			// this.$f7route.query.id
 			axios.get(this.HOST + '/food/category/' + (id || this.types[0].id) + '/foods').then(res => {
 				this.foods = res.data;
 			}).catch(err => console.log(err))
@@ -595,8 +595,8 @@ export default {
 			}).catch(err => console.log(err))
 		},
 		loadResInfo() {
-			// this.$route.query.id
-			axios.get(this.HOST + '/restaurant/' + this.$route.query.id).then(res => {
+			// this.$f7route.query.id
+			axios.get(this.HOST + '/restaurant/' + this.$f7route.query.id).then(res => {
 				this.resInfo = res.data;
 			}).catch(err => console.log(err))
 		},
@@ -644,7 +644,7 @@ export default {
 			this.$store.state.cart.cartObj.user_id = userInfo.userId
 			axios.post(this.HOST + '/cart/save', this.cart).then(res => {
 				this.orderInstance()
-				res.status === 200 && this.$router.loadPage('/payoff/')
+				res.status === 200 && this.$f7router.navigate('/payoff/')
 			}).catch(err => console.log(err))
 		},
 		clearCart() {

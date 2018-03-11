@@ -249,8 +249,8 @@ export default {
 			return "★★★★★☆☆☆☆☆".slice(5 - rate, 10 - rate);
 		},
 		jumpTo(url) {
-			let router = this.$router || this.$f7.mainView.router;
-			router.loadPage(url);
+			let router = this.$f7router || this.$f7.mainView.router;
+			router.navigate(url);
 		},
 		loadRestaurants() {
 			axios.get(this.$store.state.global.host + '/restaurant/range').then(res => {
@@ -261,8 +261,8 @@ export default {
 			if (!this.keyword) {
 				return;
 			}
-			let router = this.$router || this.$f7.mainView.router;
-			router.loadPage('/restaurants/?keyword=' + this.keyword);
+			let router = this.$f7router || this.$f7.mainView.router;
+			router.navigate('/restaurants/?keyword=' + this.keyword);
 		},
 		onInput(e) {
 			this.keyword = e;

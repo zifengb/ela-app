@@ -14,7 +14,7 @@
 <template>
 	<f7-page>
 
-		<f7-navbar :title="navbarInfo" back-link="Back" sliding @back-click="showToolbar"></f7-navbar>
+		<f7-navbar :title="navbarInfo" back-link="Back" sliding></f7-navbar>
 
 		<f7-list form class="form">
 			<template v-if="routeHash === 'loginPassword'">
@@ -76,11 +76,11 @@ export default {
 	},
 	computed: {
 		routeHash: function () {
-			if (this.$route.hash == 'loginPassword') {
+			if (this.$f7route.hash == 'loginPassword') {
 				return 'loginPassword'
-			} else if (this.$route.hash == 'addPayPassword') {
+			} else if (this.$f7route.hash == 'addPayPassword') {
 				return 'addPayPassword'
-			}  else if (this.$route.hash == 'resetPayPassword') {
+			}  else if (this.$f7route.hash == 'resetPayPassword') {
 				return 'resetPayPassword'
 			} else {
 				return ''
@@ -88,11 +88,11 @@ export default {
 			return this.message.split('').reverse().join('')
 		},
 		navbarInfo: function () {
-			if (this.$route.hash == 'loginPassword') {
+			if (this.$f7route.hash == 'loginPassword') {
 				return '修改密码'
-			} else if (this.$route.hash == 'addPayPassword') {
+			} else if (this.$f7route.hash == 'addPayPassword') {
 				return '添加支付密码'
-			}  else if (this.$route.hash == 'resetPayPassword') {
+			}  else if (this.$f7route.hash == 'resetPayPassword') {
 				return '重置支付密码'
 			} else {
 				return '用户名'
@@ -110,7 +110,7 @@ export default {
 					let result = res.data
 					this.$store.commit('userAuth/setUserInfo', result.result)
 					alert(result.msg)
-					this.$router.loadPage('/')
+					this.$f7router.navigate('/')
 				}).catch(err => {
 					console.log(err)
 				})
@@ -128,7 +128,7 @@ export default {
 					let result = res.data
 					this.$store.commit('userAuth/setUserInfo', result.result)
 					alert(result.msg)
-					this.$router.loadPage('/')
+					this.$f7router.navigate('/')
 				}).catch(err => {
 					console.log(err)
 				})
@@ -146,7 +146,7 @@ export default {
 					let result = res.data
 					this.$store.commit('userAuth/setUserInfo', result.result)
 					alert(result.msg)
-					this.$router.loadPage('/')
+					this.$f7router.navigate('/')
 				}).catch(err => {
 					console.log(err)
 				})
@@ -163,7 +163,7 @@ export default {
 				let result = res.data
 				this.$store.commit('userAuth/setUserInfo', result.result)
 				alert(result.msg)
-				this.$router.loadPage('/')
+				this.$f7router.navigate('/')
 			}).catch(err => {
 				console.log(err)
 			})

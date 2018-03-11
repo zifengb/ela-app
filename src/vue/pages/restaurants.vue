@@ -214,7 +214,7 @@ export default {
 	},
 	created() {
 		// 查看this实例可以发现，DOM7($$)、framework7($f7)实例已经注册在原型上
-		let param = this.$route.query;
+		let param = this.$f7route.query;
 		param.class ? this.loadClass() : param.keyword ? this.loadMixQuery() : this.loadList();
 	},
 	computed: {
@@ -236,7 +236,7 @@ export default {
 		loadMixQuery() {
 			axios.get(this.$store.state.global.host + '/restaurant/query/restaurant_foods',
 				{
-					params: { keyword: this.$route.query.keyword }
+					params: { keyword: this.$f7route.query.keyword }
 				}
 			).then(res => {
 				this.list = res.data;
@@ -246,7 +246,7 @@ export default {
 			axios.get(this.$store.state.global.host + '/restaurant',
 				{
 					params: {
-						category: [this.$route.query.category],
+						category: [this.$f7route.query.category],
 						order_by: order_by || 1
 					}
 				}
@@ -256,14 +256,14 @@ export default {
 		},
 		loadClass() {
 			axios.get(this.$store.state.global.host + '/restaurant/class', {
-				params: { classification: this.$route.query.class }
+				params: { classification: this.$f7route.query.class }
 			}).then(res => {
 				this.list = res.data;
 			}).catch(err => console.log(err))
 		},
 		jumpTo(url) {
-			let router = this.$router || this.$f7.mainView.router;
-			router.loadPage(url);
+			let router = this.$f7router || this.$f7.mainView.router;
+			router.navigate(url);
 		}
 		// filterList() {
 		// 	axios.get('/', {

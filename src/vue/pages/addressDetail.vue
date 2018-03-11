@@ -98,7 +98,7 @@ export default {
 				console.log(result.result)
 				this.$store.commit('userAuth/setAddress', result.result)
 				alert(result.msg)
-				this.$router.loadPage('/address')
+				this.$f7router.navigate('/address')
 			}).catch(err => {
 				console.log(err)
 			})

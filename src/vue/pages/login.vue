@@ -57,7 +57,7 @@
 <template>
 	<f7-page>
 
-		<f7-navbar title="登录" back-link="Back" sliding @back-click="showToolbar"></f7-navbar>
+		<f7-navbar title="登录" back-link="Back" sliding></f7-navbar>
 
 		<f7-list form class="login-form" ref="login-form">
 			<f7-list-item>
@@ -118,7 +118,7 @@ export default {
 				let result = res.data
 				if (result.result) {
 					this.$store.commit('userAuth/setUserInfo', result.result.list[0])
-					this.$router.loadPage('/')
+					this.$f7router.navigate('/')
 				} else {
 					alert(result.msg)
 				}

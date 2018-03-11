@@ -9,13 +9,11 @@
 		<f7-views>
 			<f7-view id="main-view" navbar-through :dynamic-navbar="true" main>
 				<!-- Navbar -->
-				<f7-navbar title="饿了吧" back-link="Back" sliding></f7-navbar>
+				<!-- <f7-navbar title="饿了吧" back-link="Back" sliding></f7-navbar> -->
 				<!-- Pages -->
-				<f7-pages>
-					<home />
-				</f7-pages>
+				<home />
 				<!-- toolbar -->
-				<f7-toolbar tabbar labels class="toolbar" v-show="$store.state.global.flag">
+				<f7-toolbar tabbar labels bottom-md class="toolbar" v-show="$store.state.global.flag">
 					<f7-link href="/">
 						<i class="la la-home"></i> <span>首页</span>
 					</f7-link>
@@ -48,7 +46,7 @@ export default {
 			if (this.$f7.mainView.history.length === 1) {
 				navigator.app.exitApp(); // exit App
 			} else {
-				this.$router.back();
+				this.$f7router.back();
 			}
 		}
 	},

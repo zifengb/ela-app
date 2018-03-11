@@ -16,7 +16,7 @@
 <script>
 export default {
 	created() {
-		this.content = this.$route.query.content || '营养咨询文章内容~'
+		this.content = this.$f7route.query.content || '营养咨询文章内容~'
 	}
 }
 </script>
