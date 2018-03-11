@@ -77,7 +77,7 @@
 
 		<div class="third-part--login">
 			<p>第三方登录</p>
-			<f7-grid>
+			<f7-row>
 				<f7-col width="33">
 					<f7-label class="icon"><i class="la la-wechat"></i></f7-label>
 					<p class="icon-text">微信</p>
@@ -90,7 +90,7 @@
 					<f7-label class="icon"><i class="la la-weibo"></i></f7-label>
 					<p class="icon-text">微博</p>
 				</f7-col>
-			</f7-grid>
+			</f7-row>
 		</div>
 
 	</f7-page>

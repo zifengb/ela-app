@@ -115,7 +115,7 @@
 
 		<!-- 商品分类grid start -->
 		<div class="category">
-			<f7-grid>
+			<f7-row>
 				<f7-col class="gallery" width="33">
 					<div class="gallery-grid" @click="jumpTo('/restaurants/?category=1')">
 						<img src="../../assets/images/1.jpeg" alt="早餐">
@@ -152,7 +152,7 @@
 					</div>
 					<span>新店优惠</span>
 				</f7-col>
-			</f7-grid>
+			</f7-row>
 		</div>
 		<!-- 商品分类grid end -->
 
@@ -172,7 +172,7 @@
 
 		<!-- 特惠活动grid start -->
 		<f7-block-title>特惠活动</f7-block-title>
-		<f7-grid no-gutter>
+		<f7-row no-gap>
 			<f7-col width="50">
 				<img src="../../assets/images/raw_1509897607.jpeg" alt="" @click="jumpTo('/restaurants/?class=1')" />
 			</f7-col>
@@ -188,19 +188,19 @@
 			<f7-col width="33">
 				<img src="../../assets/images/raw_3.gif" alt="" @click="jumpTo('/restaurants/?class=5')" />
 			</f7-col>
-		</f7-grid>
+		</f7-row>
 		<!-- 特惠活动grid end -->
 
 		<!-- 商家列表 start -->
 		<f7-block-title>附近商家</f7-block-title>
 		<ul class="rt-list">
 			<li v-for="item in restaurants" :key="item.restaurant_id" @click="jumpTo('/shoppingCart/?id='+ item.restaurant_id)">
-				<f7-grid class="rt-list-grid">
+				<f7-row class="rt-list-grid">
 					<f7-col width="30" class="aside">
 						<img :src="item.image" />
 					</f7-col>
 					<f7-col width="70">
-						<f7-grid>
+						<f7-row>
 							<f7-col width="70" class="content">
 								<h3>{{ item.restaurant_name }}</h3>
 								<p><span class="rating">{{ calcRate(item.numRatings || 2) }}</span>月售{{ item.recent_order_num }}单</p>
@@ -211,9 +211,9 @@
 								<p>{{ distanceFormat(item.distance) + 'km' }}</p>
 								<p>{{ item.deliver_spent }}分钟</p>
 							</f7-col>
-						</f7-grid>
+						</f7-row>
 					</f7-col>
-				</f7-grid>
+				</f7-row>
 			</li>
 		</ul>
 		<!-- 商家列表 end -->

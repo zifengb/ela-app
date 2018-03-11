@@ -113,49 +113,49 @@
 			<f7-tab id="o-tab-1" active>
 				<f7-timeline class="timeline-list">
 					<f7-timeline-item class="timeline-list-item">
-						<f7-grid class="tl-item-content">
+						<f7-row class="tl-item-content">
 							<f7-col width="80">
 								<h4>订单已提交</h4>
 								<p>耐心等待商家确认</p>
 							</f7-col>
 							<f7-col width="20"></f7-col>
-						</f7-grid>
+						</f7-row>
 					</f7-timeline-item>
 					<f7-timeline-item class="timeline-list-item">
-						<f7-grid class="tl-item-content">
+						<f7-row class="tl-item-content">
 							<f7-col width="80">
 								<h4>支付成功</h4>
 								<p>耐心等待商家确认</p><f7-badge class="cancel-btn" v-if="order.deliverStatus == 0" @click="updateOrder">取消订单</f7-badge>
 							</f7-col>
 							<f7-col width="20"></f7-col>
-						</f7-grid>
+						</f7-row>
 					</f7-timeline-item>
 					<f7-timeline-item class="timeline-list-item" v-if="order.deliverStatus == 1">
-						<f7-grid class="tl-item-content">
+						<f7-row class="tl-item-content">
 							<f7-col width="80">
 								<h4>商家已接单</h4>
 								<p>商家准备中，由商家配送，配送进度请咨询商家</p>
 							</f7-col>
 							<f7-col width="20"></f7-col>
-						</f7-grid>
+						</f7-row>
 					</f7-timeline-item>
 					<f7-timeline-item class="timeline-list-item" v-if="order.deliverStatus == 1">
-						<f7-grid class="tl-item-content">
+						<f7-row class="tl-item-content">
 							<f7-col width="80">
 								<h4>商家配送中</h4>
 								<p>请等待配送</p>
 							</f7-col>
 							<f7-col width="20"></f7-col>
-						</f7-grid>
+						</f7-row>
 					</f7-timeline-item>
 					<f7-timeline-item class="timeline-list-item" v-if="order.deliverStatus == 2">
-						<f7-grid class="tl-item-content">
+						<f7-row class="tl-item-content">
 							<f7-col width="80">
 								<h4>订单已完成</h4>
 								<p>已完成订单，可以评价订单哟</p>
 							</f7-col>
 							<f7-col width="20"></f7-col>
-						</f7-grid>
+						</f7-row>
 					</f7-timeline-item>
 				</f7-timeline>
 			</f7-tab>
@@ -165,13 +165,13 @@
 				<f7-block-title class="block-title">订单详情</f7-block-title>
 				<f7-list class="order-detail">
 					<f7-list-item class="restaurant">
-						<f7-grid class="inner-grid">
+						<f7-row class="inner-grid">
 							<f7-col width="70">{{ order.restaurantName }}</f7-col>
 							<f7-col width="30">非美团转送</f7-col>
-						</f7-grid>
+						</f7-row>
 					</f7-list-item>
 					<f7-list-item class="food-list">
-						<f7-grid class="inner-grid">
+						<f7-row class="inner-grid">
 							<!-- item -->
 							<template v-for="food in order.detail">
 								<f7-col width="55">
@@ -183,19 +183,19 @@
 								<f7-col width="15">{{'￥'+ food.price}}</f7-col>
 							</template>
 							<!-- item -->
-						</f7-grid>
+						</f7-row>
 					</f7-list-item>
 					<f7-list-item class="fee-list">
-						<f7-grid class="inner-grid">
+						<f7-row class="inner-grid">
 							<!-- <f7-col width="85">餐盒费</f7-col>
 							<f7-col width="15">￥10</f7-col> -->
 							<f7-col width="85">配送费</f7-col>
 							<f7-col width="15">{{'￥' + order.deliverFee }}</f7-col>
-						</f7-grid>
+						</f7-row>
 					</f7-list-item>
 					<!-- 活动 -->
 					<!-- <f7-list-item class="coupun-list">
-						<f7-grid class="inner-grid">
+						<f7-row class="inner-grid">
 							<f7-col width="85">
 								<f7-badge>折</f7-badge>
 								门店新客
@@ -210,17 +210,17 @@
 							<f7-col width="15">
 								-￥5
 							</f7-col>
-						</f7-grid>
+						</f7-row>
 					</f7-list-item> -->
 					<!-- 活动 -->
 					<f7-list-item class="final-fee">
-						<f7-grid class="inner-grid">
+						<f7-row class="inner-grid">
 							<f7-col width="70">
 								<span>{{'总计 ￥'+ order.originalPrice}}</span>
 								<span>{{'优惠 ￥'+ (order.originalPrice - order.totalPrice)}}</span>
 							</f7-col>
 							<f7-col width="30">{{'实付 ￥'+ order.totalPrice}}</f7-col>
-						</f7-grid>
+						</f7-row>
 					</f7-list-item>
 				</f7-list>
 				<!-- 订单详情 end -->

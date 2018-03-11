@@ -45,7 +45,7 @@
 		<template v-if="page.list && page.list.length > 0 ">
 			<f7-list class="order-list" v-for="item in page.list" :key="item.orderId">
 				<f7-list-item class="list-header">
-					<f7-grid no-gutter>
+					<f7-row no-gap>
 						<f7-col width="55">
 							<f7-link :href="'/shoppingCart/?id='+item.restaurantId" class="ret-name">{{item.restaurantName}}<i class="arrow"></i></f7-link>
 						</f7-col>
@@ -57,7 +57,7 @@
 							<f7-link v-else-if="item.deliverStatus === 1" :href="'/order-single/?id='+item.orderId">等待送达</f7-link>
 							<f7-link v-else-if="item.deliverStatus === 0" :href="'/order-single/?id='+item.orderId">等待接单</f7-link>
 						</f7-col>
-					</f7-grid>
+					</f7-row>
 				</f7-list-item>
 				<f7-list-item :link="'/order-single/?id='+item.orderId" class="list-content">
 					<div class="ret-img">

@@ -79,12 +79,12 @@
 
 		<f7-list class="address-list">
 			<f7-list-item link="#" @click="popup">
-				<f7-grid class="list-content">
+				<f7-row class="list-content">
 					<f7-col width="20" class="username">{{ defaultAddress.consignee }}</f7-col>
 					<f7-col width="20" class="sex">{{ defaultAddress.sex === 0 ? '先生' : '女士'}}</f7-col>
 					<f7-col width="60" class="mobile">{{ defaultAddress.phone }}</f7-col>
 					<f7-col width="100" class="address">{{ defaultAddress.address }}</f7-col>
-				</f7-grid>
+				</f7-row>
 			</f7-list-item>
 			<f7-list-item link="#">
 				<f7-label>送达时间</f7-label>
@@ -102,13 +102,13 @@
 
 		<f7-list class="order-list">
 			<f7-list-item class="restaurent-info">
-				<f7-grid class="inner-grid">
+				<f7-row class="inner-grid">
 					<f7-col width="50">{{ order.restaurantName }}</f7-col>
 					<f7-col width="50">由 商家 提供配送服务</f7-col>
-				</f7-grid>
+				</f7-row>
 			</f7-list-item>
 			<f7-list-item class="food-list">
-				<f7-grid class="inner-grid">
+				<f7-row class="inner-grid">
 					<template v-for="food in order.detail.cartItems">
 						<f7-col width="55">
 							<f7-badge>折</f7-badge>
@@ -118,11 +118,11 @@
 						<f7-col width="15">{{'￥'+food.price}}</f7-col>
 						<f7-col width="15">{{'￥'+food.amount * food.price}}</f7-col>
 					</template>
-				</f7-grid>
+				</f7-row>
 			</f7-list-item>
 			<!-- 活动优惠 -->
 			<!-- <f7-list-item class="coupun-list">
-				<f7-grid class="inner-grid">
+				<f7-row class="inner-grid">
 					<f7-col width="85">
 						<f7-badge>折</f7-badge>
 						门店新客
@@ -137,36 +137,36 @@
 					<f7-col width="15">
 						-￥5
 					</f7-col>
-				</f7-grid>
+				</f7-row>
 			</f7-list-item> -->
 			<!-- 活动优惠 -->
 			<f7-list-item class="fee-list">
-				<f7-grid class="inner-grid">
+				<f7-row class="inner-grid">
 					<!-- <f7-col width="85">餐盒费</f7-col>
 					<f7-col width="15">￥10</f7-col> -->
 					<f7-col width="85">配送费</f7-col>
 					<f7-col width="15">{{'￥'+order.deliverFee}}</f7-col>
-				</f7-grid>
+				</f7-row>
 			</f7-list-item>
 			<f7-list-item class="final-sum">
-				<f7-grid class="inner-grid">
+				<f7-row class="inner-grid">
 					<f7-col width="70">
 						<span>{{'总计 ￥'+originalPrice}}</span>
 						<span>{{'优惠 ￥'+(originalPrice-totalPrice)}}</span>
 					</f7-col>
 					<f7-col width="30">{{'实付 ￥'+totalPrice}}</f7-col>
-				</f7-grid>
+				</f7-row>
 			</f7-list-item>
 		</f7-list>
 
 		<f7-toolbar class="pay-toolbar">
-			<f7-grid class="toolbar-grid">
+			<f7-row class="toolbar-grid">
 				<f7-col width="4">{{'已优惠 ￥' +(originalPrice-totalPrice)}}</f7-col>
 				<f7-col width="30">{{'待支付 ￥' +totalPrice}}</f7-col>
 				<f7-col width="30" class="pay-btn">
 					<a href="#" @click="submit">提交订单</a>
 				</f7-col>
-			</f7-grid>
+			</f7-row>
 		</f7-toolbar>
 
 
@@ -174,10 +174,10 @@
 			<div class="popup-content">
 				<f7-list>
 					<f7-list-item>
-						<f7-grid class="inner-grid">
+						<f7-row class="inner-grid">
 							<f7-col width="30"><f7-link @click="popup">确定</f7-link></f7-col>
 							<f7-col width="70">我的收货地址</f7-col>
-						</f7-grid>
+						</f7-row>
 					</f7-list-item>
 
 					<f7-list-item v-for="(item, index) in order.addressText" 

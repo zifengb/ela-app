@@ -290,14 +290,14 @@
 		<!-- tab content -->
 		<f7-tabs class="tabs-content">
 			<f7-tab id="s-tab-1" active>
-                <f7-grid no-gutter>
+                <f7-row no-gap>
                     <f7-col class="types flex-column" width="25">
                         <div class="item center" :class="{ 'active': value.isActived }" v-for="(value, key) in types" :key="key"  @click="changeType(key)">
                             <span>{{ value.name }}</span>
                         </div>
                     </f7-col>
                     <f7-col class="products" width="75" style="margin-left:25%;" v-for="item in foods" :key="item.id">
-                        <f7-grid no-gutter class="item">
+                        <f7-row no-gap class="item">
                             <f7-col width="25" class="pic">
                                 <img :src="item.image" />
                             </f7-col>
@@ -310,9 +310,9 @@
                                     <p class="plus row-center-right span1" @click="addItem(item)"><i class="la la-plus-circle"></i></p>
                                 </div>
                             </f7-col>
-                        </f7-grid>
+                        </f7-row>
                     </f7-col>
-                </f7-grid>
+                </f7-row>
 			</f7-tab>
 			<f7-tab id="s-tab-2">
 				<!-- 订单信息 start -->
@@ -354,7 +354,7 @@
 
 		<!-- toolbar / bottom-tab -->
 		<div class="bottom-tab" v-show="isProduct">
-			<f7-grid no-gutter>
+			<f7-row no-gap>
 				<f7-col class="cart" width="20">
 					<div class="button-num flex-row"><span class="num center">{{ cartLen }}</span></div>
 					<div class="button-cart flex-row" @click="open">
@@ -374,7 +374,7 @@
 						去结算
 					</span>
 				</f7-col>
-			</f7-grid>
+			</f7-row>
 		</div>
 		<f7-toolbar tabbar labels class="toolbar" v-show="!isProduct">
 			<f7-link href="/">

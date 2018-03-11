@@ -27,7 +27,7 @@
 					</f7-link>
 				</f7-toolbar>
 			</f7-view>
-		</f7-views>		
+		</f7-views>
 	</div>
 </template>
 

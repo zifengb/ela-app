@@ -66,7 +66,7 @@
 		<!-- 个人信息 end -->
 
 		<!-- 个人优惠信息 start -->
-		<f7-grid class="user-profile">
+		<f7-row class="user-profile">
 			<f7-col width="33">
 				<Strong v-if="this.$store.state.userAuth.userInfo">{{ this.$store.state.userAuth.userInfo.balance }}<sub class="unit">元</sub></Strong>
 				<Strong v-else >0<sub class="unit">元</sub></Strong>
@@ -82,7 +82,7 @@
 				<Strong>0<sub class="unit">分</sub></Strong>
 				<p>积分</p>
 			</f7-col>
-		</f7-grid>
+		</f7-row>
 		<!-- 个人优惠信息 end -->
 
 		<f7-list>

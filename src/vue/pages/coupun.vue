@@ -77,7 +77,7 @@
 			<f7-tab id="c-tab-1" active>
 				<ul class="coupun-list">
 					<li class="item">
-						<f7-grid>
+						<f7-row>
 							<f7-col width="25">
 								<h3>￥5</h3>
 								<p>满x元可用</p>
@@ -90,10 +90,10 @@
 							<f7-col width="25">
 								<f7-button fill class="pay-use">立即使用</f7-button>
 							</f7-col>
-						</f7-grid>
+						</f7-row>
 					</li>
 					<li class="item">
-						<f7-grid>
+						<f7-row>
 							<f7-col width="25">
 								<h3>￥5</h3>
 								<p>满x元可用</p>
@@ -106,10 +106,10 @@
 							<f7-col width="25">
 								<f7-button fill class="pay-use">立即使用</f7-button>
 							</f7-col>
-						</f7-grid>
+						</f7-row>
 					</li>
 					<li class="item">
-						<f7-grid>
+						<f7-row>
 							<f7-col width="25">
 								<h3>￥5</h3>
 								<p>满x元可用</p>
@@ -122,10 +122,10 @@
 							<f7-col width="25">
 								<f7-button fill class="pay-use">立即使用</f7-button>
 							</f7-col>
-						</f7-grid>
+						</f7-row>
 					</li>
 					<li class="item">
-						<f7-grid>
+						<f7-row>
 							<f7-col width="25">
 								<h3>￥5</h3>
 								<p>满x元可用</p>
@@ -138,7 +138,7 @@
 							<f7-col width="25">
 								<f7-button fill class="pay-use">立即使用</f7-button>
 							</f7-col>
-						</f7-grid>
+						</f7-row>
 					</li>
 					<li class="no-more">没有更多了~</li>
 				</ul>

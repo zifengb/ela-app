@@ -173,12 +173,12 @@
 		<!-- 商家列表 -->
 		<ul v-if="list.length > 0" class="rt-list" style="margin-top: 40px;">
 			<li v-for="item in list" :key="item.restaurant_id" @click="jumpTo('/shoppingCart/?id='+item.restaurant_id)">
-				<f7-grid class="rt-list-grid">
+				<f7-row class="rt-list-grid">
 					<f7-col width="30" class="aside">
 						<img :src="item.image" />
 					</f7-col>
 					<f7-col width="70">
-						<f7-grid>
+						<f7-row>
 							<f7-col width="70" class="content">
 								<h3>{{ item.restaurant_name }}</h3>
 								<p><span class="rating">{{ calcRate(item.numRatings || 2) }}</span>月售{{ item.recent_order_num }}单</p>
@@ -189,9 +189,9 @@
 								<p>{{ distanceFormat(item.distance) + 'km' }}</p>
 								<p>{{ item.deliver_spent }}分钟</p>
 							</f7-col>
-						</f7-grid>
+						</f7-row>
 					</f7-col>
-				</f7-grid>
+				</f7-row>
 			</li>
 		</ul>
 

@@ -74,12 +74,12 @@ i.la {
 	<f7-block-title>我的收货地址</f7-block-title>
   <f7-list class="searchbar-found" id="search-list">
     <f7-list-item link="#" v-for="(item, index) in address" :key="index" :title="item.address">
-			<f7-grid class="list-content">
+			<f7-row class="list-content">
 				<f7-col width="100" class="address">{{item.address}}</f7-col>
 				<f7-col width="20" class="username">{{item.consignee}}</f7-col>
 				<f7-col width="20" class="sex">{{item.sex === 0 ? '男': '女'}}</f7-col>
 				<f7-col width="60" class="mobile">{{item.phone}}</f7-col>
-			</f7-grid>
+			</f7-row>
 		</f7-list-item>
 		<!-- <f7-list-item class="more"><a href="#">展开更多地址</a></f7-list-item> -->
   </f7-list>

@@ -57,7 +57,7 @@
 
 		<ul v-if="pageData.list && pageData.list.length > 0" class="rt-list">
 			<li v-for="item in pageData.list" :key="item.articleId" @click="jumpTo('/infoDetail/?content=' + item.content)">
-				<f7-grid class="rt-list-grid">
+				<f7-row class="rt-list-grid">
 					<f7-col width="30" class="aside">
 						<img :src="item.thumbnail" />
 					</f7-col>
@@ -65,7 +65,7 @@
 						<h3>{{ item.title }}</h3>
 						<p>{{ textEllipsis(item.content) }}</p>
 					</f7-col>
-				</f7-grid>
+				</f7-row>
 			</li>
 		</ul>
 	</f7-page>
