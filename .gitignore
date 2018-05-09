@@ -13,6 +13,8 @@ node_modules/**
 platforms/android
 platforms/ios
 platforms/browser
+.vscode
+typings
 
 
 # ignore www
